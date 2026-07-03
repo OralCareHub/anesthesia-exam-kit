@@ -1,0 +1,932 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exam Cheat Sheet — Anesthesia Techniques</title>
+<style>
+*{box-sizing:border-box;-webkit-font-smoothing:antialiased}
+html,body{margin:0;padding:0}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Inter','Segoe UI',sans-serif;
+  background:radial-gradient(ellipse at top,#f0f9ff 0%,#e0f2fe 40%,#bae6fd 100%);
+  min-height:100vh;
+  color:#0f172a;
+  padding:24px 16px 60px;
+}
+.back-link{
+  display:block;
+  max-width:920px;
+  margin:0 auto 12px;
+  color:#0c4a6e;
+  text-decoration:none;
+  font-size:.86em;
+  opacity:.75;
+  transition:opacity .15s ease;
+}
+.back-link:hover{opacity:1}
+header.hero{
+  max-width:920px;
+  margin:0 auto 22px;
+  text-align:center;
+}
+header.hero h1{
+  margin:0 0 6px;
+  font-size:2em;
+  letter-spacing:-.6px;
+  color:#0c4a6e;
+}
+header.hero .sub{margin:0;color:#475569;font-size:1em}
+
+/* ===== COLOR KEY ===== */
+.key-card{
+  max-width:920px;
+  margin:0 auto 20px;
+  background:#fff;
+  border-radius:16px;
+  padding:18px 22px;
+  box-shadow:0 3px 12px rgba(15,23,42,.06);
+}
+.key-title{
+  font-size:.7em;
+  text-transform:uppercase;
+  letter-spacing:1.4px;
+  color:#64748b;
+  font-weight:700;
+  margin-bottom:12px;
+}
+.key-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:8px 16px;
+  font-size:.86em;
+}
+.key-item{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  color:#334155;
+}
+.key-dot{
+  width:14px;height:14px;
+  border-radius:4px;
+  flex-shrink:0;
+  box-shadow:inset 0 0 0 1px rgba(15,23,42,.1);
+}
+.k-green {background:#10b981}
+.k-orange{background:#ea580c}
+.k-amber {background:#d97706}
+.k-red   {background:#dc2626}
+.k-blue  {background:#1e40af}
+.k-indigo{background:#4338ca}
+.key-item b{color:#0f172a;font-weight:600}
+
+/* ===== SECTIONS ===== */
+.section{max-width:920px;margin:0 auto 22px}
+.section-head{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin:0 0 14px;
+  font-size:.78em;
+  text-transform:uppercase;
+  letter-spacing:1.4px;
+  color:#475569;
+  font-weight:700;
+}
+.section-head::before,
+.section-head::after{
+  content:'';
+  flex:1;
+  height:1px;
+  background:linear-gradient(90deg,transparent,#cbd5e1);
+}
+.section-head::after{background:linear-gradient(90deg,#cbd5e1,transparent)}
+
+/* ===== TECHNIQUE CARDS ===== */
+.tech-grid{display:grid;gap:14px}
+.tech-card{
+  background:#fff;
+  border-radius:14px;
+  padding:0 0 16px;
+  box-shadow:0 3px 12px rgba(15,23,42,.06);
+  overflow:hidden;
+  border-left:6px solid #94a3b8;
+}
+.tech-card.green {border-left-color:#10b981}
+.tech-card.orange{border-left-color:#ea580c}
+.tech-card.amber {border-left-color:#d97706}
+.tech-card.red   {border-left-color:#dc2626}
+.tech-card.blue  {border-left-color:#1e40af}
+.tech-card.indigo{border-left-color:#4338ca}
+
+.tech-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+  padding:16px 20px 8px;
+  flex-wrap:wrap;
+}
+.tech-title{
+  font-size:1.08em;
+  font-weight:700;
+  color:#0f172a;
+  line-height:1.3;
+  margin:0;
+}
+.tech-title .num{
+  color:#94a3b8;
+  font-weight:600;
+  margin-right:6px;
+  font-family:'SF Mono','JetBrains Mono',Menlo,monospace;
+  font-size:.9em;
+}
+.tech-purpose{
+  color:#64748b;
+  font-size:.86em;
+  margin-top:3px;
+  font-style:italic;
+}
+.tech-badge{
+  padding:5px 12px;
+  border-radius:999px;
+  font-size:.74em;
+  font-weight:700;
+  letter-spacing:.6px;
+  text-transform:uppercase;
+  white-space:nowrap;
+  flex-shrink:0;
+}
+.badge-green {background:#d1fae5;color:#065f46}
+.badge-orange{background:#ffedd5;color:#9a3412}
+.badge-amber {background:#fef3c7;color:#92400e}
+.badge-red   {background:#fee2e2;color:#991b1b}
+.badge-blue  {background:#dbeafe;color:#1e3a8a}
+.badge-indigo{background:#e0e7ff;color:#3730a3}
+
+.tech-nerve{
+  display:inline-block;
+  padding:4px 12px;
+  border-radius:6px;
+  background:#f1f5f9;
+  color:#0f172a;
+  font-family:'SF Mono','JetBrains Mono',Menlo,monospace;
+  font-size:.82em;
+  font-weight:700;
+  margin:6px 20px 0;
+}
+.tech-territory{
+  padding:10px 20px 0;
+  color:#334155;
+  font-size:.9em;
+  line-height:1.5;
+}
+.tech-territory b{color:#0c4a6e}
+
+.tech-section-label{
+  padding:14px 20px 6px;
+  font-size:.66em;
+  text-transform:uppercase;
+  letter-spacing:1.2px;
+  color:#64748b;
+  font-weight:700;
+}
+
+.landmarks{padding:0 20px;font-size:.87em;line-height:1.55;color:#334155;margin:0;list-style:none}
+.landmarks li{padding-left:18px;position:relative;margin-bottom:3px}
+.landmarks li::before{
+  content:'';
+  position:absolute;
+  left:2px;top:8px;
+  width:8px;height:8px;
+  border-radius:50%;
+  background:#cbd5e1;
+}
+.landmarks .l-bone::before  {background:#0891b2}
+.landmarks .l-dental::before{background:#7c3aed}
+.landmarks .l-soft::before  {background:#f59e0b}
+.landmarks b{color:#0f172a;font-weight:600}
+
+.steps{
+  padding:0 20px;
+  margin:0;
+  font-size:.88em;
+  line-height:1.5;
+  color:#334155;
+  counter-reset:step;
+  list-style:none;
+}
+.steps li{
+  position:relative;
+  padding-left:28px;
+  margin-bottom:6px;
+  counter-increment:step;
+}
+.steps li::before{
+  content:counter(step);
+  position:absolute;
+  left:0;top:1px;
+  width:20px;height:20px;
+  background:#0c4a6e;
+  color:#fff;
+  border-radius:50%;
+  font-size:.72em;
+  font-weight:700;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:'SF Mono',Menlo,monospace;
+}
+
+.dvd-row{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:8px;
+  margin:14px 20px 0;
+}
+.dvd-cell{
+  background:#f8fafc;
+  border:1px solid #e2e8f0;
+  border-radius:9px;
+  padding:8px 12px;
+  font-size:.82em;
+}
+.dvd-cell .dvd-label{
+  display:block;
+  color:#64748b;
+  font-size:.85em;
+  text-transform:uppercase;
+  letter-spacing:.6px;
+  font-weight:700;
+  margin-bottom:2px;
+}
+.dvd-cell .dvd-val{color:#0f172a;font-weight:700;font-family:'SF Mono',Menlo,monospace}
+
+.trap{
+  margin:14px 20px 0;
+  padding:11px 14px;
+  background:#fff7ed;
+  border-left:4px solid #ea580c;
+  border-radius:8px;
+  font-size:.85em;
+  color:#78350f;
+  line-height:1.5;
+}
+.trap.deadly{background:#fef2f2;border-left-color:#dc2626;color:#991b1b}
+.trap b{color:#c2410c}
+.trap.deadly b{color:#dc2626}
+.trap .label{
+  display:block;
+  font-size:.85em;
+  text-transform:uppercase;
+  letter-spacing:.8px;
+  font-weight:700;
+  margin-bottom:4px;
+}
+
+/* ===== TOP RULES + COMMANDMENTS ===== */
+.rules-card{
+  max-width:920px;
+  margin:0 auto 22px;
+  background:linear-gradient(135deg,#0c4a6e 0%,#1e40af 100%);
+  color:#fff;
+  border-radius:16px;
+  padding:20px 24px;
+  box-shadow:0 10px 30px rgba(15,23,42,.15);
+}
+.rules-card h3{
+  margin:0 0 12px;
+  font-size:1em;
+  letter-spacing:.4px;
+}
+.rules-list{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:8px 20px;
+  font-size:.86em;
+  color:#e0f2fe;
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+.rules-list li{
+  padding-left:22px;
+  position:relative;
+  line-height:1.4;
+}
+.rules-list li::before{
+  content:'✓';
+  position:absolute;
+  left:0;top:0;
+  width:16px;height:16px;
+  background:rgba(255,255,255,.2);
+  border-radius:50%;
+  font-size:.7em;
+  font-weight:700;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.rules-list b{color:#fff}
+
+/* ===== QUICK FACTS (rigid 3–4 field template) ===== */
+.quick-facts{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:8px;
+  margin:12px 20px 0;
+}
+.fact{
+  background:#f8fafc;
+  border:1px solid #e2e8f0;
+  border-radius:9px;
+  padding:10px 12px;
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+}
+.fact-icon{
+  font-size:1.05em;
+  line-height:1;
+  padding-top:2px;
+  flex-shrink:0;
+}
+.fact-content{flex:1;min-width:0}
+.fact-label{
+  display:block;
+  color:#64748b;
+  font-size:.7em;
+  text-transform:uppercase;
+  letter-spacing:.6px;
+  font-weight:700;
+  margin-bottom:2px;
+}
+.fact-val{
+  color:#0f172a;
+  font-size:.9em;
+  font-weight:600;
+  line-height:1.4;
+}
+.fact-val b{color:#0c4a6e}
+
+.remember{
+  margin:12px 20px 0;
+  padding:11px 14px;
+  background:linear-gradient(135deg,#eff6ff 0%,#dbeafe 100%);
+  border:1px solid #93c5fd;
+  border-radius:9px;
+  font-size:.9em;
+  color:#1e3a8a;
+  line-height:1.45;
+  text-align:center;
+  font-weight:600;
+}
+.remember .r-label{
+  display:inline-block;
+  font-size:.72em;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  color:#3730a3;
+  margin-right:6px;
+  vertical-align:1px;
+}
+
+.trap-simple{
+  margin:10px 20px 16px;
+  padding:10px 14px;
+  background:#fff7ed;
+  border-left:4px solid #ea580c;
+  border-radius:8px;
+  font-size:.86em;
+  color:#78350f;
+  line-height:1.5;
+}
+.trap-simple.deadly{background:#fef2f2;border-left-color:#dc2626;color:#991b1b}
+.trap-simple b{color:#c2410c;margin-right:2px}
+.trap-simple.deadly b{color:#dc2626}
+
+/* ===== TOOTH MINI-MAP ===== */
+.tooth-map{
+  margin:8px 20px 0;
+  padding:12px 14px 10px;
+  background:linear-gradient(180deg,#f8fafc 0%,#f1f5f9 100%);
+  border:1px solid #e2e8f0;
+  border-radius:10px;
+}
+.tooth-map-svg{
+  display:block;
+  width:100%;
+  max-width:100%;
+  height:auto;
+}
+.tooth-mini{
+  fill:#e2e8f0;
+  stroke:#cbd5e1;
+  stroke-width:.6;
+  transition:fill .15s ease;
+}
+.tooth-mini.affected{
+  fill:#10b981;
+  stroke:#047857;
+  stroke-width:1;
+}
+.tooth-mini.partial{
+  fill:#fde68a;
+  stroke:#d97706;
+  stroke-width:1;
+}
+.tooth-fdi-label{
+  fill:#64748b;
+  font-family:'SF Mono','JetBrains Mono',Menlo,monospace;
+  font-size:6.2px;
+  font-weight:600;
+  text-anchor:middle;
+  pointer-events:none;
+  letter-spacing:.2px;
+}
+.tooth-fdi-label.on-affected{fill:#fff}
+.tooth-fdi-label.on-partial{fill:#78350f}
+.tooth-midline{
+  stroke:#cbd5e1;
+  stroke-dasharray:1.5 1.5;
+  stroke-width:.6;
+}
+.arch-tag{
+  fill:#94a3b8;
+  font-family:-apple-system,sans-serif;
+  font-size:5.2px;
+  font-weight:700;
+  letter-spacing:.6px;
+  text-transform:uppercase;
+}
+.tooth-legend{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  font-size:.72em;
+  color:#475569;
+  margin-top:6px;
+}
+.tooth-legend .swatch{
+  display:inline-block;
+  width:9px;height:9px;
+  border-radius:2px;
+  vertical-align:-1px;
+  margin-right:4px;
+}
+.tooth-legend .sw-aff    {background:#10b981;border:1px solid #047857}
+.tooth-legend .sw-partial{background:#fde68a;border:1px solid #d97706}
+.tooth-legend .sw-none   {background:#e2e8f0;border:1px solid #cbd5e1}
+
+@media(max-width:640px){
+  header.hero h1{font-size:1.5em}
+  .tech-head{padding:14px 16px 6px}
+  .tech-nerve,.tech-territory,.tech-section-label,.landmarks,.steps,.dvd-row,.trap,.tooth-map{padding-left:16px;padding-right:16px;margin-left:0;margin-right:0}
+  .dvd-row{margin:12px 16px 0}
+  .trap,.tooth-map{margin:12px 16px 0}
+}
+</style>
+</head>
+<body>
+
+<a href="EXTRACTION_NERVE_MAP.html" class="back-link">← Back to tooth-by-tooth chart</a>
+
+<header class="hero">
+  <h1>📋 Exam Cheat Sheet</h1>
+  <p class="sub">Every technique, exam-only. Landmarks · steps · depth · volume · trap.</p>
+</header>
+
+<!-- COLOR KEY -->
+<div class="key-card">
+  <div class="key-title">Color key — grouped by anatomical family</div>
+  <div class="key-grid">
+    <div class="key-item"><span class="key-dot k-green"></span><b>Green</b> — Infiltration / plexal (universal, few mm)</div>
+    <div class="key-item"><span class="key-dot k-orange"></span><b>Orange</b> — V2 buccal blocks (PSA, Infraorbital)</div>
+    <div class="key-item"><span class="key-dot k-amber"></span><b>Amber</b> — V2 palate blocks (GPN, NPN)</div>
+    <div class="key-item"><span class="key-dot k-blue"></span><b>Blue</b> — V3 deep / truncular (Spix, Mental)</div>
+    <div class="key-item"><span class="key-dot k-indigo"></span><b>Indigo</b> — V3 superficial (Long Buccal, Lingual)</div>
+  </div>
+</div>
+
+<!-- TOP RULES -->
+<div class="rules-card">
+  <h3>🎯 The 10 commandments (apply to EVERY block)</h3>
+  <ul class="rules-list">
+    <li><b>Disinfect</b> mucosa</li>
+    <li><b>Bevel toward bone</b></li>
+    <li><b>Maintain bone contact</b> when block is "against bone" (PSA, Spix)</li>
+    <li><b>Aspirate</b> before every deposit</li>
+    <li><b>Slow deposit</b> ≥30 s per cartridge fraction</li>
+    <li><b>Never to the hub</b> — leave ≥5 mm exposed</li>
+    <li><b>No mid-shaft direction changes</b> (breakage)</li>
+    <li><b>Head position</b>: straight/extended, mouth half-open (PSA) or wide open (palatal, Spix)</li>
+    <li><b>Aspirate again</b> after any needle re-position</li>
+    <li><b>Wait for onset</b> before proceeding</li>
+  </ul>
+</div>
+
+<!-- ============== SECTION A: PLEXAL / INFILTRATION ============== -->
+<div class="section">
+  <div class="section-head">A · Plexal / Infiltration</div>
+  <div class="tech-grid">
+
+    <!-- 1. PLEXAL -->
+    <div class="tech-card green">
+      <div class="tech-head">
+        <div>
+          <div class="tech-title"><span class="num">1</span>Plexal (supraperiosteal)</div>
+          <div class="tech-purpose">The default for upper teeth · supplement for lower incisors</div>
+        </div>
+        <span class="tech-badge badge-green">Infiltration</span>
+      </div>
+      <span class="tech-nerve">local terminal branches · upper I/C/P + lower I</span>
+      <div class="tooth-map" data-teeth="1.1,1.2,1.3,1.4,1.5,2.1,2.2,2.3,2.4,2.5,3.1,3.2,4.1,4.2"></div>
+
+      <div class="quick-facts">
+        <div class="fact"><span class="fact-icon">📍</span><div class="fact-content"><span class="fact-label">Where</span><span class="fact-val">Mucobuccal fold <b>above the apex</b></span></div></div>
+        <div class="fact"><span class="fact-icon">📏</span><div class="fact-content"><span class="fact-label">Depth</span><span class="fact-val">Few mm (submucosal)</span></div></div>
+        <div class="fact"><span class="fact-icon">💧</span><div class="fact-content"><span class="fact-label">Volume</span><span class="fact-val">0.6 mL (⅓–½ cartridge)</span></div></div>
+      </div>
+
+      <div class="remember"><span class="r-label">Remember</span>Above the apex. Few mm. Doesn't work on lower molars (dense bone).</div>
+    </div>
+
+    <!-- 2. TRANS-FRENULAR -->
+    <div class="tech-card green">
+      <div class="tech-head">
+        <div>
+          <div class="tech-title"><span class="num">2</span>Trans-frenular plexal</div>
+          <div class="tech-purpose">Catches midline crossover between the upper central incisors</div>
+        </div>
+        <span class="tech-badge badge-green">Infiltration</span>
+      </div>
+      <span class="tech-nerve">contralateral ASAN crossover · upper centrals</span>
+      <div class="tooth-map" data-teeth="1.1,2.1"></div>
+
+      <div class="quick-facts">
+        <div class="fact"><span class="fact-icon">📍</span><div class="fact-content"><span class="fact-label">Where</span><span class="fact-val">Upper <b>labial frenulum</b></span></div></div>
+        <div class="fact"><span class="fact-icon">📏</span><div class="fact-content"><span class="fact-label">Depth</span><span class="fact-val">Submucosal</span></div></div>
+        <div class="fact"><span class="fact-icon">💧</span><div class="fact-content"><span class="fact-label">Volume</span><span class="fact-val">0.3 mL</span></div></div>
+      </div>
+
+      <div class="remember"><span class="r-label">Remember</span>Sting the frenulum only when doing 1.1 or 2.1.</div>
+    </div>
+
+    <!-- 3. PALATAL INFILTRATION -->
+    <div class="tech-card green">
+      <div class="tech-head">
+        <div>
+          <div class="tech-title"><span class="num">3</span>Local palatal infiltration</div>
+          <div class="tech-purpose">Small palatal top-up for 1–2 teeth (canine anastomosis zone)</div>
+        </div>
+        <span class="tech-badge badge-green">Infiltration</span>
+      </div>
+      <span class="tech-nerve">GPN / NPN terminal twigs · canine palate</span>
+      <div class="tooth-map" data-teeth="1.3,2.3"></div>
+
+      <div class="quick-facts">
+        <div class="fact"><span class="fact-icon">📍</span><div class="fact-content"><span class="fact-label">Where</span><span class="fact-val">Palatal, <b>3–5 mm medial</b> to gingival groove</span></div></div>
+        <div class="fact"><span class="fact-icon">📏</span><div class="fact-content"><span class="fact-label">Depth</span><span class="fact-val">Submucosal</span></div></div>
+        <div class="fact"><span class="fact-icon">💧</span><div class="fact-content"><span class="fact-label">Volume</span><span class="fact-val">0.2 mL</span></div></div>
+      </div>
+
+      <div class="trap-simple"><b>⚠️</b> Do NOT hit the greater palatine artery — stop at blanching.</div>
+    </div>
+
+    <!-- 4. PLEXAL MB M1 -->
+    <div class="tech-card green">
+      <div class="tech-head">
+        <div>
+          <div class="tech-title"><span class="num">4</span>Plexal MB-root supplement (1.6 / 2.6)</div>
+          <div class="tech-purpose">Rescues the MB root that PSAN bypasses</div>
+        </div>
+        <span class="tech-badge badge-green">Infiltration</span>
+      </div>
+      <span class="tech-nerve">MSAN / plexal twigs · MB root of upper M1</span>
+      <div class="tooth-map" data-teeth="1.6,2.6"></div>
+
+      <div class="quick-facts">
+        <div class="fact"><span class="fact-icon">📍</span><div class="fact-content"><span class="fact-label">Where</span><span class="fact-val">Vestibular fornix <b>above MB root of upper M1</b></span></div></div>
+        <div class="fact"><span class="fact-icon">📏</span><div class="fact-content"><span class="fact-label">Depth</span><span class="fact-val">Few mm</span></div></div>
+        <div class="fact"><span class="fact-icon">💧</span><div class="fact-content"><span class="fact-label">Volume</span><span class="fact-val">0.6 mL</span></div></div>
+      </div>
+
+      <div class="remember"><span class="r-label">Exam point</span>PSA alone misses the MB root of M1. Always add this.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============== SECTION B: MAXILLARY BLOCKS ============== -->
+<div class="section">
+  <div class="section-head">B · Maxillary blocks (V2 — peripheral trunk)</div>
+  <div class="tech-grid">
+
+    <!-- 5. PSA -->
+    <div class="tech-card orange">
+      <div class="tech-head">
+        <div>
+          <div class="tech-title"><span class="num">5</span>PSA — Tuberosity block</div>
+          <div class="tech-purpose">Upper molars (M1 except MB root, M2, M3)</div>
+        </div>
+        <span class="tech-badge badge-orange">V2 buccal</span>
+      </div>
+      <span class="tech-nerve">PSAN · upper molars (M1 MB root escapes)</span>
+      <div class="tooth-map" data-teeth="1.6*,1.7,1.8,2.6*,2.7,2.8"></div>
+
+      <div class="quick-facts">
+        <div class="fact"><span class="fact-icon">📍</span><div class="fact-content"><span class="fact-label">Where</span><span class="fact-val">Superior fornix, behind zyg process, at <b>MB root of upper M2</b></span></div></div>
+        <div class="fact"><span class="fact-icon">🧭</span><div class="fact-content"><span class="fact-label">Direction</span><span class="fact-val"><b>Up 45° + in + back</b></span></div></div>
+        <div class="fact"><span class="fact-icon">📏</span><div class="fact-content"><span class="fact-label">Depth</span><span class="fact-val">10–15 mm to bone</span></div></div>
+        <div class="fact"><span class="fact-icon">💧</span><div class="fact-content"><span class="fact-label">Volume</span><span class="fact-val">~1 mL</span></div></div>
+      </div>
+
+      <div class="remember"><span class="r-label">Remember</span>"Up + in + back." Doesn't cover MB root of M1.</div>
+      <div class="trap-simple deadly"><b>🚨</b> MUST aspirate — pterygoid plexus → hematoma. Positive? Gauze + thenar compression.</div>
+    </div>
+
+    <!-- 6. INFRAORBITAL -->
+    <div class="tech-card orange">
+      <div class="tech-head">
+        <div>
+          <div class="tech-title"><span class="num">6</span>Infraorbital block</div>
+          <div class="tech-purpose">Covers ASA (± MSA when present) — one shot for I, C, P</div>
+        </div>
+        <span class="tech-badge badge-orange">V2 buccal</span>
+      </div>
+      <span class="tech-nerve">IO + ASA (± MSA) · upper I + C + P (± M1 MB)</span>
+      <div class="tooth-map" data-teeth="1.1,1.2,1.3,1.4,1.5,2.1,2.2,2.3,2.4,2.5,1.6*,2.6*"></div>
+
+      <div class="quick-facts">
+        <div class="fact"><span class="fact-icon">📍</span><div class="fact-content"><span class="fact-label">Where</span><span class="fact-val">Vestibular <b>at upper P1</b>, finger on IO foramen</span></div></div>
+        <div class="fact"><span class="fact-icon">📏</span><div class="fact-content"><span class="fact-label">Depth</span><span class="fact-val">1.5–2.5 cm to foramen</span></div></div>
+        <div class="fact"><span class="fact-icon">💧</span><div class="fact-content"><span class="fact-label">Volume</span><span class="fact-val">1.5–2 mL</span></div></div>
+      </div>
+
+      <div class="remember"><span class="r-label">Remember</span>Palpate foramen → puncture at P1 → aim for finger. Do NOT enter canal.</div>
+    </div>
+
+    <!-- 7. GPN -->
+    <div class="tech-card amber">
+      <div class="tech-head">
+        <div>
+          <div class="tech-title"><span class="num">7</span>Greater Palatine block (GPN)</div>
+          <div class="tech-purpose">Posterior 2/3 of hard palate — for upper P + M</div>
+        </div>
+        <span class="tech-badge badge-amber">V2 palate</span>
+      </div>
+      <span class="tech-nerve">GPN · posterior 2/3 palate (upper P + M)</span>
+      <div class="tooth-map" data-teeth="1.4,1.5,1.6,1.7,1.8,2.4,2.5,2.6,2.7,2.8"></div>
+
+      <div class="quick-facts">
+        <div class="fact"><span class="fact-icon">📍</span><div class="fact-content"><span class="fact-label">Where</span><span class="fact-val">Palate <b>1 cm medial to upper M3</b> (paler funnel-shape)</span></div></div>
+        <div class="fact"><span class="fact-icon">📏</span><div class="fact-content"><span class="fact-label">Depth</span><span class="fact-val">Submucosal — NO canal</span></div></div>
+        <div class="fact"><span class="fact-icon">💧</span><div class="fact-content"><span class="fact-label">Volume</span><span class="fact-val"><b>0.2–0.3 mL ONLY</b></span></div></div>
+      </div>
+
+      <div class="remember"><span class="r-label">Remember</span>"1 cm medial to M3, 0.3 mL, stop at blanching."</div>
+      <div class="trap-simple deadly"><b>🚨</b> Over-injection = ischemic palatal necrosis.</div>
+    </div>
+
+    <!-- 8. NPN -->
+    <div class="tech-card amber">
+      <div class="tech-head">
+        <div>
+          <div class="tech-title"><span class="num">8</span>Nasopalatine block (NPN / Scarpa)</div>
+          <div class="tech-purpose">Anterior 1/3 of hard palate — for upper I + C</div>
+        </div>
+        <span class="tech-badge badge-amber">V2 palate</span>
+      </div>
+      <span class="tech-nerve">NPN / Scarpa · anterior 1/3 palate (upper I + C)</span>
+      <div class="tooth-map" data-teeth="1.1,1.2,1.3,2.1,2.2,2.3"></div>
+
+      <div class="quick-facts">
+        <div class="fact"><span class="fact-icon">📍</span><div class="fact-content"><span class="fact-label">Where</span><span class="fact-val"><b>Lateral to incisive papilla</b> — never through it</span></div></div>
+        <div class="fact"><span class="fact-icon">📏</span><div class="fact-content"><span class="fact-label">Depth</span><span class="fact-val">5–6 mm into duct</span></div></div>
+        <div class="fact"><span class="fact-icon">💧</span><div class="fact-content"><span class="fact-label">Volume</span><span class="fact-val">0.2–0.3 mL</span></div></div>
+      </div>
+
+      <div class="remember"><span class="r-label">Remember</span>V/Y duct — enter from the <b>OPPOSITE side</b> of the target tooth.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============== SECTION C: MANDIBULAR BLOCKS ============== -->
+<div class="section">
+  <div class="section-head">C · Mandibular blocks (V3 — peripheral trunk)</div>
+  <div class="tech-grid">
+
+    <!-- 9. SPIX -->
+    <div class="tech-card blue">
+      <div class="tech-head">
+        <div>
+          <div class="tech-title"><span class="num">9</span>Spix's spine — IAN + Lingual block</div>
+          <div class="tech-purpose">THE mandibular workhorse — failure rate 15–20%</div>
+        </div>
+        <span class="tech-badge badge-blue">V3 deep</span>
+      </div>
+      <span class="tech-nerve">IAN + mental + incisive + Lingual · all 16 lower</span>
+      <div class="tooth-map" data-teeth="3.1,3.2,3.3,3.4,3.5,3.6,3.7,3.8,4.1,4.2,4.3,4.4,4.5,4.6,4.7,4.8"></div>
+
+      <div class="quick-facts">
+        <div class="fact"><span class="fact-icon">📍</span><div class="fact-content"><span class="fact-label">Where</span><span class="fact-val">Lateral to pterygomandibular fold, <b>1 cm above occlusal plane</b>. Syringe over <b>opposite premolars</b>.</span></div></div>
+        <div class="fact"><span class="fact-icon">📏</span><div class="fact-content"><span class="fact-label">Depth</span><span class="fact-val">2–2.5 cm to bone → withdraw 1 cm</span></div></div>
+        <div class="fact"><span class="fact-icon">💧</span><div class="fact-content"><span class="fact-label">Volume</span><span class="fact-val">1–1.7 mL total</span></div></div>
+      </div>
+
+      <div class="remember"><span class="r-label">Remember</span><b>T1</b> at bone = IAN → withdraw 1 cm → <b>T2</b> = Lingual. TWO aspirations.</div>
+      <div class="trap-simple deadly"><b>🚨</b> No bone contact = needle in parotid = facial palsy. <b>Confirm bone first.</b></div>
+    </div>
+
+    <!-- 10. MENTAL + INCISIVE -->
+    <div class="tech-card blue">
+      <div class="tech-head">
+        <div>
+          <div class="tech-title"><span class="num">10</span>Mental + incisive block</div>
+          <div class="tech-purpose">Alternative to Spix for anterior mandible (I → P)</div>
+        </div>
+        <span class="tech-badge badge-blue">V3 deep</span>
+      </div>
+      <span class="tech-nerve">Mental + Incisive · lower I + C + P1</span>
+      <div class="tooth-map" data-teeth="3.1,3.2,3.3,3.4,4.1,4.2,4.3,4.4"></div>
+
+      <div class="quick-facts">
+        <div class="fact"><span class="fact-icon">📍</span><div class="fact-content"><span class="fact-label">Where</span><span class="fact-val">Mucobuccal fold <b>past mesial root of lower M1</b> → advance to foramen</span></div></div>
+        <div class="fact"><span class="fact-icon">📏</span><div class="fact-content"><span class="fact-label">Depth</span><span class="fact-val">Into foramen (needle "fixes")</span></div></div>
+        <div class="fact"><span class="fact-icon">💧</span><div class="fact-content"><span class="fact-label">Volume</span><span class="fact-val">0.2 + 0.2 mL</span></div></div>
+      </div>
+
+      <div class="remember"><span class="r-label">Remember</span>Foramen sits between <b>P1 and P2</b>. Direction: down + forward + inward.</div>
+    </div>
+
+    <!-- 11. LONG BUCCAL -->
+    <div class="tech-card indigo">
+      <div class="tech-head">
+        <div>
+          <div class="tech-title"><span class="num">11</span>Buccal / Long Buccal nerve block</div>
+          <div class="tech-purpose">Mandatory partner to Spix for mandibular molar extractions</div>
+        </div>
+        <span class="tech-badge badge-indigo">V3 superficial</span>
+      </div>
+      <span class="tech-nerve">Long Buccal n. · buccal gingiva of lower molars</span>
+      <div class="tooth-map" data-teeth="3.6,3.7,3.8,4.6,4.7,4.8"></div>
+
+      <div class="quick-facts">
+        <div class="fact"><span class="fact-icon">📍</span><div class="fact-content"><span class="fact-label">Where</span><span class="fact-val">Anterior ramus × maxillary occlusal (base of coronoid). <br><i>Or simply: infiltrate distal to lower M3.</i></span></div></div>
+        <div class="fact"><span class="fact-icon">📏</span><div class="fact-content"><span class="fact-label">Depth</span><span class="fact-val">2–4 mm</span></div></div>
+        <div class="fact"><span class="fact-icon">💧</span><div class="fact-content"><span class="fact-label">Volume</span><span class="fact-val">0.3–0.5 mL</span></div></div>
+      </div>
+
+      <div class="remember"><span class="r-label">Exam point</span>Mental ends at the foramen. <b>Spix ALONE does NOT cover molar buccal.</b> Add this every lower molar.</div>
+    </div>
+
+    <!-- 12. LINGUAL ISOLATED -->
+    <div class="tech-card indigo">
+      <div class="tech-head">
+        <div>
+          <div class="tech-title"><span class="num">12</span>Lingual nerve — isolated block</div>
+          <div class="tech-purpose">Used when LN needed without Spix (or as supplement)</div>
+        </div>
+        <span class="tech-badge badge-indigo">V3 superficial</span>
+      </div>
+      <span class="tech-nerve">Lingual n. · all lower lingual + ant 2/3 tongue + floor</span>
+      <div class="tooth-map" data-teeth="3.1,3.2,3.3,3.4,3.5,3.6,3.7,3.8,4.1,4.2,4.3,4.4,4.5,4.6,4.7,4.8"></div>
+
+      <div class="quick-facts">
+        <div class="fact"><span class="fact-icon">📍</span><div class="fact-content"><span class="fact-label">Where — A</span><span class="fact-val">Paralingual fold <b>next to lower M3</b></span></div></div>
+        <div class="fact"><span class="fact-icon">📍</span><div class="fact-content"><span class="fact-label">Where — B (Theodorescu)</span><span class="fact-val">Floor–mandible angle <b>at canine or P2</b></span></div></div>
+        <div class="fact"><span class="fact-icon">📏</span><div class="fact-content"><span class="fact-label">Depth (both)</span><span class="fact-val"><b>0.5 cm</b></span></div></div>
+        <div class="fact"><span class="fact-icon">💧</span><div class="fact-content"><span class="fact-label">Volume</span><span class="fact-val">~0.5 mL</span></div></div>
+      </div>
+
+      <div class="remember"><span class="r-label">Remember</span>Both variants = <b>0.5 cm</b>. LN is superficial distal to M3 (danger zone).</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============== NIGHT BEFORE ============== -->
+<div class="section">
+  <div class="section-head">🌙 Morning-of-exam re-read</div>
+  <div class="tech-card">
+    <div class="tech-head">
+      <div>
+        <div class="tech-title">4 questions you WILL get</div>
+        <div class="tech-purpose">If you only remember 4 things — remember these</div>
+      </div>
+    </div>
+    <ol class="steps" style="margin-top:14px;padding-bottom:6px">
+      <li><b>Spix</b>: syringe over opposite premolars → 2–2.5 cm to bone → <b>T1 IAN</b> → withdraw 1 cm → <b>T2 Lingual</b>. No bone contact = parotid = facial palsy.</li>
+      <li><b>GPN vs NPN</b>: <b>posterior 2/3</b> palate = GPN (1 cm medial to M3). <b>Anterior 1/3</b> = NPN (lateral to papilla, enter from <b>opposite side</b>).</li>
+      <li><b>PSA</b>: ALWAYS aspirate (pterygoid plexus → hematoma). <b>Misses MB root of upper M1</b> — add plexal MB.</li>
+      <li><b>Lingual isolated</b>: both variants (M3 paralingual + Theodorescu at P2) = <b>0.5 cm depth</b>. Same volume.</li>
+    </ol>
+    <div class="remember" style="margin:0 20px 16px"><span class="r-label">Bonus</span>Trigeminal foramina: <b>rotundum</b> (V2), <b>ovale</b> (V3), <b>Meckel's cave</b> (Gasser ganglion).</div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const UPPER = ['1.8','1.7','1.6','1.5','1.4','1.3','1.2','1.1','2.1','2.2','2.3','2.4','2.5','2.6','2.7','2.8'];
+  const LOWER = ['4.8','4.7','4.6','4.5','4.4','4.3','4.2','4.1','3.1','3.2','3.3','3.4','3.5','3.6','3.7','3.8'];
+  const NS = 'http://www.w3.org/2000/svg';
+
+  function parseTeeth(str){
+    const full = new Set(), partial = new Set();
+    if (!str) return {full, partial};
+    str.split(',').forEach(t => {
+      t = t.trim();
+      if (!t) return;
+      if (t.endsWith('*')) partial.add(t.slice(0, -1));
+      else full.add(t);
+    });
+    return {full, partial};
+  }
+
+  function renderMap(container){
+    const teeth = parseTeeth(container.getAttribute('data-teeth'));
+    const tw = 20, th = 24, gap = 1.5, midGap = 14, padX = 6, padY = 8, gapY = 6;
+    const totalW = padX*2 + 16*tw + 15*gap + midGap;
+    const upperY = padY + 4;
+    const lowerY = upperY + th + gapY;
+    const totalH = lowerY + th + padY;
+
+    const svg = document.createElementNS(NS, 'svg');
+    svg.setAttribute('viewBox', `0 0 ${totalW} ${totalH}`);
+    svg.setAttribute('class', 'tooth-map-svg');
+    svg.setAttribute('role', 'img');
+
+    const rL = document.createElementNS(NS, 'text');
+    rL.setAttribute('x', padX);
+    rL.setAttribute('y', 6);
+    rL.setAttribute('class', 'arch-tag');
+    rL.textContent = 'R';
+    svg.appendChild(rL);
+
+    const lL = document.createElementNS(NS, 'text');
+    lL.setAttribute('x', totalW - padX);
+    lL.setAttribute('y', 6);
+    lL.setAttribute('class', 'arch-tag');
+    lL.setAttribute('text-anchor', 'end');
+    lL.textContent = 'L';
+    svg.appendChild(lL);
+
+    [
+      {order: UPPER, y: upperY},
+      {order: LOWER, y: lowerY}
+    ].forEach(({order, y}, ai) => {
+      let x = padX;
+      order.forEach((fdi, i) => {
+        if (i === 8) {
+          if (ai === 0) {
+            const mid = document.createElementNS(NS, 'line');
+            const midX = x + midGap/2;
+            mid.setAttribute('x1', midX);
+            mid.setAttribute('x2', midX);
+            mid.setAttribute('y1', upperY - 2);
+            mid.setAttribute('y2', lowerY + th + 2);
+            mid.setAttribute('class', 'tooth-midline');
+            svg.appendChild(mid);
+          }
+          x += midGap;
+        }
+
+        const isAffected = teeth.full.has(fdi);
+        const isPartial = teeth.partial.has(fdi);
+
+        const rect = document.createElementNS(NS, 'rect');
+        rect.setAttribute('x', x);
+        rect.setAttribute('y', y);
+        rect.setAttribute('width', tw);
+        rect.setAttribute('height', th);
+        rect.setAttribute('rx', 3.5);
+        rect.setAttribute('class', 'tooth-mini' + (isAffected ? ' affected' : (isPartial ? ' partial' : '')));
+        svg.appendChild(rect);
+
+        const label = document.createElementNS(NS, 'text');
+        label.setAttribute('x', x + tw/2);
+        label.setAttribute('y', y + th/2 + 2.4);
+        label.setAttribute('class', 'tooth-fdi-label' + (isAffected ? ' on-affected' : (isPartial ? ' on-partial' : '')));
+        label.textContent = fdi;
+        svg.appendChild(label);
+
+        x += tw + gap;
+      });
+    });
+
+    container.appendChild(svg);
+
+    if (teeth.partial.size > 0) {
+      const legend = document.createElement('div');
+      legend.className = 'tooth-legend';
+      legend.innerHTML = '<span><span class="swatch sw-aff"></span>fully covered</span><span><span class="swatch sw-partial"></span>partial — needs supplement</span>';
+      container.appendChild(legend);
+    }
+  }
+
+  document.querySelectorAll('.tooth-map[data-teeth]').forEach(renderMap);
+})();
+</script>
+
+</body>
+</html>

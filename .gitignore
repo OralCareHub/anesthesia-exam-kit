@@ -1,0 +1,5 @@
+book-pages/
+.planning/
+.DS_Store
+.playwright-mcp/
+*.log

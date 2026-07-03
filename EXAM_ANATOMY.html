@@ -1,0 +1,684 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dental Anesthesia — Nerve Map (Anatomical Schema)</title>
+<style>
+*{box-sizing:border-box;-webkit-font-smoothing:antialiased}
+html,body{margin:0;padding:0}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Inter','Segoe UI',sans-serif;
+  background:radial-gradient(ellipse at top,#f0f9ff 0%,#e0f2fe 40%,#bae6fd 100%);
+  min-height:100vh;
+  color:#0f172a;
+  padding:24px 12px 60px;
+}
+.back-link{
+  display:block;
+  max-width:1100px;
+  margin:0 auto 12px;
+  color:#0c4a6e;
+  text-decoration:none;
+  font-size:.86em;
+  opacity:.75;
+}
+.back-link:hover{opacity:1}
+header.hero{max-width:1100px;margin:0 auto 22px;text-align:center}
+header.hero h1{margin:0 0 6px;font-size:2em;letter-spacing:-.6px;color:#0c4a6e}
+header.hero .sub{margin:0;color:#475569;font-size:1em}
+header.hero .critical{
+  display:inline-block;
+  background:#fef3c7;
+  color:#92400e;
+  padding:6px 14px;
+  border-radius:999px;
+  font-size:.82em;
+  font-weight:700;
+  margin-top:10px;
+  letter-spacing:.4px;
+}
+
+/* Legend — every abbreviation with its full name */
+.legend-card{
+  max-width:1100px;
+  margin:0 auto 18px;
+  background:#fff;
+  border-radius:16px;
+  padding:18px 22px 20px;
+  box-shadow:0 3px 12px rgba(15,23,42,.06);
+}
+.legend-title{
+  font-size:.72em;
+  text-transform:uppercase;
+  letter-spacing:1.4px;
+  color:#64748b;
+  font-weight:700;
+  margin-bottom:12px;
+  text-align:center;
+}
+.legend-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:8px 18px;
+}
+.legend-item{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:6px 0;
+  font-size:.9em;
+}
+.legend-swatch{
+  width:34px;
+  height:22px;
+  border-radius:5px;
+  flex-shrink:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  font-family:'SF Mono','JetBrains Mono',Menlo,monospace;
+  font-size:.7em;
+  font-weight:800;
+  letter-spacing:.4px;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.2), 0 1px 2px rgba(15,23,42,.15);
+}
+.legend-item .abbrev{
+  font-family:'SF Mono','JetBrains Mono',Menlo,monospace;
+  color:#0c4a6e;
+  font-weight:800;
+  min-width:60px;
+}
+.legend-item .full{color:#475569}
+
+.diagram-card{
+  max-width:1100px;
+  margin:0 auto 22px;
+  background:#fff;
+  border-radius:20px;
+  padding:20px;
+  box-shadow:0 20px 60px rgba(15,23,42,.10),0 2px 6px rgba(15,23,42,.05);
+}
+#anatomy-svg{
+  display:block;
+  width:100%;
+  height:auto;
+  max-width:100%;
+}
+
+.notes-grid{
+  max-width:1100px;
+  margin:0 auto 22px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:14px;
+}
+.note{
+  background:#fff;
+  border-radius:14px;
+  padding:16px 18px;
+  box-shadow:0 3px 12px rgba(15,23,42,.06);
+  border-left:5px solid var(--note-color,#94a3b8);
+  font-size:.9em;
+  line-height:1.5;
+  color:#334155;
+}
+.note h3{
+  margin:0 0 6px;
+  font-size:1em;
+  color:var(--note-color,#0c4a6e);
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.note h3::before{
+  content:'';
+  display:inline-block;
+  width:12px;height:12px;
+  background:var(--note-color,#94a3b8);
+  border-radius:3px;
+  flex-shrink:0;
+}
+.note b{color:#0f172a}
+
+.traps-card{
+  max-width:1100px;
+  margin:0 auto 22px;
+  background:linear-gradient(135deg,#fff7ed 0%,#ffedd5 100%);
+  border:2px solid #fdba74;
+  border-radius:16px;
+  padding:22px;
+}
+.traps-card h2{
+  margin:0 0 14px;
+  color:#c2410c;
+  font-size:1.1em;
+  letter-spacing:.4px;
+}
+.trap-list{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+.trap-list li{
+  background:#fff;
+  border-radius:9px;
+  padding:10px 14px;
+  color:#78350f;
+  font-size:.9em;
+  line-height:1.5;
+  border-left:4px solid #ea580c;
+}
+.trap-list li b{color:#c2410c;font-family:'SF Mono',Menlo,monospace}
+
+@media(max-width:640px){
+  header.hero h1{font-size:1.4em}
+  .diagram-card{padding:12px;border-radius:14px}
+}
+</style>
+</head>
+<body>
+
+<a href="EXTRACTION_NERVE_MAP.html" class="back-link">← Back to tooth-by-tooth chart</a>
+
+<header class="hero">
+  <h1>🗺️ Anatomical Nerve Map</h1>
+  <p class="sub">All 32 teeth · every nerve · one glance.</p>
+  <span class="critical">🎯 Print this. Look at it 20 times. That's the exam.</span>
+</header>
+
+<!-- FULL LEGEND: abbrev + full name -->
+<div class="legend-card">
+  <div class="legend-title">Every abbreviation spelled out</div>
+  <div class="legend-grid">
+    <div class="legend-item"><span class="legend-swatch" style="background:#e11d48">PSAN</span><span class="abbrev">PSAN</span><span class="full">Posterior Superior Alveolar Nerve</span></div>
+    <div class="legend-item"><span class="legend-swatch" style="background:#f97316">MSAN</span><span class="abbrev">MSAN</span><span class="full">Middle Superior Alveolar N. (~50% present)</span></div>
+    <div class="legend-item"><span class="legend-swatch" style="background:#ca8a04">ASAN</span><span class="abbrev">ASAN</span><span class="full">Anterior Superior Alveolar Nerve</span></div>
+    <div class="legend-item"><span class="legend-swatch" style="background:#0d9488">GPN</span><span class="abbrev">GPN</span><span class="full">Greater Palatine Nerve</span></div>
+    <div class="legend-item"><span class="legend-swatch" style="background:#9333ea">NPN</span><span class="abbrev">NPN</span><span class="full">Nasopalatine Nerve (Scarpa's Nerve)</span></div>
+    <div class="legend-item"><span class="legend-swatch" style="background:#1e40af">IAN</span><span class="abbrev">IAN</span><span class="full">Inferior Alveolar Nerve</span></div>
+    <div class="legend-item"><span class="legend-swatch" style="background:#0284c7">INC</span><span class="abbrev">INC</span><span class="full">Incisive N. (terminal branch of IAN)</span></div>
+    <div class="legend-item"><span class="legend-swatch" style="background:#38bdf8">MEN</span><span class="abbrev">MEN</span><span class="full">Mental Nerve (terminal branch of IAN)</span></div>
+    <div class="legend-item"><span class="legend-swatch" style="background:#059669">LN</span><span class="abbrev">LN</span><span class="full">Lingual Nerve</span></div>
+    <div class="legend-item"><span class="legend-swatch" style="background:#6366f1">LBN</span><span class="abbrev">LBN</span><span class="full">Long Buccal Nerve (V3 anterior division)</span></div>
+  </div>
+</div>
+
+<div class="diagram-card">
+  <svg id="anatomy-svg" viewBox="0 0 900 720" xmlns="http://www.w3.org/2000/svg"></svg>
+</div>
+
+<div class="notes-grid">
+  <div class="note" style="--note-color:#ca8a04">
+    <h3>Read the map like this</h3>
+    <b>Bands above/below teeth</b> = nerves for the soft tissue (palate, buccal gingiva, lingual). <b>Color inside the tooth</b> = nerve for the pulp + bone.
+  </div>
+  <div class="note" style="--note-color:#0d9488">
+    <h3>The two rules</h3>
+    <b>Upper palate splits at the canine</b> — front = NPN, back = GPN. <b>Lower buccal splits at the mental foramen</b> — front = Mental, back = LBN.
+  </div>
+  <div class="note" style="--note-color:#e11d48">
+    <h3>Yellow MB dot = the trap</h3>
+    Upper M1 (1.6 and 2.6) has a yellow "MB" dot. The mesio-buccal root escapes PSAN. Always add a plexal supplement there.
+  </div>
+</div>
+
+<div class="traps-card">
+  <h2>⚠️ The 5 traps that catch exam candidates</h2>
+  <ol class="trap-list">
+    <li><b>Upper M1 MB root:</b> PSAN misses it. MSAN takes it (when MSAN exists ~50%). Otherwise = plexal supplement at the MB root.</li>
+    <li><b>Upper canine palate:</b> NPN and GPN anastomose here. If NPN block isn't enough, add palatal infiltration distal to the canine.</li>
+    <li><b>Upper centrals:</b> ASAN crosses the midline. Add a trans-frenular plexal.</li>
+    <li><b>Lower centrals:</b> Incisive N. crosses the midline. Spix on one side isn't enough → add contralateral labial plexal.</li>
+    <li><b>Lower molars:</b> Mental N. STOPS at the mental foramen. Molar buccal = Long Buccal (LBN). Spix alone doesn't cover it.</li>
+  </ol>
+</div>
+
+<script>
+(function(){
+  const svg = document.getElementById('anatomy-svg');
+  const NS = 'http://www.w3.org/2000/svg';
+
+  const N = {
+    PSAN: {color:'#e11d48', stroke:'#9f1239', dark:'#831843'},
+    MSAN: {color:'#f97316', stroke:'#c2410c', dark:'#7c2d12'},
+    ASAN: {color:'#ca8a04', stroke:'#854d0e', dark:'#713f12'},
+    GPN:  {color:'#0d9488', stroke:'#134e4a', dark:'#134e4a'},
+    NPN:  {color:'#9333ea', stroke:'#6b21a8', dark:'#581c87'},
+    IAN:  {color:'#1e40af', stroke:'#1e3a8a', dark:'#1e3a8a'},
+    INC:  {color:'#0284c7', stroke:'#075985', dark:'#0c4a6e'},
+    MEN:  {color:'#38bdf8', stroke:'#0369a1', dark:'#075985'},
+    LN:   {color:'#059669', stroke:'#065f46', dark:'#064e3b'},
+    LBN:  {color:'#6366f1', stroke:'#3730a3', dark:'#312e81'}
+  };
+  const LABELS = {MEN:'Mental', INC:'Incisive'};
+
+  const TW      = {incisor:34, canine:38, premolar:42, molar:52};
+  const CROWN_H = {incisor:44, canine:48, premolar:40, molar:38};
+  const ROOT_H  = {incisor:56, canine:66, premolar:50, molar:48};
+  const MAX_CROWN = 48;
+  const MAX_ROOT  = 66;
+  const TOOTH_ROW_H = MAX_CROWN + MAX_ROOT;
+  const TG = 3;
+  const MID_GAP = 30;
+  const START_X = 46;
+
+  const UPPER = [
+    {fdi:'1.8', type:'molar',    pulp:'PSAN'},
+    {fdi:'1.7', type:'molar',    pulp:'PSAN'},
+    {fdi:'1.6', type:'molar',    pulp:'PSAN', mbTrap:true},
+    {fdi:'1.5', type:'premolar', pulp:'MSAN'},
+    {fdi:'1.4', type:'premolar', pulp:'MSAN'},
+    {fdi:'1.3', type:'canine',   pulp:'ASAN'},
+    {fdi:'1.2', type:'incisor',  pulp:'ASAN'},
+    {fdi:'1.1', type:'incisor',  pulp:'ASAN'},
+    {fdi:'2.1', type:'incisor',  pulp:'ASAN'},
+    {fdi:'2.2', type:'incisor',  pulp:'ASAN'},
+    {fdi:'2.3', type:'canine',   pulp:'ASAN'},
+    {fdi:'2.4', type:'premolar', pulp:'MSAN'},
+    {fdi:'2.5', type:'premolar', pulp:'MSAN'},
+    {fdi:'2.6', type:'molar',    pulp:'PSAN', mbTrap:true},
+    {fdi:'2.7', type:'molar',    pulp:'PSAN'},
+    {fdi:'2.8', type:'molar',    pulp:'PSAN'}
+  ];
+
+  const LOWER = [
+    {fdi:'4.8', type:'molar',    pulp:'IAN'},
+    {fdi:'4.7', type:'molar',    pulp:'IAN'},
+    {fdi:'4.6', type:'molar',    pulp:'IAN'},
+    {fdi:'4.5', type:'premolar', pulp:'IAN'},
+    {fdi:'4.4', type:'premolar', pulp:'INC'},
+    {fdi:'4.3', type:'canine',   pulp:'INC'},
+    {fdi:'4.2', type:'incisor',  pulp:'INC'},
+    {fdi:'4.1', type:'incisor',  pulp:'INC'},
+    {fdi:'3.1', type:'incisor',  pulp:'INC'},
+    {fdi:'3.2', type:'incisor',  pulp:'INC'},
+    {fdi:'3.3', type:'canine',   pulp:'INC'},
+    {fdi:'3.4', type:'premolar', pulp:'INC'},
+    {fdi:'3.5', type:'premolar', pulp:'IAN'},
+    {fdi:'3.6', type:'molar',    pulp:'IAN'},
+    {fdi:'3.7', type:'molar',    pulp:'IAN'},
+    {fdi:'3.8', type:'molar',    pulp:'IAN'}
+  ];
+
+  function el(tag, attrs = {}, children = []){
+    const e = document.createElementNS(NS, tag);
+    for (const k in attrs){
+      if (attrs[k] !== undefined && attrs[k] !== null) e.setAttribute(k, attrs[k]);
+    }
+    children.forEach(c => c && e.appendChild(c));
+    return e;
+  }
+  function text(str, x, y, attrs = {}){
+    const t = el('text', {x, y, ...attrs});
+    t.textContent = str;
+    return t;
+  }
+
+  function positions(arr){
+    let x = START_X;
+    return arr.map((t, i) => {
+      if (i === 8) x += MID_GAP;
+      const w = TW[t.type];
+      const pos = {x, y:0, w, ...t};
+      x += w + TG;
+      return pos;
+    });
+  }
+  const UP = positions(UPPER);
+  const LO = positions(LOWER);
+  const totalW = UP[UP.length-1].x + UP[UP.length-1].w + START_X;
+  const midX = 900 / 2;
+
+  // ==================== ANATOMICAL TOOTH DRAWING ====================
+  // cejY = the Y coordinate of the cementoenamel junction (waist of the tooth).
+  // Patient-in-chair view:
+  //   UPPER teeth: roots UP into the maxilla, crowns DOWN into the mouth cavity.
+  //   LOWER teeth: crowns UP into the mouth cavity, roots DOWN into the mandible.
+  function drawTooth(t, cejY, isUpper){
+    const {x, w, type, fdi, mbTrap} = t;
+    const nerve = N[t.pulp];
+    const g = el('g', {class:'tooth', 'data-fdi':fdi});
+
+    const crownH = CROWN_H[type];
+    const rootH  = ROOT_H[type];
+    // dirRoot = which way the root points from CEJ (upper root goes up = -Y)
+    const dirRoot  = isUpper ? -1 : +1;
+    const dirCrown = -dirRoot;                    // crown always opposite of root
+    const dir = dirCrown;                          // legacy alias used in cusp paths (crown direction)
+    const apexY = cejY + dirRoot * rootH;         // root apex, away from mouth
+    const tipY  = cejY + dirCrown * crownH;       // incisal / occlusal edge, into mouth
+
+    // ============ ROOT ============
+    const rootFill = '#faf8f2';
+    const rootStroke = '#a8a29e';
+    const rootStrokeW = 1.2;
+
+    if (type === 'molar'){
+      // Two roots visible from buccal (mesio-buccal + disto-buccal) with a V furcation
+      const notchW = w * 0.18;
+      const rootHalfW = (w - notchW) / 2;
+      const bulbInset = 3;
+      const apexInset = w * 0.05;
+      const apexPointOffset = dir * 4;
+      // Left root
+      g.appendChild(el('path', {
+        d: `M ${x + bulbInset},${cejY}
+            L ${x + rootHalfW - bulbInset*0.4},${cejY}
+            Q ${x + rootHalfW - 2},${cejY - dir*8} ${x + rootHalfW * 0.75 - apexInset},${apexY + apexPointOffset}
+            Q ${x + rootHalfW * 0.4},${apexY} ${x + apexInset + 2},${apexY + apexPointOffset}
+            Q ${x + bulbInset*0.4},${cejY - dir*8} ${x + bulbInset},${cejY} Z`,
+        fill: rootFill, stroke: rootStroke, 'stroke-width': rootStrokeW,
+        'stroke-linejoin': 'round'
+      }));
+      // Right root
+      const R = x + w;
+      g.appendChild(el('path', {
+        d: `M ${R - bulbInset},${cejY}
+            L ${R - rootHalfW + bulbInset*0.4},${cejY}
+            Q ${R - rootHalfW + 2},${cejY - dir*8} ${R - rootHalfW * 0.75 + apexInset},${apexY + apexPointOffset}
+            Q ${R - rootHalfW * 0.4},${apexY} ${R - apexInset - 2},${apexY + apexPointOffset}
+            Q ${R - bulbInset*0.4},${cejY - dir*8} ${R - bulbInset},${cejY} Z`,
+        fill: rootFill, stroke: rootStroke, 'stroke-width': rootStrokeW,
+        'stroke-linejoin': 'round'
+      }));
+    } else {
+      // Single tapered root (incisor, canine, premolar)
+      const baseInset = w * 0.1;
+      const apexHalfW = w * 0.12;
+      const cx = x + w/2;
+      const apexPoint = apexY + dir * 4;
+      g.appendChild(el('path', {
+        d: `M ${x + baseInset},${cejY}
+            L ${x + w - baseInset},${cejY}
+            Q ${x + w - baseInset*0.6},${cejY - dir*12} ${cx + apexHalfW},${apexPoint}
+            Q ${cx},${apexY - dir*3} ${cx - apexHalfW},${apexPoint}
+            Q ${x + baseInset*0.6},${cejY - dir*12} ${x + baseInset},${cejY} Z`,
+        fill: rootFill, stroke: rootStroke, 'stroke-width': rootStrokeW,
+        'stroke-linejoin': 'round'
+      }));
+    }
+
+    // ============ CROWN ============
+    const crownStrokeW = 1.8;
+    const r = 5;                  // CEJ corner radius
+    const cejFlare = 3;           // crown flares wider than root at CEJ
+    let crownPath;
+
+    if (type === 'incisor'){
+      // Rectangular crown, rounded incisal corners, slight CEJ pinch
+      const cejX_L = x - cejFlare*0.4;
+      const cejX_R = x + w + cejFlare*0.4;
+      const bodyX_L = x - cejFlare;
+      const bodyX_R = x + w + cejFlare;
+      const bodyY   = cejY + dir * 6;
+      crownPath = `
+        M ${cejX_L},${cejY}
+        Q ${bodyX_L + 1},${bodyY} ${bodyX_L},${cejY + dir * (crownH - r)}
+        Q ${bodyX_L},${tipY} ${bodyX_L + r},${tipY}
+        L ${bodyX_R - r},${tipY}
+        Q ${bodyX_R},${tipY} ${bodyX_R},${cejY + dir * (crownH - r)}
+        Q ${bodyX_R - 1},${bodyY} ${cejX_R},${cejY}
+        Z`;
+    } else if (type === 'canine'){
+      // Pentagon-like with pointed cusp at incisal edge
+      const shoulderY = cejY + dir * crownH * 0.55;
+      const cejX_L = x - cejFlare*0.4;
+      const cejX_R = x + w + cejFlare*0.4;
+      const bodyX_L = x - cejFlare*0.6;
+      const bodyX_R = x + w + cejFlare*0.6;
+      const cx = x + w/2;
+      crownPath = `
+        M ${cejX_L},${cejY}
+        Q ${bodyX_L + 1},${cejY + dir*5} ${bodyX_L},${shoulderY}
+        L ${cx - 3},${tipY - dir*2}
+        Q ${cx},${tipY + dir*3} ${cx + 3},${tipY - dir*2}
+        L ${bodyX_R},${shoulderY}
+        Q ${bodyX_R - 1},${cejY + dir*5} ${cejX_R},${cejY}
+        Z`;
+    } else if (type === 'premolar'){
+      // Bell-shape with one prominent buccal cusp bulge at occlusal
+      const cejX_L = x - cejFlare*0.4;
+      const cejX_R = x + w + cejFlare*0.4;
+      const bodyX_L = x - cejFlare;
+      const bodyX_R = x + w + cejFlare;
+      const shoulderY = cejY + dir * crownH * 0.65;
+      const cx = x + w/2;
+      const cuspHalf = w * 0.32;
+      crownPath = `
+        M ${cejX_L},${cejY}
+        Q ${bodyX_L + 1},${cejY + dir*5} ${bodyX_L},${shoulderY}
+        Q ${bodyX_L + 2},${tipY} ${cx - cuspHalf},${tipY - dir*2}
+        Q ${cx},${tipY + dir*3} ${cx + cuspHalf},${tipY - dir*2}
+        Q ${bodyX_R - 2},${tipY} ${bodyX_R},${shoulderY}
+        Q ${bodyX_R - 1},${cejY + dir*5} ${cejX_R},${cejY}
+        Z`;
+    } else if (type === 'molar'){
+      // Wide crown with 2 buccal cusps visible (MB + DB), central groove
+      const cejX_L = x - cejFlare*0.4;
+      const cejX_R = x + w + cejFlare*0.4;
+      const bodyX_L = x - cejFlare;
+      const bodyX_R = x + w + cejFlare;
+      const shoulderY = cejY + dir * crownH * 0.55;
+      const c1 = x + w * 0.28;
+      const c2 = x + w * 0.72;
+      const mid = x + w/2;
+      const grooveY = tipY - dir * 5;
+      crownPath = `
+        M ${cejX_L},${cejY}
+        Q ${bodyX_L + 1},${cejY + dir*5} ${bodyX_L},${shoulderY}
+        Q ${bodyX_L + 3},${tipY} ${c1 - w*0.10},${tipY - dir*1}
+        Q ${c1},${tipY + dir*3} ${c1 + w*0.10},${tipY - dir*1}
+        Q ${mid - 2},${grooveY} ${mid},${grooveY}
+        Q ${mid + 2},${grooveY} ${c2 - w*0.10},${tipY - dir*1}
+        Q ${c2},${tipY + dir*3} ${c2 + w*0.10},${tipY - dir*1}
+        Q ${bodyX_R - 3},${tipY} ${bodyX_R},${shoulderY}
+        Q ${bodyX_R - 1},${cejY + dir*5} ${cejX_R},${cejY}
+        Z`;
+    }
+
+    g.appendChild(el('path', {
+      d: crownPath,
+      fill: nerve.color,
+      stroke: nerve.stroke,
+      'stroke-width': crownStrokeW,
+      'stroke-linejoin': 'round',
+      'stroke-linecap': 'round'
+    }));
+
+    // CEJ hairline (subtle)
+    g.appendChild(el('line', {
+      x1: x + 2, y1: cejY, x2: x + w - 2, y2: cejY,
+      stroke: '#fff', 'stroke-width': 1.4, 'stroke-opacity': .5
+    }));
+
+    // MB TRAP marker (yellow "MB" circle on upper M1s)
+    if (mbTrap){
+      const isRight = fdi.startsWith('1');
+      const mbX = isRight ? x + w*0.28 : x + w*0.72;
+      const mbY = cejY + dir * crownH * 0.5;
+      g.appendChild(el('circle', {cx:mbX, cy:mbY, r:7, fill:'#fde047', stroke:'#a16207', 'stroke-width':1.8}));
+      g.appendChild(text('MB', mbX, mbY+2.6, {'text-anchor':'middle', 'font-size':6.8, 'font-family':'SF Mono, Menlo, monospace', 'font-weight':800, fill:'#713f12'}));
+    }
+
+    // FDI label — inside crown, near CEJ
+    const labelY = cejY + dir * 12;
+    g.appendChild(text(fdi, x + w/2, labelY + 3, {
+      'text-anchor':'middle', 'font-size':8.5, 'font-family':'SF Mono, Menlo, monospace',
+      'font-weight':800, fill:'#fff', opacity:.95
+    }));
+
+    return g;
+  }
+
+  function drawBand(nerve, x1, x2, y, h){
+    const info = N[nerve];
+    const g = el('g');
+    g.appendChild(el('rect', {
+      x:x1, y, width:x2 - x1, height:h, rx:7, ry:7,
+      fill:info.color, 'fill-opacity':.92,
+      stroke:info.stroke, 'stroke-width':1.6
+    }));
+    const label = LABELS[nerve] || nerve;
+    const cx = (x1 + x2)/2;
+    const cy = y + h/2;
+    g.appendChild(text(label, cx, cy + 5, {
+      'text-anchor':'middle', 'font-size':15, 'font-weight':800, fill:'#fff',
+      'font-family':'-apple-system, Inter, sans-serif', 'letter-spacing':.5
+    }));
+    return g;
+  }
+
+  function groupByNerve(arr, key){
+    const groups = [];
+    let cur = null;
+    arr.forEach(t => {
+      const n = t[key];
+      if (!cur || cur.nerve !== n) {
+        cur = {nerve:n, teeth:[t]};
+        groups.push(cur);
+      } else {
+        cur.teeth.push(t);
+      }
+    });
+    return groups;
+  }
+  function spanX(teethGroup){
+    const first = teethGroup[0];
+    const last = teethGroup[teethGroup.length-1];
+    return {x1:first.x, x2:last.x + last.w};
+  }
+
+  // ==================== LAYOUT ====================
+  const Y = {};
+  const BAND_H = 34;
+  const SECTION_LABEL_GAP = 24;
+  const SIDE_LABEL_GAP = 14;
+  const ROOT_GAP = 10;  // gap between color band and root apex
+
+  Y.jawTitle1 = 26;
+  Y.palateLabel = Y.jawTitle1 + SECTION_LABEL_GAP;
+  Y.palate = Y.palateLabel + SIDE_LABEL_GAP - 4;
+  // Upper teeth: root grows UP from CEJ, crown grows DOWN
+  Y.upperRootTop = Y.palate + BAND_H + ROOT_GAP;
+  Y.upperTeethCEJ = Y.upperRootTop + MAX_ROOT;
+  Y.upperCrownBottom = Y.upperTeethCEJ + MAX_CROWN;
+  Y.upperBuccalLabel = Y.upperCrownBottom + 16;
+  Y.upperBuccal = Y.upperBuccalLabel + SIDE_LABEL_GAP - 4;
+  Y.midline = Y.upperBuccal + BAND_H + 18;
+  Y.jawTitle2 = Y.midline + 32;
+  Y.lowerBuccalLabel = Y.jawTitle2 + SECTION_LABEL_GAP - 8;
+  Y.lowerBuccal = Y.lowerBuccalLabel + SIDE_LABEL_GAP - 4;
+  Y.ianLabel = Y.lowerBuccal + BAND_H + 12;
+  Y.ianBand = Y.ianLabel + SIDE_LABEL_GAP - 4;
+  // Lower teeth: crown grows UP from CEJ, root grows DOWN
+  Y.lowerCrownTop = Y.ianBand + BAND_H + ROOT_GAP;
+  Y.lowerTeethCEJ = Y.lowerCrownTop + MAX_CROWN;
+  Y.lowerRootBottom = Y.lowerTeethCEJ + MAX_ROOT;
+  Y.lingualLabel = Y.lowerRootBottom + 16;
+  Y.lingual = Y.lingualLabel + SIDE_LABEL_GAP - 4;
+  const finalH = Y.lingual + BAND_H + 24;
+
+  // ==================== MAXILLA TITLE ====================
+  svg.appendChild(text('MAXILLA — upper jaw', midX, Y.jawTitle1, {
+    'text-anchor':'middle', 'font-size':13, 'font-weight':800, fill:'#0c4a6e',
+    'letter-spacing':1.5, 'font-family':'-apple-system, sans-serif'
+  }));
+  // Cardinal
+  svg.appendChild(text("PATIENT'S RIGHT", 22, Y.jawTitle1, {
+    'font-size':8.5, 'font-weight':700, fill:'#94a3b8', 'letter-spacing':.8
+  }));
+  svg.appendChild(text("PATIENT'S LEFT", 878, Y.jawTitle1, {
+    'text-anchor':'end', 'font-size':8.5, 'font-weight':700, fill:'#94a3b8', 'letter-spacing':.8
+  }));
+
+  // ==================== PALATE BAND ====================
+  svg.appendChild(text('PALATE  (roof of mouth) — palatal gingiva', midX, Y.palateLabel, {
+    'text-anchor':'middle', 'font-size':10, 'font-weight':700, fill:'#475569', 'letter-spacing':1
+  }));
+  const gpnR = UP.filter(t => ['1.4','1.5','1.6','1.7','1.8'].includes(t.fdi));
+  const npnAll = UP.filter(t => ['1.1','1.2','1.3','2.1','2.2','2.3'].includes(t.fdi));
+  const gpnL = UP.filter(t => ['2.4','2.5','2.6','2.7','2.8'].includes(t.fdi));
+  const gR = spanX(gpnR); svg.appendChild(drawBand('GPN', gR.x1, gR.x2, Y.palate, BAND_H));
+  const nA = spanX(npnAll); svg.appendChild(drawBand('NPN', nA.x1, nA.x2, Y.palate, BAND_H));
+  const gL = spanX(gpnL); svg.appendChild(drawBand('GPN', gL.x1, gL.x2, Y.palate, BAND_H));
+
+  // ==================== UPPER TEETH ====================
+  UP.forEach(t => svg.appendChild(drawTooth(t, Y.upperTeethCEJ, true)));
+
+  // ==================== UPPER BUCCAL BAND ====================
+  svg.appendChild(text('BUCCAL  (cheek side) — pulp + buccal gingiva', midX, Y.upperBuccalLabel, {
+    'text-anchor':'middle', 'font-size':10, 'font-weight':700, fill:'#475569', 'letter-spacing':1
+  }));
+  const upperPulpGroups = groupByNerve(UP, 'pulp');
+  upperPulpGroups.forEach(grp => {
+    const {x1, x2} = spanX(grp.teeth);
+    svg.appendChild(drawBand(grp.nerve, x1, x2, Y.upperBuccal, BAND_H));
+  });
+
+  // ==================== MIDLINE ====================
+  svg.appendChild(el('rect', {
+    x:0, y:Y.midline, width:900, height:20, fill:'#f8fafc', rx:2
+  }));
+  svg.appendChild(el('line', {
+    x1:22, y1:Y.midline + 10, x2:878, y2:Y.midline + 10,
+    stroke:'#94a3b8', 'stroke-width':1.4, 'stroke-dasharray':'4 3'
+  }));
+  svg.appendChild(text('◤  MOUTH OPENING  ◥', midX, Y.midline + 14, {
+    'text-anchor':'middle', 'font-size':9, 'font-weight':800, fill:'#64748b',
+    'letter-spacing':1.8
+  }));
+
+  // ==================== MANDIBLE TITLE ====================
+  svg.appendChild(text('MANDIBLE — lower jaw', midX, Y.jawTitle2, {
+    'text-anchor':'middle', 'font-size':13, 'font-weight':800, fill:'#0c4a6e',
+    'letter-spacing':1.5, 'font-family':'-apple-system, sans-serif'
+  }));
+
+  // ==================== LOWER BUCCAL BAND ====================
+  svg.appendChild(text('BUCCAL  (cheek side) — gingiva + lip', midX, Y.lowerBuccalLabel, {
+    'text-anchor':'middle', 'font-size':10, 'font-weight':700, fill:'#475569', 'letter-spacing':1
+  }));
+  const lbnR = LO.filter(t => ['4.6','4.7','4.8'].includes(t.fdi));
+  const menR = LO.filter(t => ['4.1','4.2','4.3','4.4','4.5'].includes(t.fdi));
+  const menL = LO.filter(t => ['3.1','3.2','3.3','3.4','3.5'].includes(t.fdi));
+  const lbnL = LO.filter(t => ['3.6','3.7','3.8'].includes(t.fdi));
+  const lR = spanX(lbnR); svg.appendChild(drawBand('LBN', lR.x1, lR.x2, Y.lowerBuccal, BAND_H));
+  const mR = spanX(menR); svg.appendChild(drawBand('MEN', mR.x1, mR.x2, Y.lowerBuccal, BAND_H));
+  const mL = spanX(menL); svg.appendChild(drawBand('MEN', mL.x1, mL.x2, Y.lowerBuccal, BAND_H));
+  const lL = spanX(lbnL); svg.appendChild(drawBand('LBN', lL.x1, lL.x2, Y.lowerBuccal, BAND_H));
+
+  // ==================== IAN / INC BAND ====================
+  svg.appendChild(text('PULP + BONE (deep inside mandible)', midX, Y.ianLabel, {
+    'text-anchor':'middle', 'font-size':9.5, 'font-weight':700, fill:'#475569', 'letter-spacing':1
+  }));
+  const lowerPulpGroups = groupByNerve(LO, 'pulp');
+  lowerPulpGroups.forEach(grp => {
+    const {x1, x2} = spanX(grp.teeth);
+    svg.appendChild(drawBand(grp.nerve, x1, x2, Y.ianBand, BAND_H));
+  });
+
+  // ==================== LOWER TEETH ====================
+  LO.forEach(t => svg.appendChild(drawTooth(t, Y.lowerTeethCEJ, false)));
+
+  // ==================== LINGUAL BAND ====================
+  svg.appendChild(text('LINGUAL  (tongue side) — all 16 lower teeth', midX, Y.lingualLabel, {
+    'text-anchor':'middle', 'font-size':10, 'font-weight':700, fill:'#475569', 'letter-spacing':1
+  }));
+  const lnAll = spanX(LO);
+  svg.appendChild(drawBand('LN', lnAll.x1, lnAll.x2, Y.lingual, BAND_H));
+
+  // ==================== MIDLINE separators (vertical, dashed) ====================
+  const midToothLine = midX;
+  svg.appendChild(el('line', {
+    x1:midToothLine, y1:Y.palate - 8, x2:midToothLine, y2:Y.upperBuccal + BAND_H + 6,
+    stroke:'#e2e8f0', 'stroke-width':1.4, 'stroke-dasharray':'3 3'
+  }));
+  svg.appendChild(el('line', {
+    x1:midToothLine, y1:Y.lowerBuccal - 8, x2:midToothLine, y2:Y.lingual + BAND_H + 4,
+    stroke:'#e2e8f0', 'stroke-width':1.4, 'stroke-dasharray':'3 3'
+  }));
+
+  svg.setAttribute('viewBox', `0 0 900 ${finalH}`);
+})();
+</script>
+
+</body>
+</html>

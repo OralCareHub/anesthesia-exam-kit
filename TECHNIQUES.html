@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anesthesia Techniques — Quick Reference</title>
+<style>
+*{box-sizing:border-box;-webkit-font-smoothing:antialiased}
+html,body{margin:0;padding:0}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Inter','Segoe UI',sans-serif;
+  background:radial-gradient(ellipse at top,#f0f9ff 0%,#e0f2fe 40%,#bae6fd 100%);
+  min-height:100vh;
+  color:#0f172a;
+  padding:24px 16px 60px;
+}
+.back-link{
+  display:block;
+  max-width:780px;
+  margin:0 auto 12px;
+  color:#0c4a6e;
+  text-decoration:none;
+  font-size:.86em;
+  opacity:.75;
+  transition:opacity .15s ease;
+}
+.back-link:hover{opacity:1}
+header.hero{
+  max-width:780px;
+  margin:0 auto 28px;
+  text-align:center;
+}
+header.hero h1{
+  margin:0 0 6px;
+  font-size:1.85em;
+  letter-spacing:-.6px;
+  color:#0c4a6e;
+}
+header.hero .sub{margin:0;color:#475569;font-size:1em}
+
+.toc{
+  max-width:780px;
+  margin:0 auto 24px;
+  background:#fff;
+  border-radius:12px;
+  padding:14px 18px;
+  box-shadow:0 2px 8px rgba(15,23,42,.05);
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px 14px;
+  font-size:.84em;
+}
+.toc a{
+  color:#0c4a6e;
+  text-decoration:none;
+  padding:3px 8px;
+  border-radius:5px;
+  transition:background .12s ease;
+}
+.toc a:hover{background:#e0f2fe}
+.toc strong{color:#475569;margin-right:4px}
+
+.section{max-width:780px;margin:0 auto 26px}
+.section-head{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin:0 0 12px;
+  font-size:.78em;
+  text-transform:uppercase;
+  letter-spacing:1.4px;
+  color:#475569;
+  font-weight:700;
+}
+.section-head::before,
+.section-head::after{
+  content:'';
+  flex:1;
+  height:1px;
+  background:linear-gradient(90deg,transparent,#cbd5e1);
+}
+.section-head::after{
+  background:linear-gradient(90deg,#cbd5e1,transparent);
+}
+
+.tech-card{
+  background:#fff;
+  border-radius:14px;
+  padding:20px 22px 18px;
+  margin-bottom:14px;
+  box-shadow:0 3px 12px rgba(15,23,42,.06);
+  border-left:5px solid #94a3b8;
+  scroll-margin-top:20px;
+}
+.tech-card.green   {border-left-color:#10b981}
+.tech-card.amber   {border-left-color:#d97706}
+.tech-card.orange  {border-left-color:#ea580c}
+.tech-card.red     {border-left-color:#dc2626}
+.tech-card.purple  {border-left-color:#7c3aed}
+.tech-card.cyan    {border-left-color:#0891b2}
+.tech-card.blue    {border-left-color:#1e40af}
+.tech-card.indigo  {border-left-color:#4338ca}
+
+.tech-title{
+  font-size:1.05em;
+  font-weight:700;
+  color:#0f172a;
+  margin-bottom:2px;
+}
+.tech-tag{
+  font-size:.85em;
+  color:#64748b;
+  margin-bottom:14px;
+  font-style:italic;
+}
+.where-label{
+  font-size:.7em;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  color:#64748b;
+  font-weight:700;
+  margin:14px 0 6px;
+}
+.tooth-chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:5px;
+  margin-bottom:14px;
+}
+.tooth-chip{
+  padding:4px 9px;
+  border-radius:6px;
+  font-family:'SF Mono','JetBrains Mono',Menlo,monospace;
+  font-size:.78em;
+  font-weight:700;
+  letter-spacing:.3px;
+}
+.tooth-chip.upper{
+  background:#fef3c7;
+  color:#92400e;
+  border:1px solid #fde68a;
+}
+.tooth-chip.lower{
+  background:#dbeafe;
+  color:#1e40af;
+  border:1px solid #bfdbfe;
+}
+.tooth-chip.all{
+  background:#f1f5f9;
+  color:#334155;
+  border:1px solid #cbd5e1;
+  font-style:italic;
+  font-family:inherit;
+  font-size:.8em;
+}
+.quad-sep{
+  color:#cbd5e1;
+  align-self:center;
+  font-weight:400;
+  padding:0 2px;
+}
+
+.tech-details{
+  display:grid;
+  grid-template-columns:80px 1fr;
+  gap:6px 14px;
+  font-size:.9em;
+  margin:0;
+}
+.tech-details dt{font-weight:600;color:#64748b;margin:0}
+.tech-details dd{margin:0;color:#334155}
+
+.tech-note{
+  margin-top:12px;
+  padding:10px 14px;
+  background:#fef9c3;
+  border-left:3px solid #ca8a04;
+  border-radius:6px;
+  font-size:.85em;
+  color:#713f12;
+  line-height:1.5;
+}
+.tech-note.red{background:#fef2f2;border-color:#dc2626;color:#991b1b}
+
+.variant{
+  margin-top:12px;
+  padding:10px 14px;
+  background:#f8fafc;
+  border-radius:8px;
+  font-size:.86em;
+}
+.variant strong{color:#0f172a}
+.variant dl{display:grid;grid-template-columns:70px 1fr;gap:4px 12px;margin:6px 0 0}
+.variant dt{font-weight:600;color:#64748b;font-size:.85em}
+.variant dd{margin:0;color:#475569;font-size:.85em}
+
+footer{
+  max-width:780px;
+  margin:30px auto 0;
+  text-align:center;
+  color:#94a3b8;
+  font-size:.8em;
+}
+
+@media(max-width:560px){
+  header.hero h1{font-size:1.45em}
+  .tech-details{grid-template-columns:1fr;gap:4px 0}
+  .tech-details dt{margin-top:6px}
+  .variant dl{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<a href="EXTRACTION_NERVE_MAP.html" class="back-link">← Back to tooth-by-tooth chart</a>
+
+<header class="hero">
+  <h1>🧪 Anesthesia Techniques</h1>
+  <p class="sub">Every technique, exactly where it's used. Site · depth · volume.</p>
+</header>
+
+<nav class="toc">
+  <strong>Jump to:</strong>
+  <a href="#sec-plexal">Plexal / Infiltration</a>
+  <a href="#sec-max">Maxillary blocks (V2)</a>
+  <a href="#sec-mand">Mandibular blocks (V3)</a>
+</nav>
+
+<!-- ============== PLEXAL / INFILTRATION ============== -->
+<div class="section" id="sec-plexal">
+  <div class="section-head">Plexal / Local infiltration</div>
+
+  <div class="tech-card green">
+    <div class="tech-title">1. Plexal (supraperiosteal)</div>
+    <div class="tech-tag">Default for upper teeth · supplement for lower incisors</div>
+    <div class="where-label">Where to use</div>
+    <div class="tooth-chips">
+      <span class="tooth-chip upper">1.1</span><span class="tooth-chip upper">1.2</span><span class="tooth-chip upper">1.3</span><span class="tooth-chip upper">1.4</span><span class="tooth-chip upper">1.5</span>
+      <span class="quad-sep">·</span>
+      <span class="tooth-chip upper">2.1</span><span class="tooth-chip upper">2.2</span><span class="tooth-chip upper">2.3</span><span class="tooth-chip upper">2.4</span><span class="tooth-chip upper">2.5</span>
+      <span class="quad-sep">·</span>
+      <span class="tooth-chip lower">3.1</span><span class="tooth-chip lower">3.2</span>
+      <span class="quad-sep">·</span>
+      <span class="tooth-chip lower">4.1</span><span class="tooth-chip lower">4.2</span>
+    </div>
+    <dl class="tech-details">
+      <dt>Site</dt><dd>Vestibular fornix / buccal sulcus above the tooth apex</dd>
+      <dt>Depth</dt><dd>Submucosal + supraperiosteal — few mm</dd>
+      <dt>Volume</dt><dd>0.6 mL</dd>
+    </dl>
+  </div>
+
+  <div class="tech-card amber">
+    <div class="tech-title">2. Plexal supplement at MB root of M1</div>
+    <div class="tech-tag">The fix for the 1.6 / 2.6 trap (PSAN bypasses the MB root)</div>
+    <div class="where-label">Where to use</div>
+    <div class="tooth-chips">
+      <span class="tooth-chip upper">1.6</span>
+      <span class="quad-sep">·</span>
+      <span class="tooth-chip upper">2.6</span>
+    </div>
+    <dl class="tech-details">
+      <dt>Site</dt><dd>Vestibular fornix above the MB root of upper M1</dd>
+      <dt>Depth</dt><dd>Submucosal + supraperiosteal</dd>
+      <dt>Volume</dt><dd>0.6 mL</dd>
+    </dl>
+    <div class="tech-note">Always combined with the PSA tuberosity block when extracting upper M1.</div>
+  </div>
+
+  <div class="tech-card green">
+    <div class="tech-title">3. Trans-frenular plexal</div>
+    <div class="tech-tag">Catches midline crossover between the upper central incisors</div>
+    <div class="where-label">Where to use</div>
+    <div class="tooth-chips">
+      <span class="tooth-chip upper">1.1</span>
+      <span class="quad-sep">·</span>
+      <span class="tooth-chip upper">2.1</span>
+    </div>
+    <dl class="tech-details">
+      <dt>Site</dt><dd>Upper labial frenulum</dd>
+      <dt>Depth</dt><dd>Submucosal</dd>
+      <dt>Volume</dt><dd>0.3 mL</dd>
+    </dl>
+  </div>
+
+  <div class="tech-card green">
+    <div class="tech-title">4. Local palatal infiltration</div>
+    <div class="tech-tag">Small palatal top-up for 1–2 teeth</div>
+    <div class="where-label">Where to use</div>
+    <div class="tooth-chips">
+      <span class="tooth-chip upper">1.3</span>
+      <span class="quad-sep">·</span>
+      <span class="tooth-chip upper">2.3</span>
+      <span class="tooth-chip all">(canine NPN ↔ GPN anastomosis zone)</span>
+    </div>
+    <dl class="tech-details">
+      <dt>Site</dt><dd>Palatal mucosa 3–5 mm from gingival groove of the tooth, toward midline</dd>
+      <dt>Depth</dt><dd>Submucosal</dd>
+      <dt>Volume</dt><dd>0.2 mL</dd>
+    </dl>
+    <div class="tech-note">Do NOT puncture the greater palatine artery — stay medial.</div>
+  </div>
+</div>
+
+<!-- ============== MAXILLARY BLOCKS ============== -->
+<div class="section" id="sec-max">
+  <div class="section-head">Maxillary blocks (V2 — peripheral trunk blocks)</div>
+
+  <div class="tech-card red">
+    <div class="tech-title">5. PSA tuberosity block</div>
+    <div class="tech-tag">Anesthetizes the Posterior Superior Alveolar nerve</div>
+    <div class="where-label">Where to use</div>
+    <div class="tooth-chips">
+      <span class="tooth-chip upper">1.6</span><span class="tooth-chip upper">1.7</span><span class="tooth-chip upper">1.8</span>
+      <span class="quad-sep">·</span>
+      <span class="tooth-chip upper">2.6</span><span class="tooth-chip upper">2.7</span><span class="tooth-chip upper">2.8</span>
+      <span class="tooth-chip all">(remember: MB root of M1 needs separate plexal)</span>
+    </div>
+    <dl class="tech-details">
+      <dt>Site</dt><dd>Buccal sulcus near MB root of upper M2, behind the zygomatic process</dd>
+      <dt>Direction</dt><dd>Up 45° + inward + backward</dd>
+      <dt>Depth</dt><dd>10–15 mm to bone contact</dd>
+      <dt>Volume</dt><dd>~ 1 mL</dd>
+    </dl>
+    <div class="tech-note red"><strong>Mandatory aspiration</strong> — pterygoid venous plexus → tuberosity hematoma. If positive: gauze + thenar compression in the superior fornix.</div>
+  </div>
+
+  <div class="tech-card orange">
+    <div class="tech-title">6. Infraorbital (IO) block</div>
+    <div class="tech-tag">Single block for ASA (+ MSA when present) — covers incisors, canine, premolars</div>
+    <div class="where-label">Where to use</div>
+    <div class="tooth-chips">
+      <span class="tooth-chip upper">1.4</span><span class="tooth-chip upper">1.5</span>
+      <span class="quad-sep">·</span>
+      <span class="tooth-chip upper">2.4</span><span class="tooth-chip upper">2.5</span>
+      <span class="tooth-chip all">(also covers I + C if extending block forward)</span>
+    </div>
+    <dl class="tech-details">
+      <dt>Site</dt><dd>Vestibular ~0.5 cm from buccal surface, parallel to long axis of upper P1; finger palpates IO foramen</dd>
+      <dt>Depth</dt><dd>1.5–2.5 cm to foramen</dd>
+      <dt>Volume</dt><dd>1.5–2 mL — small test, locate foramen, aspirate, slow inject</dd>
+    </dl>
+
+    <div class="variant">
+      <strong>Extraoral variant</strong> (same nerve target)
+      <dl>
+        <dt>Site</dt><dd>Skin: horizontal line through nasal wing, 0.5 cm lateral to nasolabial groove</dd>
+        <dt>Volume</dt><dd>0.2 mL test + 0.2 mL after needle fixes in foramen</dd>
+      </dl>
+    </div>
+    <div class="tech-note">NOT necessary to enter the canal.</div>
+  </div>
+
+  <div class="tech-card amber">
+    <div class="tech-title">7. Greater Palatine (GPN) block</div>
+    <div class="tech-tag">Posterior 2/3 of hard palate — for all upper premolars + molars</div>
+    <div class="where-label">Where to use</div>
+    <div class="tooth-chips">
+      <span class="tooth-chip upper">1.4</span><span class="tooth-chip upper">1.5</span><span class="tooth-chip upper">1.6</span><span class="tooth-chip upper">1.7</span><span class="tooth-chip upper">1.8</span>
+      <span class="quad-sep">·</span>
+      <span class="tooth-chip upper">2.4</span><span class="tooth-chip upper">2.5</span><span class="tooth-chip upper">2.6</span><span class="tooth-chip upper">2.7</span><span class="tooth-chip upper">2.8</span>
+    </div>
+    <dl class="tech-details">
+      <dt>Site</dt><dd>Palatine mucoperiosteum, 1 cm medial to upper M3 alveolar ridge (mucosa looks paler / funnel-shaped at the foramen)</dd>
+      <dt>Approach</dt><dd>Syringe from the opposite commissure</dd>
+      <dt>Depth</dt><dd>Submucosal — do NOT enter the canal</dd>
+      <dt>Volume</dt><dd><strong>0.2–0.3 mL ONLY</strong></dd>
+    </dl>
+    <div class="tech-note red">Over-injection → ischemic palatal necrosis. Stop at blanching.</div>
+  </div>
+
+  <div class="tech-card amber">
+    <div class="tech-title">8. Nasopalatine (NPN / Scarpa) block</div>
+    <div class="tech-tag">Anterior 1/3 of hard palate — for upper canines + incisors</div>
+    <div class="where-label">Where to use</div>
+    <div class="tooth-chips">
+      <span class="tooth-chip upper">1.1</span><span class="tooth-chip upper">1.2</span><span class="tooth-chip upper">1.3</span>
+      <span class="quad-sep">·</span>
+      <span class="tooth-chip upper">2.1</span><span class="tooth-chip upper">2.2</span><span class="tooth-chip upper">2.3</span>
+    </div>
+    <dl class="tech-details">
+      <dt>Site</dt><dd>Palatal mucosa <em>lateral</em> to the incisive papilla — NEVER sting the papilla</dd>
+      <dt>Approach</dt><dd>From the side OPPOSITE the target tooth (V/Y canal)</dd>
+      <dt>Depth</dt><dd>5–6 mm into nasopalatine canal</dd>
+      <dt>Volume</dt><dd>0.2–0.3 mL</dd>
+    </dl>
+    <div class="tech-note">V/Y canal: entering from one side crosses to the contralateral nerve trunk — that's why opposite-side entry is mandatory.</div>
+  </div>
+</div>
+
+<!-- ============== MANDIBULAR BLOCKS ============== -->
+<div class="section" id="sec-mand">
+  <div class="section-head">Mandibular blocks (V3 — peripheral trunk blocks)</div>
+
+  <div class="tech-card cyan">
+    <div class="tech-title">9. IAN block — Spix's spine technique</div>
+    <div class="tech-tag">The workhorse — covers IAN + Lingual N in one approach</div>
+    <div class="where-label">Where to use</div>
+    <div class="tooth-chips">
+      <span class="tooth-chip lower">3.1</span><span class="tooth-chip lower">3.2</span><span class="tooth-chip lower">3.3</span><span class="tooth-chip lower">3.4</span><span class="tooth-chip lower">3.5</span><span class="tooth-chip lower">3.6</span><span class="tooth-chip lower">3.7</span><span class="tooth-chip lower">3.8</span>
+      <span class="quad-sep">·</span>
+      <span class="tooth-chip lower">4.1</span><span class="tooth-chip lower">4.2</span><span class="tooth-chip lower">4.3</span><span class="tooth-chip lower">4.4</span><span class="tooth-chip lower">4.5</span><span class="tooth-chip lower">4.6</span><span class="tooth-chip lower">4.7</span><span class="tooth-chip lower">4.8</span>
+      <span class="tooth-chip all">(all 16 mandibular teeth)</span>
+    </div>
+    <dl class="tech-details">
+      <dt>Site</dt><dd>Lateral to pterygomandibular fold, medial to temporal crest, 1 cm above the occlusal plane</dd>
+      <dt>Syringe</dt><dd>Body lies over the OPPOSITE-side premolars</dd>
+      <dt>Direction</dt><dd>Posterior + lateral + horizontal</dd>
+      <dt>Depth</dt><dd>2–2.5 cm to bone contact</dd>
+      <dt>Volume</dt><dd>1–1.7 mL</dd>
+    </dl>
+    <div class="tech-note"><strong>Two deposits, two aspirations.</strong>
+      <br>T1 — at bone contact: deposit for IAN.
+      <br>T2 — withdraw 1 cm, aspirate again, deposit for Lingual n.
+    </div>
+    <div class="tech-note red"><strong>Facial palsy</strong> if needle passes posterior to ramus → parotid → CN VII anesthesia. Always confirm bone contact before depositing.</div>
+  </div>
+
+  <div class="tech-card blue">
+    <div class="tech-title">10. Mental + incisive block</div>
+    <div class="tech-tag">Covers anterior mandible (canine + premolars → midline) without doing a full Spix</div>
+    <div class="where-label">Where to use</div>
+    <div class="tooth-chips">
+      <span class="tooth-chip lower">3.3</span><span class="tooth-chip lower">3.4</span>
+      <span class="quad-sep">·</span>
+      <span class="tooth-chip lower">4.3</span><span class="tooth-chip lower">4.4</span>
+      <span class="tooth-chip all">(alternative to Spix for anterior teeth)</span>
+    </div>
+    <dl class="tech-details">
+      <dt>Site</dt><dd>Vestibular fornix at mesio-buccal root of lower M1; advance toward mental foramen</dd>
+      <dt>Depth</dt><dd>Locate foramen — needle becomes "fixed" once in canal</dd>
+      <dt>Volume</dt><dd>0.2 mL test (locate) + 0.2 mL deposit</dd>
+    </dl>
+
+    <div class="variant">
+      <strong>Extraoral variant</strong>
+      <dl>
+        <dt>Site</dt><dd>Cheek, 1.5–2 cm posterior to commissure of mouth on a horizontal line</dd>
+        <dt>Volume</dt><dd>0.2 mL test + 0.2 mL deposit</dd>
+      </dl>
+    </div>
+    <div class="tech-note">Aspirate before deposit. Mental foramen typically sits between roots of lower P1–P2.</div>
+  </div>
+
+  <div class="tech-card indigo">
+    <div class="tech-title">11. Long Buccal nerve block</div>
+    <div class="tech-tag">Mandatory companion to Spix for mandibular molar extractions</div>
+    <div class="where-label">Where to use</div>
+    <div class="tooth-chips">
+      <span class="tooth-chip lower">3.6</span><span class="tooth-chip lower">3.7</span><span class="tooth-chip lower">3.8</span>
+      <span class="quad-sep">·</span>
+      <span class="tooth-chip lower">4.6</span><span class="tooth-chip lower">4.7</span><span class="tooth-chip lower">4.8</span>
+    </div>
+    <dl class="tech-details">
+      <dt>Site</dt><dd>Anterior edge of vertical mandibular ramus, base of coronoid process</dd>
+      <dt>Approach</dt><dd>Syringe from the opposite commissure</dd>
+      <dt>Depth</dt><dd>2–4 mm</dd>
+      <dt>Volume</dt><dd>0.3–0.5 mL</dd>
+    </dl>
+    <div class="variant">
+      <strong>Simple alternative</strong> — vestibular infiltration
+      <dl>
+        <dt>Site</dt><dd>Vestibular mucosa distal and vestibular to lower M3</dd>
+        <dt>Depth</dt><dd>Submucosal + supraperiosteal</dd>
+        <dt>Volume</dt><dd>0.3–0.5 mL</dd>
+      </dl>
+    </div>
+    <div class="tech-note">Mental branch's gingival territory ENDS at the mental foramen — molar buccal gingiva is long buccal territory. Spix alone leaves it sensitive.</div>
+  </div>
+
+  <div class="tech-card blue">
+    <div class="tech-title">12. Lingual nerve block — isolated</div>
+    <div class="tech-tag">Used when LN coverage is needed but Spix isn't done (or as supplement)</div>
+    <div class="where-label">Where to use — M3 paralingual approach</div>
+    <div class="tooth-chips">
+      <span class="tooth-chip lower">3.8</span>
+      <span class="quad-sep">·</span>
+      <span class="tooth-chip lower">4.8</span>
+    </div>
+    <dl class="tech-details">
+      <dt>Site</dt><dd>Paralingual fold next to lower M3, midway between gingiva and tongue base</dd>
+      <dt>Depth</dt><dd>0.5 cm</dd>
+      <dt>Volume</dt><dd>~ 0.5 mL</dd>
+    </dl>
+
+    <div class="variant">
+      <strong>Dan Theodorescu technique</strong> — for anterior LN access
+      <div class="where-label" style="margin-top:8px">Where to use</div>
+      <div class="tooth-chips">
+        <span class="tooth-chip lower">3.3</span><span class="tooth-chip lower">3.5</span>
+        <span class="quad-sep">·</span>
+        <span class="tooth-chip lower">4.3</span><span class="tooth-chip lower">4.5</span>
+      </div>
+      <dl>
+        <dt>Site</dt><dd>Angle between oral floor and lingual surface of mandible, next to canine or P2 (P2 = classic landmark)</dd>
+        <dt>Depth</dt><dd>0.5 cm</dd>
+        <dt>Volume</dt><dd>~ 0.5 mL</dd>
+      </dl>
+    </div>
+    <div class="tech-note">LN becomes superficial just distal to lower M3 — surgical danger zone, but easy to anesthetize.</div>
+  </div>
+</div>
+
+<footer>
+  12 techniques · all 32 teeth covered · cross-reference EXTRACTION_NERVE_MAP.html for tooth-first lookup
+</footer>
+
+</body>
+</html>

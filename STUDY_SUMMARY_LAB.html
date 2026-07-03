@@ -1,0 +1,693 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Anesthesia LP — Visual Study Guide</title>
+<style>
+:root{
+  --indigo:#1e1b4b; --purple:#7c3aed; --green:#059669;
+  --red:#dc2626; --orange:#ea580c; --amber:#d97706; --deep-orange:#c2410c;
+  --cyan:#0891b2; --sky:#0284c7; --blue:#1d4ed8; --indigo-block:#4338ca;
+  --gold:#b45309; --warning:#be123c; --emerald:#047857;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Segoe UI',sans-serif;
+  max-width:1080px;margin:0 auto;padding:32px 20px 100px;
+  line-height:1.55;color:#1d1d1f;background:#f5f5f7;
+}
+header.hero{
+  background:linear-gradient(135deg,var(--indigo) 0%,#4f46e5 60%,#7c3aed 100%);
+  color:#fff;padding:40px 36px;border-radius:18px;
+  margin-bottom:24px;box-shadow:0 10px 30px rgba(30,27,75,.15);
+}
+header.hero h1{margin:0;font-size:2.2em;letter-spacing:-.5px}
+header.hero .sub{opacity:.85;margin-top:6px;font-size:1.05em}
+header.hero .meta{margin-top:14px;display:flex;gap:14px;flex-wrap:wrap;font-size:.9em;opacity:.95}
+header.hero .meta span{background:rgba(255,255,255,.15);padding:4px 10px;border-radius:999px}
+
+nav.toc{
+  background:#fff;padding:18px 24px;border-radius:14px;
+  margin-bottom:24px;box-shadow:0 1px 3px rgba(0,0,0,.05);
+}
+nav.toc h3{margin:0 0 10px;font-size:1em;text-transform:uppercase;letter-spacing:.6px;color:#666}
+nav.toc ul{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:6px 16px}
+nav.toc a{text-decoration:none;color:#1d1d1f;padding:4px 0;display:flex;align-items:center;gap:8px;font-size:.95em}
+nav.toc a:hover{color:var(--indigo)}
+.dot{width:11px;height:11px;border-radius:50%;display:inline-block;flex-shrink:0}
+
+section{
+  background:#fff;border-radius:14px;padding:26px 30px;margin-bottom:20px;
+  box-shadow:0 1px 3px rgba(0,0,0,.05);border-left:6px solid #ccc;
+}
+section h2{
+  margin:0 0 16px;font-size:1.45em;letter-spacing:-.3px;
+  padding-bottom:10px;border-bottom:2px solid #f5f5f7;
+}
+section h3{font-size:1.1em;margin:18px 0 8px}
+
+.anatomy{border-left-color:var(--purple)} .anatomy h2{color:var(--purple)}
+.general{border-left-color:var(--green)}  .general h2{color:var(--green)}
+.psa    {border-left-color:var(--red)}    .psa h2{color:var(--red)}
+.io     {border-left-color:var(--orange)} .io h2{color:var(--orange)}
+.gp     {border-left-color:var(--amber)}  .gp h2{color:var(--amber)}
+.np     {border-left-color:var(--deep-orange)} .np h2{color:var(--deep-orange)}
+.spix   {border-left-color:var(--cyan)}   .spix h2{color:var(--cyan)}
+.mental {border-left-color:var(--sky)}    .mental h2{color:var(--sky)}
+.lingual{border-left-color:var(--blue)}   .lingual h2{color:var(--blue)}
+.buccal {border-left-color:var(--indigo-block)} .buccal h2{color:var(--indigo-block)}
+.cheatsheet  {border-left-color:var(--gold)}    .cheatsheet h2{color:var(--gold)}
+.commandments{border-left-color:var(--warning)} .commandments h2{color:var(--warning)}
+.revision    {border-left-color:var(--emerald)} .revision h2{color:var(--emerald)}
+
+.diagram{background:#fafafa;border-radius:10px;padding:14px;margin:14px 0;text-align:center;border:1px solid #eee}
+.diagram svg{max-width:100%;height:auto}
+.diagram .caption{font-size:.82em;color:#666;margin-top:6px;font-style:italic}
+
+.fact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin:14px 0}
+.fact{padding:10px 14px;border-radius:9px;background:#f5f5f7}
+.fact .label{font-size:.72em;text-transform:uppercase;letter-spacing:.5px;color:#666;font-weight:600}
+.fact .value{font-weight:600;margin-top:3px;font-size:.95em}
+
+.pill{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.78em;font-weight:600;margin:1px 2px}
+.pill.depth {background:#fef3c7;color:#92400e}
+.pill.dir   {background:#dbeafe;color:#1e40af}
+.pill.vol   {background:#ede9fe;color:#6d28d9}
+.pill.nerve {background:#fce7f3;color:#9d174d}
+.pill.warn  {background:#fee2e2;color:#991b1b}
+.pill.tip   {background:#d1fae5;color:#065f46}
+
+ol.steps{padding-left:20px} ol.steps li{margin:6px 0}
+
+.accident{background:#fef2f2;border-left:4px solid var(--warning);padding:12px 16px;border-radius:6px;margin:12px 0}
+.accident strong{color:var(--warning)}
+.tip-box{background:#ecfdf5;border-left:4px solid var(--emerald);padding:12px 16px;border-radius:6px;margin:12px 0}
+.tip-box strong{color:var(--emerald)}
+
+.cheat-table{overflow-x:auto}
+table.cheat{border-collapse:collapse;width:100%;font-size:.86em;margin-top:10px}
+table.cheat th{background:var(--gold);color:#fff;padding:10px 8px;text-align:left;font-weight:600;font-size:.85em;text-transform:uppercase;letter-spacing:.3px}
+table.cheat td{padding:10px 8px;border-bottom:1px solid #f0f0f0;vertical-align:top}
+table.cheat tr:nth-child(even) td{background:#fafafa}
+table.cheat tr td:first-child{font-weight:600;color:var(--indigo)}
+
+.block-tag{display:inline-block;padding:3px 10px;border-radius:999px;color:#fff;font-size:.7em;text-transform:uppercase;letter-spacing:.6px;font-weight:700;margin-bottom:8px}
+.tag-v1{background:var(--purple)}
+.tag-v2{background:var(--red)}
+.tag-v3{background:var(--blue)}
+.tag-gen{background:var(--green)}
+
+@media print{body{background:#fff} section{box-shadow:none;break-inside:avoid}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <h1>🦷 Anesthesia LP — Visual Study Guide</h1>
+  <div class="sub">Local anesthesia techniques for the UMFT practical exam</div>
+  <div class="meta">
+    <span>📅 Exam: 2 June 2026</span>
+    <span>📁 Source: Lab folder (10 LP decks)</span>
+    <span>🎨 Color-coded by nerve division</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <h3>Contents</h3>
+  <ul>
+    <li><a href="#trigeminal"><span class="dot" style="background:var(--purple)"></span>0. Trigeminal Anatomy</a></li>
+    <li><a href="#plexus"><span class="dot" style="background:var(--green)"></span>A. Plexus / Infiltration</a></li>
+    <li><a href="#psa"><span class="dot" style="background:var(--red)"></span>1. PSA / Tuberosity</a></li>
+    <li><a href="#io"><span class="dot" style="background:var(--orange)"></span>2. Infraorbital</a></li>
+    <li><a href="#gp"><span class="dot" style="background:var(--amber)"></span>3. Greater Palatine</a></li>
+    <li><a href="#np"><span class="dot" style="background:var(--deep-orange)"></span>4. Nasopalatine</a></li>
+    <li><a href="#spix"><span class="dot" style="background:var(--cyan)"></span>5. Spix (IAN + Lingual)</a></li>
+    <li><a href="#mental"><span class="dot" style="background:var(--sky)"></span>6. Mental Foramen</a></li>
+    <li><a href="#lingual"><span class="dot" style="background:var(--blue)"></span>7. Lingual (isolated)</a></li>
+    <li><a href="#buccal"><span class="dot" style="background:var(--indigo-block)"></span>8. Buccal Nerve</a></li>
+    <li><a href="#cheatsheet"><span class="dot" style="background:var(--gold)"></span>D. Cheat-Sheet Table</a></li>
+    <li><a href="#commandments"><span class="dot" style="background:var(--warning)"></span>E. 10 Commandments</a></li>
+    <li><a href="#revision"><span class="dot" style="background:var(--emerald)"></span>F. Night-Before Revision</a></li>
+  </ul>
+</nav>
+
+<section id="trigeminal" class="anatomy">
+  <h2>0 · Trigeminal Nerve — Anatomy Refresher</h2>
+
+  <div class="diagram">
+    <svg viewBox="0 0 460 280" xmlns="http://www.w3.org/2000/svg">
+      <path d="M70,140 Q70,40 200,40 Q330,40 360,90 Q400,110 400,150 Q400,200 350,220 Q280,250 200,245 Q120,240 90,210 Q70,190 70,140 Z" fill="#fff" stroke="#bbb" stroke-width="1.5"/>
+      <text x="200" y="35" font-size="9" fill="#888" text-anchor="middle">skull (lateral schematic)</text>
+      <ellipse cx="180" cy="140" rx="22" ry="14" fill="#e9d5ff" stroke="#7c3aed" stroke-width="2"/>
+      <text x="180" y="143" font-size="9" text-anchor="middle" font-weight="600" fill="#7c3aed">Gasser</text>
+      <text x="180" y="173" font-size="8.5" text-anchor="middle" fill="#555">Meckel's cave</text>
+      <path d="M198,128 Q260,80 330,72" stroke="#7c3aed" stroke-width="3" fill="none"/>
+      <circle cx="330" cy="72" r="6" fill="#7c3aed"/>
+      <text x="345" y="68" font-size="13" fill="#7c3aed" font-weight="700">V1</text>
+      <text x="345" y="82" font-size="9" fill="#444">→ sup. orbital fissure</text>
+      <text x="345" y="93" font-size="9" fill="#666">forehead, eye, dorsum nose</text>
+      <path d="M200,140 Q270,140 330,140" stroke="#dc2626" stroke-width="3" fill="none"/>
+      <circle cx="330" cy="140" r="6" fill="#dc2626"/>
+      <text x="345" y="136" font-size="13" fill="#dc2626" font-weight="700">V2</text>
+      <text x="345" y="150" font-size="9" fill="#444">→ foramen rotundum</text>
+      <text x="345" y="161" font-size="9" fill="#666">maxilla, palate, midface</text>
+      <path d="M198,154 Q260,200 330,212" stroke="#1d4ed8" stroke-width="3" fill="none"/>
+      <circle cx="330" cy="212" r="6" fill="#1d4ed8"/>
+      <text x="345" y="208" font-size="13" fill="#1d4ed8" font-weight="700">V3</text>
+      <text x="345" y="222" font-size="9" fill="#444">→ foramen ovale</text>
+      <text x="345" y="233" font-size="9" fill="#666">mandible, tongue, masticatory mm.</text>
+      <ellipse cx="130" cy="140" rx="22" ry="35" fill="#f4f4f5" stroke="#aaa" stroke-width="1"/>
+      <text x="130" y="143" font-size="8.5" text-anchor="middle" fill="#666">pons</text>
+      <line x1="152" y1="135" x2="170" y2="135" stroke="#666" stroke-width="2"/>
+      <line x1="152" y1="148" x2="170" y2="148" stroke="#666" stroke-width="1.5" stroke-dasharray="3 2"/>
+      <text x="158" y="125" font-size="7.5" fill="#555">sensory</text>
+      <text x="158" y="162" font-size="7.5" fill="#555">motor</text>
+    </svg>
+    <div class="caption">CN V exits pons → Gasser ganglion in Meckel's cave → 3 divisions through 3 different foramina.</div>
+  </div>
+
+  <div class="fact-grid">
+    <div class="fact"><div class="label">V1 Ophthalmic</div><div class="value">Sensory only → sup. orbital fissure</div></div>
+    <div class="fact"><div class="label">V2 Maxillary</div><div class="value">Sensory only → foramen rotundum</div></div>
+    <div class="fact"><div class="label">V3 Mandibular</div><div class="value">Mixed → foramen ovale</div></div>
+  </div>
+
+  <h3>Key terminal branches you'll block in the exam</h3>
+  <p><span class="pill nerve">V2</span> PSA, ASA/MSA, infraorbital, greater palatine, nasopalatine.<br>
+  <span class="pill nerve">V3</span> Inferior alveolar (+ terminal mental & incisive), lingual, buccal.</p>
+</section>
+
+<section id="plexus" class="general">
+  <span class="block-tag tag-gen">infiltration · all teeth</span>
+  <h2>A · Plexus (Supraperiosteal) Anesthesia</h2>
+
+  <div class="diagram">
+    <svg viewBox="0 0 360 180" xmlns="http://www.w3.org/2000/svg">
+      <path d="M40,40 Q180,30 320,40 L300,90 L60,90 Z" fill="#fff5f5" stroke="#bbb"/>
+      <g font-size="9" text-anchor="middle">
+        <rect x="60" y="90" width="22" height="28" fill="#fff" stroke="#888"/><text x="71" y="108">M3</text>
+        <rect x="85" y="90" width="22" height="28" fill="#fff" stroke="#888"/><text x="96" y="108">M2</text>
+        <rect x="110" y="90" width="22" height="28" fill="#fff" stroke="#888"/><text x="121" y="108">M1</text>
+        <rect x="135" y="90" width="20" height="28" fill="#fff" stroke="#888"/><text x="145" y="108">P2</text>
+        <rect x="158" y="90" width="20" height="28" fill="#fff" stroke="#888"/><text x="168" y="108">P1</text>
+        <rect x="181" y="90" width="18" height="28" fill="#fffbe6" stroke="#059669" stroke-width="2"/><text x="190" y="108">C</text>
+        <rect x="202" y="90" width="16" height="28" fill="#fff" stroke="#888"/><text x="210" y="108">I2</text>
+        <rect x="221" y="90" width="16" height="28" fill="#fff" stroke="#888"/><text x="229" y="108">I1</text>
+      </g>
+      <line x1="190" y1="60" x2="190" y2="85" stroke="#059669" stroke-width="2.5" marker-end="url(#ag)"/>
+      <text x="220" y="55" font-size="9" fill="#059669" font-weight="600">needle at mucobuccal fold</text>
+      <text x="220" y="68" font-size="9" fill="#555">bevel → bone, only few mm deep</text>
+      <defs><marker id="ag" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#059669"/></marker></defs>
+    </svg>
+    <div class="caption">Drop the needle just into the mucobuccal fold over the target tooth, bevel to bone.</div>
+  </div>
+
+  <div class="fact-grid">
+    <div class="fact"><div class="label">Indication</div><div class="value">1–2 teeth, mostly maxillary</div></div>
+    <div class="fact"><div class="label">Needle</div><div class="value">Short</div></div>
+    <div class="fact"><div class="label">Depth</div><div class="value"><span class="pill depth">few mm</span></div></div>
+    <div class="fact"><div class="label">Volume</div><div class="value"><span class="pill vol">⅓–½ cartridge</span></div></div>
+    <div class="fact"><div class="label">Operator</div><div class="value">9–10 o'clock</div></div>
+    <div class="fact"><div class="label">Onset</div><div class="value">2–4 min</div></div>
+  </div>
+
+  <div class="accident"><strong>Contraindicated:</strong> multiple adjacent teeth (use a nerve block), acute inflammation/infection, dense bone over apices.</div>
+  <div class="tip-box"><strong>Tip:</strong> plexal = "near the apex" · troncular = "near the trunk".</div>
+</section>
+
+<section id="psa" class="psa">
+  <span class="block-tag tag-v2">V2 maxillary block</span>
+  <h2>1 · PSA Block — Tuberosity Technique</h2>
+
+  <div class="diagram">
+    <svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg">
+      <path d="M260,40 Q310,55 330,90" stroke="#888" stroke-width="3" fill="none"/>
+      <text x="290" y="35" font-size="9" fill="#555">zygomatic process</text>
+      <path d="M40,130 Q180,120 350,140 L350,180 Q200,200 40,180 Z" fill="#fef2f2" stroke="#bbb"/>
+      <text x="320" y="220" font-size="9" fill="#555">tuberosity</text>
+      <g font-size="9" text-anchor="middle">
+        <rect x="240" y="130" width="22" height="28" fill="#fff" stroke="#888"/><text x="251" y="148">M3</text>
+        <rect x="266" y="130" width="22" height="28" fill="#fff" stroke="#888"/><text x="277" y="148">M2</text>
+        <rect x="292" y="130" width="22" height="28" fill="#fff" stroke="#888"/><text x="303" y="148">M1</text>
+      </g>
+      <line x1="160" y1="200" x2="285" y2="125" stroke="#dc2626" stroke-width="3" marker-end="url(#ar)"/>
+      <circle cx="160" cy="200" r="5" fill="#dc2626"/>
+      <text x="40" y="215" font-size="9" fill="#dc2626" font-weight="600">insertion: superior fornix, behind zygomatic process, near MB root of M2</text>
+      <text x="170" y="100" font-size="11" fill="#dc2626" font-weight="700">↑ 45° + in + back</text>
+      <text x="170" y="115" font-size="9" fill="#666">depth 10–15 mm, maintain bone contact</text>
+      <g transform="translate(330,160)">
+        <circle r="14" fill="#fee2e2" stroke="#be123c" stroke-width="2"/>
+        <text y="4" font-size="11" text-anchor="middle" fill="#be123c" font-weight="700">!</text>
+      </g>
+      <text x="350" y="170" font-size="8" fill="#be123c">pterygoid venous plexus</text>
+      <defs><marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>
+    </svg>
+    <div class="caption">Needle 45° upward + inward + backward, behind the zygomatic process, to 10–15 mm.</div>
+  </div>
+
+  <div class="fact-grid">
+    <div class="fact"><div class="label">Nerve</div><div class="value">PSA</div></div>
+    <div class="fact"><div class="label">Teeth covered</div><div class="value">M3, M2, M1 <em>(≠ MB root M1)</em></div></div>
+    <div class="fact"><div class="label">Soft tissue</div><div class="value">Buccal gingiva of upper molars + post./lat. wall of max. sinus</div></div>
+    <div class="fact"><div class="label">Direction</div><div class="value"><span class="pill dir">up 45° + in + back</span></div></div>
+    <div class="fact"><div class="label">Depth</div><div class="value"><span class="pill depth">10–15 mm</span></div></div>
+    <div class="fact"><div class="label">Bone landmark</div><div class="value">Zygomatic process of maxilla</div></div>
+  </div>
+
+  <h3>Technique</h3>
+  <ol class="steps">
+    <li>Disinfect mucosa (± topical).</li>
+    <li>Bevel oriented to bone — <strong>do not</strong> sting periosteum.</li>
+    <li><strong>Aspirate mandatory</strong> (pterygoid plexus risk).</li>
+    <li>Slow deposit while keeping bone contact.</li>
+  </ol>
+
+  <div class="accident"><strong>Accidents:</strong> tuberosity hematoma (pterygoid plexus), pain (fast deposit / cold / thick needle), needle breakage.<br>
+  <strong>Hematoma management:</strong> gauze in sup. fornix + compression with thenar surface.</div>
+</section>
+
+<section id="io" class="io">
+  <span class="block-tag tag-v2">V2 maxillary block</span>
+  <h2>2 · Infraorbital Nerve Block</h2>
+
+  <div class="diagram">
+    <svg viewBox="0 0 380 240" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="190" cy="120" rx="120" ry="100" fill="#fff7ed" stroke="#bbb"/>
+      <ellipse cx="155" cy="80" rx="22" ry="10" fill="#fff" stroke="#888"/>
+      <ellipse cx="225" cy="80" rx="22" ry="10" fill="#fff" stroke="#888"/>
+      <path d="M190,90 L180,130 Q190,140 200,130 Z" fill="#fff" stroke="#888"/>
+      <path d="M150,170 Q190,180 230,170" fill="none" stroke="#888" stroke-width="1.5"/>
+      <circle cx="225" cy="105" r="5" fill="#ea580c"/>
+      <text x="240" y="100" font-size="10" fill="#ea580c" font-weight="700">IO foramen</text>
+      <rect x="208" y="93" width="34" height="6" rx="3" fill="#fde68a" stroke="#d97706"/>
+      <text x="252" y="115" font-size="8" fill="#555">finger guards the ridge</text>
+      <line x1="225" y1="200" x2="225" y2="115" stroke="#ea580c" stroke-width="3" marker-end="url(#ao)"/>
+      <circle cx="225" cy="200" r="5" fill="#ea580c"/>
+      <text x="115" y="215" font-size="9" fill="#ea580c" font-weight="600">insertion: vestibular mucosa, ~0.5 cm from buccal surface of P1</text>
+      <text x="240" y="160" font-size="10" fill="#ea580c" font-weight="700">↑ parallel to P1 axis</text>
+      <text x="240" y="173" font-size="9" fill="#666">1.5–2.5 cm depth</text>
+      <defs><marker id="ao" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#ea580c"/></marker></defs>
+    </svg>
+    <div class="caption">Palpate the infraorbital ridge first — your finger stays on the foramen the whole time.</div>
+  </div>
+
+  <div class="fact-grid">
+    <div class="fact"><div class="label">Nerves</div><div class="value">Infraorbital + ASA (± MSA)</div></div>
+    <div class="fact"><div class="label">Teeth covered</div><div class="value">Incisors, canines, <strong>premolars</strong></div></div>
+    <div class="fact"><div class="label">Soft tissue</div><div class="value">Lower eyelid, side of nose, upper lip + part of max. sinus</div></div>
+    <div class="fact"><div class="label">Direction</div><div class="value"><span class="pill dir">parallel to long axis P1</span></div></div>
+    <div class="fact"><div class="label">Depth</div><div class="value"><span class="pill depth">1.5–2.5 cm</span></div></div>
+    <div class="fact"><div class="label">Volume</div><div class="value"><span class="pill vol">1.5–2 mL drawn</span></div></div>
+  </div>
+
+  <h3>Technique</h3>
+  <ol class="steps">
+    <li>Patient supine or seated. Topical anesthesia.</li>
+    <li>Patient looks straight ahead — palpate the infraorbital ridge.</li>
+    <li>Keep your finger on the foramen for the whole procedure.</li>
+    <li>Retract cheek, insert ~0.5 cm from buccal surface, parallel to P1 axis.</li>
+    <li>Advance toward the foramen; deposit a tiny test bolus to <em>palpate the foramen painlessly</em>.</li>
+    <li>Aspirate → if negative, slow inject 1.5–2 mL.</li>
+  </ol>
+</section>
+
+<section id="gp" class="gp">
+  <span class="block-tag tag-v2">V2 maxillary block</span>
+  <h2>3 · Greater Palatine Block</h2>
+
+  <div class="diagram">
+    <svg viewBox="0 0 360 280" xmlns="http://www.w3.org/2000/svg">
+      <path d="M60,30 Q60,250 180,260 Q300,250 300,30 L260,30 Q260,200 180,220 Q100,200 100,30 Z" fill="#fffbeb" stroke="#bbb"/>
+      <text x="180" y="20" font-size="9" fill="#888" text-anchor="middle">hard palate — inferior view</text>
+      <g font-size="8" text-anchor="middle">
+        <rect x="65" y="40" width="14" height="14" fill="#fff" stroke="#888"/><text x="72" y="51">M3</text>
+        <rect x="65" y="60" width="14" height="14" fill="#fff" stroke="#888"/><text x="72" y="71">M2</text>
+        <rect x="65" y="80" width="14" height="14" fill="#fff" stroke="#888"/><text x="72" y="91">M1</text>
+        <rect x="68" y="100" width="12" height="12" fill="#fff" stroke="#888"/><text x="74" y="110">P2</text>
+        <rect x="71" y="118" width="12" height="12" fill="#fff" stroke="#888"/><text x="77" y="128">P1</text>
+        <rect x="80" y="135" width="12" height="12" fill="#fff" stroke="#888"/><text x="86" y="145">C</text>
+        <rect x="100" y="150" width="12" height="12" fill="#fff" stroke="#888"/><text x="106" y="160">I2</text>
+        <rect x="130" y="160" width="12" height="12" fill="#fff" stroke="#888"/><text x="136" y="170">I1</text>
+        <rect x="282" y="40" width="14" height="14" fill="#fff" stroke="#888"/><text x="289" y="51">M3</text>
+        <rect x="282" y="60" width="14" height="14" fill="#fff" stroke="#888"/><text x="289" y="71">M2</text>
+        <rect x="282" y="80" width="14" height="14" fill="#fff" stroke="#888"/><text x="289" y="91">M1</text>
+        <rect x="281" y="100" width="12" height="12" fill="#fff" stroke="#888"/><text x="287" y="110">P2</text>
+        <rect x="278" y="118" width="12" height="12" fill="#fff" stroke="#888"/><text x="284" y="128">P1</text>
+        <rect x="269" y="135" width="12" height="12" fill="#fff" stroke="#888"/><text x="275" y="145">C</text>
+        <rect x="249" y="150" width="12" height="12" fill="#fff" stroke="#888"/><text x="255" y="160">I2</text>
+        <rect x="218" y="160" width="12" height="12" fill="#fff" stroke="#888"/><text x="224" y="170">I1</text>
+      </g>
+      <circle cx="100" cy="65" r="6" fill="#d97706" stroke="#7c2d12"/>
+      <circle cx="260" cy="65" r="6" fill="#d97706" stroke="#7c2d12"/>
+      <text x="180" y="105" font-size="10" fill="#d97706" font-weight="700" text-anchor="middle">greater palatine foramen</text>
+      <text x="180" y="118" font-size="9" fill="#555" text-anchor="middle">1 cm medial to M3 · past upper M2</text>
+      <path d="M100,70 Q180,90 260,70 L260,200 Q180,220 100,200 Z" fill="rgba(217,119,6,.15)"/>
+      <text x="180" y="180" font-size="10" fill="#d97706" font-weight="600" text-anchor="middle">posterior 2/3 of hard palate</text>
+    </svg>
+    <div class="caption">Greater palatine foramen: 1 cm medial to upper M3, in the dihedral angle of palatine bone.</div>
+  </div>
+
+  <div class="fact-grid">
+    <div class="fact"><div class="label">Nerve</div><div class="value">Greater palatine</div></div>
+    <div class="fact"><div class="label">Territory</div><div class="value">Posterior 2/3 hard palate + soft tissues</div></div>
+    <div class="fact"><div class="label">Direction</div><div class="value"><span class="pill dir">up + back + out</span> (from opposite commissure)</div></div>
+    <div class="fact"><div class="label">Volume</div><div class="value"><span class="pill vol">0.2–0.3 mL</span></div></div>
+    <div class="fact"><div class="label">Position</div><div class="value">Head extended, mouth wide open</div></div>
+    <div class="fact"><div class="label">Aspiration</div><div class="value">&lt;1% positive</div></div>
+  </div>
+
+  <h3>Locating the foramen</h3>
+  <ul>
+    <li><strong>Bone:</strong> 0.5 cm anterior to posterior edge of hard palate · 1 cm anterior to pterygoid hamulus · dihedral angle between alveolar process + horizontal plate of palatine bone.</li>
+    <li><strong>Dental:</strong> 1 cm medial to upper M3 (or temporary M2 in children).</li>
+    <li><strong>Soft tissue:</strong> 1 cm from gingival festoon of M3; mucoperiosteum looks paler / funnel-shaped.</li>
+  </ul>
+
+  <div class="tip-box"><strong>Don't enter the duct.</strong> Once at the foramen, deposit only 0.2–0.3 mL — that's enough.</div>
+</section>
+
+<section id="np" class="np">
+  <span class="block-tag tag-v2">V2 maxillary block</span>
+  <h2>4 · Nasopalatine Block (Scarpa)</h2>
+
+  <div class="diagram">
+    <svg viewBox="0 0 360 240" xmlns="http://www.w3.org/2000/svg">
+      <path d="M80,80 Q80,200 180,210 Q280,200 280,80 L240,80 Q240,160 180,170 Q120,160 120,80 Z" fill="#fff7ed" stroke="#bbb"/>
+      <ellipse cx="180" cy="105" rx="14" ry="10" fill="#fed7aa" stroke="#c2410c" stroke-width="2"/>
+      <text x="180" y="93" font-size="9" fill="#c2410c" font-weight="600" text-anchor="middle">incisive papilla</text>
+      <text x="180" y="124" font-size="8" fill="#555" text-anchor="middle">(never sting!)</text>
+      <g font-size="9" text-anchor="middle">
+        <rect x="155" y="55" width="18" height="20" fill="#fff" stroke="#888"/><text x="164" y="69">I1</text>
+        <rect x="187" y="55" width="18" height="20" fill="#fff" stroke="#888"/><text x="196" y="69">I1</text>
+      </g>
+      <path d="M180,105 L160,160 M180,105 L200,160" stroke="#c2410c" stroke-width="2" fill="none" stroke-dasharray="3 2"/>
+      <text x="180" y="175" font-size="8" text-anchor="middle" fill="#666">duct shape: V/Y</text>
+      <line x1="230" y1="160" x2="170" y2="115" stroke="#c2410c" stroke-width="3" marker-end="url(#anp)"/>
+      <text x="245" y="160" font-size="9" fill="#c2410c" font-weight="600">approach from opposite side</text>
+      <text x="245" y="172" font-size="8" fill="#555">enters duct 5–6 mm</text>
+      <path d="M120,80 Q180,170 240,80 Z" fill="rgba(194,65,12,.13)"/>
+      <text x="180" y="195" font-size="9" fill="#c2410c" font-weight="600" text-anchor="middle">anterior 1/3 of hard palate</text>
+      <defs><marker id="anp" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#c2410c"/></marker></defs>
+    </svg>
+    <div class="caption">Enter <strong>lateral</strong> to the papilla, from the side <em>opposite</em> to the one you want to block.</div>
+  </div>
+
+  <div class="fact-grid">
+    <div class="fact"><div class="label">Nerve</div><div class="value">Nasopalatine (Scarpa)</div></div>
+    <div class="fact"><div class="label">Territory</div><div class="value">Anterior 1/3 hard palate</div></div>
+    <div class="fact"><div class="label">Direction</div><div class="value"><span class="pill dir">up + back + out</span> toward target side</div></div>
+    <div class="fact"><div class="label">Duct entry</div><div class="value"><span class="pill depth">5–6 mm</span></div></div>
+    <div class="fact"><div class="label">Volume</div><div class="value"><span class="pill vol">0.2–0.3 mL</span></div></div>
+    <div class="fact"><div class="label">Aspiration</div><div class="value">&lt;1% positive</div></div>
+  </div>
+
+  <h3>Locating the foramen</h3>
+  <ul>
+    <li><strong>Bone:</strong> median palatine line, 1 cm behind the anterior alveolar ridge.</li>
+    <li><strong>Soft tissue:</strong> 1 cm from gingival festoon, under the retroincisal papilla.</li>
+    <li><strong>Dental:</strong> midline between the two upper central incisors.</li>
+  </ul>
+
+  <div class="accident"><strong>Never sting the papilla</strong> — it is highly vascular and very painful. Massive bleeding possible.</div>
+
+  <h3>Extraoral variants</h3>
+  <ul>
+    <li><strong>Infiltration:</strong> needle into nostril at the nasal-floor / septum angle, 1.5 cm behind the orifice; deposit just under the nasal-floor mucosa; direction down + back.</li>
+    <li><strong>Escat (topical):</strong> compress soaked in anesthetic placed 1.5 cm inside the nose for several minutes — exploits the superficial position of the NP nerve on the nasal floor.</li>
+  </ul>
+</section>
+
+<section id="spix" class="spix">
+  <span class="block-tag tag-v3">V3 mandibular block</span>
+  <h2>5 · Spix's Spine Technique (IAN + Lingual)</h2>
+
+  <div class="diagram">
+    <svg viewBox="0 0 440 280" xmlns="http://www.w3.org/2000/svg">
+      <path d="M40,200 L40,140 Q40,80 110,70 Q160,65 200,75 L320,85 Q360,90 380,140 L380,210 Q200,260 40,210 Z" fill="#ecfeff" stroke="#bbb" stroke-width="1.5"/>
+      <text x="60" y="60" font-size="9" fill="#888">mandible — medial view</text>
+      <circle cx="320" cy="135" r="9" fill="#fff" stroke="#0891b2" stroke-width="2.5"/>
+      <text x="335" y="132" font-size="10" fill="#0891b2" font-weight="700">mandibular foramen</text>
+      <path d="M312,135 L302,128 L312,121 Z" fill="#0891b2"/>
+      <text x="270" y="118" font-size="9" fill="#0891b2">lingula (Spix's spine)</text>
+      <path d="M280,250 Q300,200 320,150" stroke="#aaa" stroke-width="2" fill="none" stroke-dasharray="4 3"/>
+      <text x="300" y="265" font-size="9" fill="#555">pterygomandibular fold</text>
+      <g font-size="8" text-anchor="middle">
+        <rect x="100" y="200" width="16" height="20" fill="#fff" stroke="#888"/><text x="108" y="214">M3</text>
+        <rect x="120" y="200" width="16" height="20" fill="#fff" stroke="#888"/><text x="128" y="214">M2</text>
+        <rect x="140" y="200" width="16" height="20" fill="#fff" stroke="#888"/><text x="148" y="214">M1</text>
+        <rect x="160" y="200" width="14" height="20" fill="#fff" stroke="#888"/><text x="167" y="214">P2</text>
+        <rect x="178" y="200" width="14" height="20" fill="#fff" stroke="#888"/><text x="185" y="214">P1</text>
+      </g>
+      <line x1="80" y1="200" x2="380" y2="200" stroke="#888" stroke-dasharray="2 3"/>
+      <text x="60" y="195" font-size="8" fill="#666">occlusal plane</text>
+      <circle cx="290" cy="180" r="5" fill="#0891b2"/>
+      <text x="290" y="172" font-size="9" fill="#0891b2" font-weight="600" text-anchor="middle">1 cm above</text>
+      <line x1="50" y1="160" x2="305" y2="135" stroke="#0891b2" stroke-width="3" marker-end="url(#asp)"/>
+      <text x="60" y="150" font-size="9" fill="#0891b2" font-weight="700">syringe body at OPPOSITE-side premolars</text>
+      <text x="60" y="175" font-size="9" fill="#555">advance 2–2.5 cm to bone contact → <tspan font-weight="700">T1 = IAN</tspan></text>
+      <text x="60" y="188" font-size="9" fill="#555">withdraw 1 cm → aspirate → <tspan font-weight="700">T2 = Lingual</tspan></text>
+      <defs><marker id="asp" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#0891b2"/></marker></defs>
+    </svg>
+    <div class="caption">Lateral to ptg-mand fold, 1 cm above occlusal plane; syringe at opposite premolars, posterior + lateral + horizontal.</div>
+  </div>
+
+  <div class="fact-grid">
+    <div class="fact"><div class="label">Nerves</div><div class="value">IAN (+ mental + incisive) + Lingual</div></div>
+    <div class="fact"><div class="label">Teeth</div><div class="value">All teeth on one hemiarch</div></div>
+    <div class="fact"><div class="label">Soft tissue</div><div class="value">½ lip · lingual gingiva to midline · ant. 2/3 tongue + floor</div></div>
+    <div class="fact"><div class="label">Direction</div><div class="value"><span class="pill dir">posterior + lateral + horizontal</span></div></div>
+    <div class="fact"><div class="label">Depth</div><div class="value"><span class="pill depth">2–2.5 cm</span> → withdraw <span class="pill depth">−1 cm</span> for lingual</div></div>
+    <div class="fact"><div class="label">Failure rate</div><div class="value"><span class="pill warn">15–20%</span></div></div>
+  </div>
+
+  <h3>Direct technique (the one you'll perform)</h3>
+  <ol class="steps">
+    <li>Disinfect mucosa (± topical).</li>
+    <li>Puncture <strong>lateral</strong> to pterygomandibular fold, <strong>medial</strong> to temporal crest, <strong>1 cm above</strong> occlusal plane.</li>
+    <li>Syringe body resting on the <strong>opposite-side premolars</strong>.</li>
+    <li>Advance horizontal + outward + posterior, 2–2.5 cm, maintaining bone contact.</li>
+    <li>Aspirate → if negative, slow deposit ⇒ <strong>T1: IAN anesthetized</strong>.</li>
+    <li>Withdraw needle <strong>1 cm</strong>.</li>
+    <li>Aspirate again → if negative, slow deposit ⇒ <strong>T2: Lingual anesthetized</strong>.</li>
+  </ol>
+
+  <h3>Indirect technique (alternative)</h3>
+  <ol class="steps">
+    <li>Syringe parallel to the same quadrant; advance to bone contact at temporal crest.</li>
+    <li>Move syringe to opposite side; advance to bone contact above mandibular foramen.</li>
+  </ol>
+
+  <div class="accident"><strong>Facial palsy</strong> — if you fail bone contact, the needle passes posterior to the ramus and deposits into the <strong>parotid → CN VII anesthesia</strong>. Always confirm bone contact.<br>
+  Other accidents: pain, needle breakage (no sudden direction change), hematoma, neuritis.</div>
+</section>
+
+<section id="mental" class="mental">
+  <span class="block-tag tag-v3">V3 mandibular block</span>
+  <h2>6 · Mental Foramen Block</h2>
+
+  <div class="diagram">
+    <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
+      <path d="M30,140 Q30,90 120,70 Q220,55 320,80 Q380,95 380,150 L380,180 Q200,210 30,180 Z" fill="#eff6ff" stroke="#bbb"/>
+      <text x="60" y="60" font-size="9" fill="#888">mandible — lateral view</text>
+      <g font-size="8" text-anchor="middle">
+        <rect x="80" y="100" width="18" height="22" fill="#fff" stroke="#888"/><text x="89" y="115">M3</text>
+        <rect x="100" y="100" width="18" height="22" fill="#fff" stroke="#888"/><text x="109" y="115">M2</text>
+        <rect x="120" y="100" width="18" height="22" fill="#fff" stroke="#888"/><text x="129" y="115">M1</text>
+        <rect x="142" y="100" width="16" height="22" fill="#fff" stroke="#888"/><text x="150" y="115">P2</text>
+        <rect x="160" y="100" width="16" height="22" fill="#fff" stroke="#888"/><text x="168" y="115">P1</text>
+        <rect x="178" y="100" width="14" height="22" fill="#fff" stroke="#888"/><text x="185" y="115">C</text>
+        <rect x="194" y="100" width="14" height="22" fill="#fff" stroke="#888"/><text x="201" y="115">I2</text>
+        <rect x="210" y="100" width="14" height="22" fill="#fff" stroke="#888"/><text x="217" y="115">I1</text>
+      </g>
+      <circle cx="155" cy="145" r="7" fill="#0284c7" stroke="#0c4a6e" stroke-width="1.5"/>
+      <text x="155" y="170" font-size="10" fill="#0284c7" font-weight="700" text-anchor="middle">mental foramen</text>
+      <text x="155" y="183" font-size="8" fill="#555" text-anchor="middle">between P1 and P2 (~50%)</text>
+      <line x1="130" y1="40" x2="155" y2="140" stroke="#0284c7" stroke-width="3" marker-end="url(#am)"/>
+      <text x="50" y="40" font-size="9" fill="#0284c7" font-weight="600">insertion: mucobuccal fold past mesial root of M1</text>
+      <text x="60" y="55" font-size="10" fill="#0284c7" font-weight="700">↓ + forward + inward</text>
+      <defs><marker id="am" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#0284c7"/></marker></defs>
+    </svg>
+    <div class="caption">Foramen sits ~ between lower P1 & P2 — line linking supraorbital, infraorbital and mental foramina.</div>
+  </div>
+
+  <div class="fact-grid">
+    <div class="fact"><div class="label">Nerves</div><div class="value">Mental + incisive</div></div>
+    <div class="fact"><div class="label">Soft tissue</div><div class="value">½ lower lip, chin, vestibular gingiva (foramen → midline)</div></div>
+    <div class="fact"><div class="label">Teeth (incisive)</div><div class="value">P → I (incl. periodontium + bone)</div></div>
+    <div class="fact"><div class="label">Intraoral direction</div><div class="value"><span class="pill dir">↓ + forward + inward</span></div></div>
+    <div class="fact"><div class="label">Extraoral insertion</div><div class="value">1.5–2 cm behind oral commissure</div></div>
+    <div class="fact"><div class="label">Extraoral direction</div><div class="value"><span class="pill dir">↓ + inward + forward</span></div></div>
+  </div>
+
+  <h3>Where the foramen actually sits (dental %)</h3>
+  <ul>
+    <li>Between roots of lower P1 + P2 — ~50%</li>
+    <li>Past lower P2 — 25%</li>
+    <li>Past root of lower P1 — 20%</li>
+    <li>Distal to P2 — 25%</li>
+    <li>In edentate atrophy, migrates closer to (or onto) the ridge.</li>
+  </ul>
+
+  <h3>Soft-tissue landmarks (find without bone)</h3>
+  <ul>
+    <li>Vertical through the buccal commissure.</li>
+    <li>Vertical through the internal canthus of the eye.</li>
+    <li>0.5 cm medial to the mid-pupillary line (patient looking ahead).</li>
+  </ul>
+</section>
+
+<section id="lingual" class="lingual">
+  <span class="block-tag tag-v3">V3 mandibular block</span>
+  <h2>7 · Lingual Nerve — Isolated Blocks</h2>
+
+  <div class="diagram">
+    <svg viewBox="0 0 380 230" xmlns="http://www.w3.org/2000/svg">
+      <path d="M30,200 L30,50 Q30,30 60,30 L320,30 Q350,30 350,50 L350,200 Q190,220 30,200 Z" fill="#eff6ff" stroke="#bbb"/>
+      <text x="60" y="22" font-size="9" fill="#888">floor of mouth — superior view</text>
+      <ellipse cx="190" cy="135" rx="90" ry="55" fill="#fde7ec" stroke="#f9a8d4"/>
+      <text x="190" y="138" font-size="9" text-anchor="middle" fill="#9d174d">tongue (ant. 2/3)</text>
+      <g font-size="8" text-anchor="middle">
+        <rect x="295" y="40" width="14" height="14" fill="#fff" stroke="#888"/><text x="302" y="51">M3</text>
+        <rect x="295" y="58" width="14" height="14" fill="#fff" stroke="#888"/><text x="302" y="69">M2</text>
+        <rect x="295" y="76" width="14" height="14" fill="#fff" stroke="#888"/><text x="302" y="87">M1</text>
+        <rect x="295" y="94" width="14" height="14" fill="#fff" stroke="#888"/><text x="302" y="105">P2</text>
+        <rect x="295" y="112" width="14" height="14" fill="#fff" stroke="#888"/><text x="302" y="123">P1</text>
+        <rect x="295" y="130" width="14" height="14" fill="#fff" stroke="#888"/><text x="302" y="141">C</text>
+      </g>
+      <circle cx="280" cy="48" r="6" fill="#1d4ed8"/>
+      <text x="270" y="35" font-size="9" fill="#1d4ed8" font-weight="700" text-anchor="end">A · M3 paralingual fold</text>
+      <circle cx="280" cy="142" r="6" fill="#4338ca"/>
+      <text x="270" y="155" font-size="9" fill="#4338ca" font-weight="700" text-anchor="end">B · Dan Theodorescu (canine/P2)</text>
+      <text x="190" y="205" font-size="9" text-anchor="middle" fill="#444" font-weight="600">Both sites: depth 0.5 cm</text>
+    </svg>
+    <div class="caption">Lingual n. runs ~1 cm anterior + medial to IAN. Superficial under floor mucosa just distal to lower M3.</div>
+  </div>
+
+  <div class="tip-box"><strong>In practice</strong> the lingual nerve is anesthetized as part of the Spix block (T2). The two techniques below are used when only the lingual needs blocking.</div>
+
+  <h3>A · Lingual block at M3 (paralingual fold)</h3>
+  <div class="fact-grid">
+    <div class="fact"><div class="label">Landmarks</div><div class="value">Lower M3 · paralingual fold · mandibular angle</div></div>
+    <div class="fact"><div class="label">Insertion</div><div class="value">Next to lower M3, ½ distance gingiva → base of tongue, anterior + medial to angle</div></div>
+    <div class="fact"><div class="label">Direction</div><div class="value"><span class="pill dir">↓ + outward + posterior</span></div></div>
+    <div class="fact"><div class="label">Depth</div><div class="value"><span class="pill depth">0.5 cm</span></div></div>
+  </div>
+
+  <h3>B · Dan Theodorescu technique (canine / P2)</h3>
+  <div class="fact-grid">
+    <div class="fact"><div class="label">Landmarks</div><div class="value">Canine / P2 · paralingual fold · lingual surface of mandible</div></div>
+    <div class="fact"><div class="label">Insertion</div><div class="value">Angle between oral floor + lingual surface of mandible, next to canine/P2</div></div>
+    <div class="fact"><div class="label">Depth</div><div class="value"><span class="pill depth">0.5 cm</span></div></div>
+  </div>
+
+  <div class="accident"><strong>Surgical hazard:</strong> distal to lower M3, the lingual nerve lies superficial under the floor mucosa — easy to damage during dental/oral surgery.</div>
+</section>
+
+<section id="buccal" class="buccal">
+  <span class="block-tag tag-v3">V3 mandibular block</span>
+  <h2>8 · Buccal Nerve Block</h2>
+
+  <div class="diagram">
+    <svg viewBox="0 0 400 230" xmlns="http://www.w3.org/2000/svg">
+      <path d="M40,40 Q200,30 360,40 L320,80 L80,80 Z" fill="#eef2ff" stroke="#bbb"/>
+      <path d="M40,170 Q200,160 360,170 L320,200 L80,200 Z" fill="#eef2ff" stroke="#bbb"/>
+      <g font-size="8" text-anchor="middle">
+        <rect x="80" y="80" width="20" height="22" fill="#fff" stroke="#888"/><text x="90" y="95">M3</text>
+        <rect x="105" y="80" width="20" height="22" fill="#fff" stroke="#888"/><text x="115" y="95">M2</text>
+        <rect x="130" y="80" width="20" height="22" fill="#fff" stroke="#888"/><text x="140" y="95">M1</text>
+        <rect x="278" y="80" width="20" height="22" fill="#fff" stroke="#888"/><text x="288" y="95">M3</text>
+        <rect x="253" y="80" width="20" height="22" fill="#fff" stroke="#888"/><text x="263" y="95">M2</text>
+        <rect x="228" y="80" width="20" height="22" fill="#fff" stroke="#888"/><text x="238" y="95">M1</text>
+        <rect x="80" y="145" width="20" height="22" fill="#fff" stroke="#888"/><text x="90" y="160">M3</text>
+        <rect x="105" y="145" width="20" height="22" fill="#fff" stroke="#888"/><text x="115" y="160">M2</text>
+        <rect x="130" y="145" width="20" height="22" fill="#fff" stroke="#888"/><text x="140" y="160">M1</text>
+      </g>
+      <line x1="100" y1="125" x2="60" y2="220" stroke="#666" stroke-dasharray="3 3"/>
+      <text x="35" y="220" font-size="8" fill="#555">ant. border mandibular ramus</text>
+      <line x1="60" y1="125" x2="360" y2="125" stroke="#666" stroke-dasharray="2 3"/>
+      <text x="320" y="120" font-size="8" fill="#555">upper occlusal plane</text>
+      <circle cx="85" cy="125" r="6" fill="#4338ca"/>
+      <text x="170" y="40" font-size="10" fill="#4338ca" font-weight="700">insertion = upper occlusal plane × ant. ramus</text>
+      <text x="170" y="55" font-size="9" fill="#555">(distal + vestibular to upper M3, 1 cm behind/below Stensen)</text>
+      <line x1="85" y1="125" x2="160" y2="125" stroke="#4338ca" stroke-width="3" marker-end="url(#ab)"/>
+      <text x="180" y="138" font-size="10" fill="#4338ca" font-weight="600">→ posterior, parallel, lateral</text>
+      <defs><marker id="ab" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#4338ca"/></marker></defs>
+    </svg>
+    <div class="caption">Insertion happens on the upper arch, not the lower — even though the territory is lower-arch buccal gingiva.</div>
+  </div>
+
+  <div class="fact-grid">
+    <div class="fact"><div class="label">Nerve</div><div class="value">Buccal (anterior division of V3)</div></div>
+    <div class="fact"><div class="label">Territory</div><div class="value">Vestibular gingiva: lower M3 → mental foramen (M3, M2, M1, P1) + cheek mucosa</div></div>
+    <div class="fact"><div class="label">Direction</div><div class="value"><span class="pill dir">posterior + parallel to upper occlusal + lateral</span></div></div>
+  </div>
+
+  <h3>A · Classical buccal block</h3>
+  <ul>
+    <li><strong>Landmarks:</strong> Stensen duct papilla · anterior margin of mandibular ramus · maxillary occlusal plane.</li>
+    <li><strong>Insertion:</strong> intersection of upper occlusal plane with anterior margin of ramus; distal + vestibular to <strong>upper M3</strong>; 1 cm posterior + inferior to Stensen duct.</li>
+  </ul>
+
+  <h3>B · Vestibular infiltration (simpler)</h3>
+  <ul>
+    <li><strong>Insertion:</strong> vestibular mucosa, distal + vestibular to <strong>lower M3</strong>.</li>
+    <li><strong>Direction:</strong> posterior + horizontal + parallel to lower occlusal plane.</li>
+  </ul>
+</section>
+
+<section id="cheatsheet" class="cheatsheet">
+  <h2>D · Quick-Recall Cheat Sheet</h2>
+  <div class="cheat-table">
+    <table class="cheat">
+      <thead><tr><th>Block</th><th>Nerve(s)</th><th>Territory headline</th><th>Insertion</th><th>Direction</th><th>Depth</th><th>Vol (mL)</th></tr></thead>
+      <tbody>
+        <tr><td>Plexus</td><td>local terminations</td><td>1–2 teeth + soft tissue</td><td>Mucobuccal fold over tooth</td><td>bevel → bone</td><td>few mm</td><td>⅓–½ cart.</td></tr>
+        <tr><td>PSA / Tuberosity</td><td>PSA</td><td>M1(≠MB)–M3 + buccal gingiva + sinus wall</td><td>Sup. fornix behind zygomatic process, near MB root M2</td><td>up 45° + in + back</td><td>10–15 mm</td><td>—</td></tr>
+        <tr><td>Infraorbital</td><td>IO + ASA (±MSA)</td><td>LE eyelid, side of nose, upper lip, I/C/P + sinus</td><td>Vestibular ~0.5 cm from buccal surface of P1</td><td>parallel to long axis P1 → foramen</td><td>1.5–2.5 cm</td><td>1.5–2</td></tr>
+        <tr><td>Greater palatine</td><td>GP</td><td>Posterior 2/3 hard palate</td><td>1 cm from ridge, past upper M2</td><td>up + back + out (no duct entry)</td><td>—</td><td>0.2–0.3</td></tr>
+        <tr><td>Nasopalatine</td><td>NP / Scarpa</td><td>Anterior 1/3 hard palate</td><td>Lateral to incisive papilla, from opposite side</td><td>up + back + out toward target; enter duct</td><td>5–6 mm</td><td>0.2–0.3</td></tr>
+        <tr><td>Spix (IAN+L)</td><td>IAN, mental, incisive, lingual</td><td>Hemiarch + ½ lip + ant 2/3 tongue + floor</td><td>Lateral to ptg-mand fold, 1 cm above occlusal plane</td><td>post + lat + horizontal, syringe at opposite premolars</td><td>2–2.5 cm → −1 cm for lingual</td><td>—</td></tr>
+        <tr><td>Mental</td><td>Mental + incisive</td><td>½ lower lip, chin, P→I + gingiva</td><td>Mucobuccal fold past mesial root of lower M1</td><td>↓ + forward + inward</td><td>—</td><td>—</td></tr>
+        <tr><td>Lingual (M3)</td><td>Lingual</td><td>Ant 2/3 tongue, floor, lingual gingiva</td><td>Paralingual fold next to lower M3</td><td>↓ + outward + posterior</td><td>0.5 cm</td><td>—</td></tr>
+        <tr><td>Lingual (Theodorescu)</td><td>Lingual</td><td>same</td><td>Floor/mandible angle near canine/P2</td><td>—</td><td>0.5 cm</td><td>—</td></tr>
+        <tr><td>Buccal</td><td>Buccal</td><td>Vestibular gingiva M3→P1, cheek mucosa</td><td>Upper occlusal × ant. ramus, distal to upper M3</td><td>post + parallel to upper occlusal + lateral</td><td>—</td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="commandments" class="commandments">
+  <h2>E · 10 Technique Commandments (apply to every block)</h2>
+  <ol class="steps">
+    <li><strong>Disinfect</strong> mucosa (alcohol or CHX).</li>
+    <li>± <strong>topical anesthesia</strong>.</li>
+    <li><strong>Bevel oriented toward bone</strong> — prevents periosteum tearing and sub-periosteal deposit.</li>
+    <li><strong>Maintain bone contact</strong> when block is "against bone" (PSA, Spix); never sting periosteum.</li>
+    <li><strong>Aspirate mandatory</strong> before every deposit — repeat after any needle movement.</li>
+    <li><strong>Slow deposit</strong> (≥ 30 s per cartridge fraction) to avoid pain & systemic load.</li>
+    <li><strong>Never insert needle to the hub</strong> — leave ≥ 5 mm exposed for breakage retrieval.</li>
+    <li><strong>No sudden direction changes</strong> mid-shaft (breakage).</li>
+    <li><strong>Patient position:</strong> head straight or slightly extended, mouth half-open (PSA) or wide open (palatal, Spix).</li>
+    <li>Document onset time, volume, side; check anesthesia depth before proceeding.</li>
+  </ol>
+</section>
+
+<section id="revision" class="revision">
+  <h2>F · What to Revise the Night Before</h2>
+  <ul>
+    <li>The <strong>Spix technique</strong> front-to-back — landmarks, direction, depth, <strong>T1/T2 sequence</strong>, the parotid / facial-palsy accident.</li>
+    <li>Distinguish <strong>greater palatine vs nasopalatine</strong> (posterior 2/3 vs anterior 1/3 · entry-from-opposite-side rule for NP).</li>
+    <li><strong>Tuberosity hematoma</strong> prevention & management (always aspirate).</li>
+    <li>Which teeth the <strong>PSA block misses</strong> → <strong>MB root of M1</strong> (needs supplementation, often plexus / infraorbital MSA).</li>
+    <li>The two <strong>lingual-only</strong> techniques (M3 paralingual vs Dan Theodorescu) — both depth 0.5 cm.</li>
+    <li><strong>Buccal block:</strong> insertion at the upper occlusal plane × anterior border of ramus, not on the lower arch.</li>
+    <li>Trigeminal foramina trio: <strong>rotundum (V2), ovale (V3), Meckel's cave (ganglion)</strong>.</li>
+  </ul>
+</section>
+
+<footer style="text-align:center;color:#888;font-size:.85em;margin-top:24px;">
+  Extracted from <code>~/Downloads/Lab/_extracted/</code> · 10 LP decks + 1 PDF (scanned, no extractable text).
+</footer>
+
+</body></html>

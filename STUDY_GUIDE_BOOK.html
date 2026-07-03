@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Anesthesia LP — Illustrated Study Guide (with book pages)</title>
+<style>
+:root{
+  --indigo:#1e1b4b; --purple:#7c3aed; --green:#059669;
+  --red:#dc2626; --orange:#ea580c; --amber:#d97706; --deep-orange:#c2410c;
+  --cyan:#0891b2; --sky:#0284c7; --blue:#1d4ed8; --indigo-block:#4338ca;
+  --gold:#b45309; --warning:#be123c; --emerald:#047857;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Segoe UI',sans-serif;
+  max-width:1180px;margin:0 auto;padding:32px 20px 100px;
+  line-height:1.55;color:#1d1d1f;background:#f5f5f7;
+}
+header.hero{
+  background:linear-gradient(135deg,var(--indigo) 0%,#4f46e5 60%,#7c3aed 100%);
+  color:#fff;padding:40px 36px;border-radius:18px;
+  margin-bottom:24px;box-shadow:0 10px 30px rgba(30,27,75,.15);
+}
+header.hero h1{margin:0;font-size:2.2em;letter-spacing:-.5px}
+header.hero .sub{opacity:.85;margin-top:6px;font-size:1.05em}
+header.hero .meta{margin-top:14px;display:flex;gap:14px;flex-wrap:wrap;font-size:.9em;opacity:.95}
+header.hero .meta span{background:rgba(255,255,255,.15);padding:4px 10px;border-radius:999px}
+
+nav.toc{background:#fff;padding:18px 24px;border-radius:14px;margin-bottom:24px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+nav.toc h3{margin:0 0 10px;font-size:1em;text-transform:uppercase;letter-spacing:.6px;color:#666}
+nav.toc ul{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:6px 16px}
+nav.toc a{text-decoration:none;color:#1d1d1f;padding:6px 0;display:flex;align-items:center;gap:8px;font-size:.92em}
+nav.toc a:hover{color:var(--indigo)}
+.dot{width:11px;height:11px;border-radius:50%;display:inline-block;flex-shrink:0}
+
+section{
+  background:#fff;border-radius:14px;padding:28px 32px;margin-bottom:20px;
+  box-shadow:0 1px 3px rgba(0,0,0,.05);border-left:6px solid #ccc;
+}
+section h2{margin:0;font-size:1.55em;letter-spacing:-.3px;padding-bottom:10px}
+.chapter-head{padding-bottom:14px;border-bottom:2px solid #f5f5f7;margin-bottom:16px}
+
+.anatomy{border-left-color:var(--purple)} .anatomy h2{color:var(--purple)}
+.general{border-left-color:var(--green)}  .general h2{color:var(--green)}
+.psa    {border-left-color:var(--red)}    .psa h2{color:var(--red)}
+.io     {border-left-color:var(--orange)} .io h2{color:var(--orange)}
+.gp     {border-left-color:var(--amber)}  .gp h2{color:var(--amber)}
+.np     {border-left-color:var(--deep-orange)} .np h2{color:var(--deep-orange)}
+.spix   {border-left-color:var(--cyan)}   .spix h2{color:var(--cyan)}
+.mental {border-left-color:var(--sky)}    .mental h2{color:var(--sky)}
+.lingual{border-left-color:var(--blue)}   .lingual h2{color:var(--blue)}
+.buccal {border-left-color:var(--indigo-block)} .buccal h2{color:var(--indigo-block)}
+.simultaneous {border-left-color:var(--purple)} .simultaneous h2{color:var(--purple)}
+.cases  {border-left-color:var(--gold)}   .cases h2{color:var(--gold)}
+
+.fact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin:14px 0}
+.fact{padding:10px 14px;border-radius:9px;background:#f5f5f7}
+.fact .label{font-size:.72em;text-transform:uppercase;letter-spacing:.5px;color:#666;font-weight:600}
+.fact .value{font-weight:600;margin-top:3px;font-size:.95em}
+
+.quicknote{background:#fafafa;border-left:3px solid #d2d2d7;padding:10px 14px;border-radius:6px;margin:14px 0;font-size:.95em;color:#444}
+
+.pill{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.78em;font-weight:600;margin:1px 2px}
+.pill.depth {background:#fef3c7;color:#92400e}
+.pill.dir   {background:#dbeafe;color:#1e40af}
+.pill.vol   {background:#ede9fe;color:#6d28d9}
+
+.block-tag{display:inline-block;padding:4px 12px;border-radius:999px;color:#fff;font-size:.72em;text-transform:uppercase;letter-spacing:.6px;font-weight:700;margin-bottom:10px}
+
+.book-pages-wrap{margin-top:16px;border-radius:10px}
+.book-pages-wrap summary{
+  cursor:pointer;padding:10px 14px;background:#fafafa;border-radius:8px;
+  font-weight:600;color:#555;font-size:.9em;list-style:none;
+  display:flex;align-items:center;gap:8px;
+}
+.book-pages-wrap summary::-webkit-details-marker{display:none}
+.book-pages-wrap summary:hover{background:#f0f0f0}
+.book-pages-wrap[open] summary{background:#eef2ff;color:var(--indigo)}
+
+.book-pages{display:grid;gap:18px;margin-top:14px;grid-template-columns:repeat(auto-fit,minmax(360px,1fr))}
+.bookpage{margin:0;display:flex;flex-direction:column;align-items:center}
+.bookpage img{
+  width:100%;border-radius:8px;box-shadow:0 4px 14px rgba(0,0,0,.10);
+  border:1px solid #e5e5ea;background:#fff;
+  cursor:zoom-in;transition:transform .2s ease;
+}
+.bookpage img:hover{transform:scale(1.02);box-shadow:0 6px 20px rgba(0,0,0,.15)}
+.bookpage figcaption{font-size:.78em;color:#888;margin-top:6px;font-style:italic}
+
+/* Lightbox-on-click */
+.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out;padding:24px}
+.lightbox.show{display:flex}
+.lightbox img{max-width:100%;max-height:100%;border-radius:6px;box-shadow:0 10px 40px rgba(0,0,0,.5)}
+
+@media (max-width:720px){
+  .book-pages{grid-template-columns:1fr}
+  section{padding:20px}
+}
+@media print{
+  body{background:#fff}
+  section{box-shadow:none;break-inside:avoid}
+  .book-pages-wrap[open] .book-pages{display:grid}
+  .book-pages-wrap summary{display:none}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <h1>🦷 Anesthesia LP — Illustrated Guide</h1>
+  <div class="sub">Practical Guide for Students · Anesthesia & Sedation in Dental Medicine · Riviș, Roi & Roi (Timișoara 2025)</div>
+  <div class="meta">
+    <span>📅 Exam: 2 June 2026</span>
+    <span>📖 14 Practical Activities · 102 book pages embedded</span>
+    <span>🎨 Color-coded by nerve division</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <h3>Contents — follows the book chapter by chapter</h3>
+  <ul><li><a href="#pa1"><span class="dot" style="background:var(--green)"></span>PA-1 · Armamentarium &amp; Conditions for Anesthesia</a></li><li><a href="#pa2"><span class="dot" style="background:var(--purple)"></span>PA-2 · Trigeminal Nerve I — V1 &amp; V2</a></li><li><a href="#pa3"><span class="dot" style="background:var(--purple)"></span>PA-3 · Trigeminal Nerve II — V3 Mandibular</a></li><li><a href="#pa4"><span class="dot" style="background:var(--green)"></span>PA-4 · Local &amp; Loco-regional Infiltration</a></li><li><a href="#pa5"><span class="dot" style="background:var(--red)"></span>PA-5 · PSA — Tuberosity Technique</a></li><li><a href="#pa6"><span class="dot" style="background:var(--red)"></span>PA-6 · MSA — Middle Superior Alveolar</a></li><li><a href="#pa7"><span class="dot" style="background:var(--orange)"></span>PA-7 · ASA / Infraorbital Nerve Block</a></li><li><a href="#pa8"><span class="dot" style="background:var(--amber)"></span>PA-8 · Palatine Fibromucosa — Greater Palatine + Nasopalatine</a></li><li><a href="#pa9"><span class="dot" style="background:var(--cyan)"></span>PA-9 · Inferior Alveolar — Spix&#x27;s Spine</a></li><li><a href="#pa10"><span class="dot" style="background:var(--sky)"></span>PA-10 · Mental &amp; Incisive Nerve Block</a></li><li><a href="#pa11"><span class="dot" style="background:var(--blue)"></span>PA-11 · Lingual Nerve Block</a></li><li><a href="#pa12"><span class="dot" style="background:var(--indigo-block)"></span>PA-12 · Buccal Nerve Block</a></li><li><a href="#pa13"><span class="dot" style="background:var(--purple)"></span>PA-13 · Simultaneous Techniques (Weisbrem, Gow-Gates, Vazirani-Akinosi)</a></li><li><a href="#pa14"><span class="dot" style="background:var(--gold)"></span>PA-14 · Clinical Case Recap</a></li></ul>
+</nav>
+
+
+<section id="pa1" class="general">
+  <div class="chapter-head">
+    <span class="block-tag" style="background:var(--green)">PA-1 · GEN</span>
+    <h2>1 · Armamentarium &amp; Conditions for Anesthesia</h2>
+  </div>
+  
+  <p class="quicknote">The setup chapter: consultation kit, syringe types (disposable vs. UNIJECT), needles, cartridges, antiseptics.</p>
+  <details class="book-pages-wrap" open>
+    <summary>📖 Show 12 book pages (PDF p 5–16)</summary>
+    <div class="book-pages">
+      <figure class="bookpage"><img loading="lazy" src="book-pages/page-005.jpg" alt="Book page 5"><figcaption>Book page 5</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-006.jpg" alt="Book page 6"><figcaption>Book page 6</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-007.jpg" alt="Book page 7"><figcaption>Book page 7</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-008.jpg" alt="Book page 8"><figcaption>Book page 8</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-009.jpg" alt="Book page 9"><figcaption>Book page 9</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-010.jpg" alt="Book page 10"><figcaption>Book page 10</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-011.jpg" alt="Book page 11"><figcaption>Book page 11</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-012.jpg" alt="Book page 12"><figcaption>Book page 12</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-013.jpg" alt="Book page 13"><figcaption>Book page 13</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-014.jpg" alt="Book page 14"><figcaption>Book page 14</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-015.jpg" alt="Book page 15"><figcaption>Book page 15</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-016.jpg" alt="Book page 16"><figcaption>Book page 16</figcaption></figure>
+    </div>
+  </details>
+</section>
+
+<section id="pa2" class="anatomy">
+  <div class="chapter-head">
+    <span class="block-tag" style="background:var(--purple)">PA-2 · ANATOMY</span>
+    <h2>2 · Trigeminal Nerve I — V1 &amp; V2</h2>
+  </div>
+  <div class="fact-grid"><div class="fact"><div class="label">Nerves</div><div class="value">V1, V2 + branches</div></div><div class="fact"><div class="label">Territory</div><div class="value">Forehead → midface</div></div></div>
+  <p class="quicknote">CN V exits the pons → Gasser ganglion in Meckel's cave → V1 through sup. orbital fissure, V2 through foramen rotundum.</p>
+  <details class="book-pages-wrap" open>
+    <summary>📖 Show 6 book pages (PDF p 17–22)</summary>
+    <div class="book-pages">
+      <figure class="bookpage"><img loading="lazy" src="book-pages/page-017.jpg" alt="Book page 17"><figcaption>Book page 17</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-018.jpg" alt="Book page 18"><figcaption>Book page 18</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-019.jpg" alt="Book page 19"><figcaption>Book page 19</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-020.jpg" alt="Book page 20"><figcaption>Book page 20</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-021.jpg" alt="Book page 21"><figcaption>Book page 21</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-022.jpg" alt="Book page 22"><figcaption>Book page 22</figcaption></figure>
+    </div>
+  </details>
+</section>
+
+<section id="pa3" class="anatomy">
+  <div class="chapter-head">
+    <span class="block-tag" style="background:var(--purple)">PA-3 · ANATOMY</span>
+    <h2>3 · Trigeminal Nerve II — V3 Mandibular</h2>
+  </div>
+  <div class="fact-grid"><div class="fact"><div class="label">Nerves</div><div class="value">V3 (anterior + posterior trunk)</div></div><div class="fact"><div class="label">Territory</div><div class="value">Mandible, tongue, masticatory mm.</div></div></div>
+  <p class="quicknote">V3 exits through foramen ovale. Anterior trunk = mostly motor + buccal (sensitive). Posterior trunk = auriculotemporal, lingual, inferior alveolar.</p>
+  <details class="book-pages-wrap" open>
+    <summary>📖 Show 6 book pages (PDF p 23–28)</summary>
+    <div class="book-pages">
+      <figure class="bookpage"><img loading="lazy" src="book-pages/page-023.jpg" alt="Book page 23"><figcaption>Book page 23</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-024.jpg" alt="Book page 24"><figcaption>Book page 24</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-025.jpg" alt="Book page 25"><figcaption>Book page 25</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-026.jpg" alt="Book page 26"><figcaption>Book page 26</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-027.jpg" alt="Book page 27"><figcaption>Book page 27</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-028.jpg" alt="Book page 28"><figcaption>Book page 28</figcaption></figure>
+    </div>
+  </details>
+</section>
+
+<section id="pa4" class="general">
+  <div class="chapter-head">
+    <span class="block-tag" style="background:var(--green)">PA-4 · GEN</span>
+    <h2>4 · Local &amp; Loco-regional Infiltration</h2>
+  </div>
+  <div class="fact-grid"><div class="fact"><div class="label">Nerves</div><div class="value">Local terminations</div></div><div class="fact"><div class="label">Territory</div><div class="value">1–2 teeth + soft tissue</div></div><div class="fact"><div class="label">Direction</div><div class="value"><span class="pill dir">bevel → bone</span></div></div><div class="fact"><div class="label">Depth</div><div class="value"><span class="pill depth">few mm</span></div></div><div class="fact"><div class="label">Volume</div><div class="value"><span class="pill vol">⅓–½ cartridge</span></div></div></div>
+  <p class="quicknote">Plexal/supraperiosteal: most common, works on all maxillary teeth (except upper M1) and lower anterior to mental foramen. Onset 2–4 min.</p>
+  <details class="book-pages-wrap" open>
+    <summary>📖 Show 9 book pages (PDF p 29–37)</summary>
+    <div class="book-pages">
+      <figure class="bookpage"><img loading="lazy" src="book-pages/page-029.jpg" alt="Book page 29"><figcaption>Book page 29</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-030.jpg" alt="Book page 30"><figcaption>Book page 30</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-031.jpg" alt="Book page 31"><figcaption>Book page 31</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-032.jpg" alt="Book page 32"><figcaption>Book page 32</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-033.jpg" alt="Book page 33"><figcaption>Book page 33</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-034.jpg" alt="Book page 34"><figcaption>Book page 34</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-035.jpg" alt="Book page 35"><figcaption>Book page 35</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-036.jpg" alt="Book page 36"><figcaption>Book page 36</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-037.jpg" alt="Book page 37"><figcaption>Book page 37</figcaption></figure>
+    </div>
+  </details>
+</section>
+
+<section id="pa5" class="psa">
+  <div class="chapter-head">
+    <span class="block-tag" style="background:var(--red)">PA-5 · V2 maxillary</span>
+    <h2>5 · PSA — Tuberosity Technique</h2>
+  </div>
+  <div class="fact-grid"><div class="fact"><div class="label">Nerves</div><div class="value">Posterior Superior Alveolar (PSA)</div></div><div class="fact"><div class="label">Territory</div><div class="value">M3, M2, M1 (≠ MB root) + buccal gingiva + post./lat. wall of max. sinus</div></div><div class="fact"><div class="label">Direction</div><div class="value"><span class="pill dir">↑ 45° + in + back</span></div></div><div class="fact"><div class="label">Depth</div><div class="value"><span class="pill depth">10–15 mm</span></div></div></div>
+  <p class="quicknote">Insertion in superior fornix, behind zygomatic process, near MB root of M2. Mandatory aspiration — pterygoid venous plexus can give a tuberosity hematoma.</p>
+  <details class="book-pages-wrap" open>
+    <summary>📖 Show 6 book pages (PDF p 38–43)</summary>
+    <div class="book-pages">
+      <figure class="bookpage"><img loading="lazy" src="book-pages/page-038.jpg" alt="Book page 38"><figcaption>Book page 38</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-039.jpg" alt="Book page 39"><figcaption>Book page 39</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-040.jpg" alt="Book page 40"><figcaption>Book page 40</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-041.jpg" alt="Book page 41"><figcaption>Book page 41</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-042.jpg" alt="Book page 42"><figcaption>Book page 42</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-043.jpg" alt="Book page 43"><figcaption>Book page 43</figcaption></figure>
+    </div>
+  </details>
+</section>
+
+<section id="pa6" class="io">
+  <div class="chapter-head">
+    <span class="block-tag" style="background:var(--red)">PA-6 · V2 maxillary</span>
+    <h2>6 · MSA — Middle Superior Alveolar</h2>
+  </div>
+  <div class="fact-grid"><div class="fact"><div class="label">Nerves</div><div class="value">Middle Superior Alveolar (inconstant)</div></div><div class="fact"><div class="label">Territory</div><div class="value">MB root M1, P1, P2 + their periodontium + lateral wall max. sinus</div></div><div class="fact"><div class="label">Direction</div><div class="value"><span class="pill dir">bevel → bone</span></div></div><div class="fact"><div class="label">Depth</div><div class="value"><span class="pill depth">few mm</span></div></div><div class="fact"><div class="label">Volume</div><div class="value"><span class="pill vol">½ cart.</span></div></div></div>
+  <p class="quicknote">When present, the MSA fills the PSA's gap (MB root of M1). Best blocked by plexal anesthesia in the mucobuccal fold over the premolars.</p>
+  <details class="book-pages-wrap" open>
+    <summary>📖 Show 4 book pages (PDF p 44–47)</summary>
+    <div class="book-pages">
+      <figure class="bookpage"><img loading="lazy" src="book-pages/page-044.jpg" alt="Book page 44"><figcaption>Book page 44</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-045.jpg" alt="Book page 45"><figcaption>Book page 45</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-046.jpg" alt="Book page 46"><figcaption>Book page 46</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-047.jpg" alt="Book page 47"><figcaption>Book page 47</figcaption></figure>
+    </div>
+  </details>
+</section>
+
+<section id="pa7" class="io">
+  <div class="chapter-head">
+    <span class="block-tag" style="background:var(--orange)">PA-7 · V2 maxillary</span>
+    <h2>7 · ASA / Infraorbital Nerve Block</h2>
+  </div>
+  <div class="fact-grid"><div class="fact"><div class="label">Nerves</div><div class="value">Anterior Superior Alveolar + Infraorbital</div></div><div class="fact"><div class="label">Territory</div><div class="value">Upper canine, lateral & central incisors + periodontium + vestibular gingiva + lower eyelid, side of nose, upper lip</div></div><div class="fact"><div class="label">Direction</div><div class="value"><span class="pill dir">parallel to long axis P1</span></div></div><div class="fact"><div class="label">Depth</div><div class="value"><span class="pill depth">1.5–2.5 cm</span></div></div><div class="fact"><div class="label">Volume</div><div class="value"><span class="pill vol">1.5–2 mL</span></div></div></div>
+  <p class="quicknote">Palpate the infraorbital ridge, keep your finger on the foramen for the whole procedure. Insert ~0.5 cm from buccal surface of P1, advance toward foramen.</p>
+  <details class="book-pages-wrap" open>
+    <summary>📖 Show 9 book pages (PDF p 48–56)</summary>
+    <div class="book-pages">
+      <figure class="bookpage"><img loading="lazy" src="book-pages/page-048.jpg" alt="Book page 48"><figcaption>Book page 48</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-049.jpg" alt="Book page 49"><figcaption>Book page 49</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-050.jpg" alt="Book page 50"><figcaption>Book page 50</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-051.jpg" alt="Book page 51"><figcaption>Book page 51</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-052.jpg" alt="Book page 52"><figcaption>Book page 52</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-053.jpg" alt="Book page 53"><figcaption>Book page 53</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-054.jpg" alt="Book page 54"><figcaption>Book page 54</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-055.jpg" alt="Book page 55"><figcaption>Book page 55</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-056.jpg" alt="Book page 56"><figcaption>Book page 56</figcaption></figure>
+    </div>
+  </details>
+</section>
+
+<section id="pa8" class="gp">
+  <div class="chapter-head">
+    <span class="block-tag" style="background:var(--amber)">PA-8 · V2 maxillary</span>
+    <h2>8 · Palatine Fibromucosa — Greater Palatine + Nasopalatine</h2>
+  </div>
+  <div class="fact-grid"><div class="fact"><div class="label">Nerves</div><div class="value">Greater palatine + Nasopalatine (Scarpa)</div></div><div class="fact"><div class="label">Territory</div><div class="value">GP → posterior 2/3 hard palate · NP → anterior 1/3 hard palate</div></div><div class="fact"><div class="label">Direction</div><div class="value"><span class="pill dir">GP: up + back + out (no duct) · NP: up + back + out from opposite side, enter duct 5–6 mm</span></div></div><div class="fact"><div class="label">Volume</div><div class="value"><span class="pill vol">0.2–0.3 mL each</span></div></div></div>
+  <p class="quicknote">GP foramen: 1 cm medial to upper M3, in the dihedral angle of palatine bone. NP: lateral to incisive papilla — never sting the papilla.</p>
+  <details class="book-pages-wrap" open>
+    <summary>📖 Show 11 book pages (PDF p 57–67)</summary>
+    <div class="book-pages">
+      <figure class="bookpage"><img loading="lazy" src="book-pages/page-057.jpg" alt="Book page 57"><figcaption>Book page 57</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-058.jpg" alt="Book page 58"><figcaption>Book page 58</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-059.jpg" alt="Book page 59"><figcaption>Book page 59</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-060.jpg" alt="Book page 60"><figcaption>Book page 60</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-061.jpg" alt="Book page 61"><figcaption>Book page 61</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-062.jpg" alt="Book page 62"><figcaption>Book page 62</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-063.jpg" alt="Book page 63"><figcaption>Book page 63</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-064.jpg" alt="Book page 64"><figcaption>Book page 64</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-065.jpg" alt="Book page 65"><figcaption>Book page 65</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-066.jpg" alt="Book page 66"><figcaption>Book page 66</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-067.jpg" alt="Book page 67"><figcaption>Book page 67</figcaption></figure>
+    </div>
+  </details>
+</section>
+
+<section id="pa9" class="spix">
+  <div class="chapter-head">
+    <span class="block-tag" style="background:var(--cyan)">PA-9 · V3 mandibular</span>
+    <h2>9 · Inferior Alveolar — Spix&#x27;s Spine</h2>
+  </div>
+  <div class="fact-grid"><div class="fact"><div class="label">Nerves</div><div class="value">IAN (+ mental + incisive) + lingual via T2</div></div><div class="fact"><div class="label">Territory</div><div class="value">All teeth one hemiarch + ½ lip + ant 2/3 tongue + floor</div></div><div class="fact"><div class="label">Direction</div><div class="value"><span class="pill dir">posterior + lateral + horizontal</span></div></div><div class="fact"><div class="label">Depth</div><div class="value"><span class="pill depth">2–2.5 cm → −1 cm for lingual</span></div></div></div>
+  <p class="quicknote">Most common mandibular block but ~15–20% failure. Lateral to ptg-mand fold, 1 cm above occlusal plane. Syringe body at opposite premolars. T1 = IAN at bone, T2 = lingual after withdrawing 1 cm.</p>
+  <details class="book-pages-wrap" open>
+    <summary>📖 Show 5 book pages (PDF p 68–72)</summary>
+    <div class="book-pages">
+      <figure class="bookpage"><img loading="lazy" src="book-pages/page-068.jpg" alt="Book page 68"><figcaption>Book page 68</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-069.jpg" alt="Book page 69"><figcaption>Book page 69</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-070.jpg" alt="Book page 70"><figcaption>Book page 70</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-071.jpg" alt="Book page 71"><figcaption>Book page 71</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-072.jpg" alt="Book page 72"><figcaption>Book page 72</figcaption></figure>
+    </div>
+  </details>
+</section>
+
+<section id="pa10" class="mental">
+  <div class="chapter-head">
+    <span class="block-tag" style="background:var(--sky)">PA-10 · V3 mandibular</span>
+    <h2>10 · Mental &amp; Incisive Nerve Block</h2>
+  </div>
+  <div class="fact-grid"><div class="fact"><div class="label">Nerves</div><div class="value">Mental + incisive</div></div><div class="fact"><div class="label">Territory</div><div class="value">½ lower lip + chin · vestibular gingiva foramen → midline · teeth P → I</div></div><div class="fact"><div class="label">Direction</div><div class="value"><span class="pill dir">↓ + forward + inward</span></div></div></div>
+  <p class="quicknote">Mental foramen between roots of lower P1 + P2 in ~50%. Insertion at mucobuccal fold past mesial root of lower M1.</p>
+  <details class="book-pages-wrap" open>
+    <summary>📖 Show 9 book pages (PDF p 73–81)</summary>
+    <div class="book-pages">
+      <figure class="bookpage"><img loading="lazy" src="book-pages/page-073.jpg" alt="Book page 73"><figcaption>Book page 73</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-074.jpg" alt="Book page 74"><figcaption>Book page 74</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-075.jpg" alt="Book page 75"><figcaption>Book page 75</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-076.jpg" alt="Book page 76"><figcaption>Book page 76</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-077.jpg" alt="Book page 77"><figcaption>Book page 77</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-078.jpg" alt="Book page 78"><figcaption>Book page 78</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-079.jpg" alt="Book page 79"><figcaption>Book page 79</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-080.jpg" alt="Book page 80"><figcaption>Book page 80</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-081.jpg" alt="Book page 81"><figcaption>Book page 81</figcaption></figure>
+    </div>
+  </details>
+</section>
+
+<section id="pa11" class="lingual">
+  <div class="chapter-head">
+    <span class="block-tag" style="background:var(--blue)">PA-11 · V3 mandibular</span>
+    <h2>11 · Lingual Nerve Block</h2>
+  </div>
+  <div class="fact-grid"><div class="fact"><div class="label">Nerves</div><div class="value">Lingual nerve</div></div><div class="fact"><div class="label">Territory</div><div class="value">Anterior 2/3 tongue + oral floor + lingual gingiva (midline → M3)</div></div><div class="fact"><div class="label">Direction</div><div class="value"><span class="pill dir">↓ + outward + posterior</span></div></div><div class="fact"><div class="label">Depth</div><div class="value"><span class="pill depth">0.5 cm</span></div></div></div>
+  <p class="quicknote">Usually anesthetized as Spix-T2. Isolated techniques: paralingual fold at M3, or Dan Theodorescu at canine/P2. Both depth 0.5 cm.</p>
+  <details class="book-pages-wrap" open>
+    <summary>📖 Show 6 book pages (PDF p 82–87)</summary>
+    <div class="book-pages">
+      <figure class="bookpage"><img loading="lazy" src="book-pages/page-082.jpg" alt="Book page 82"><figcaption>Book page 82</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-083.jpg" alt="Book page 83"><figcaption>Book page 83</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-084.jpg" alt="Book page 84"><figcaption>Book page 84</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-085.jpg" alt="Book page 85"><figcaption>Book page 85</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-086.jpg" alt="Book page 86"><figcaption>Book page 86</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-087.jpg" alt="Book page 87"><figcaption>Book page 87</figcaption></figure>
+    </div>
+  </details>
+</section>
+
+<section id="pa12" class="buccal">
+  <div class="chapter-head">
+    <span class="block-tag" style="background:var(--indigo-block)">PA-12 · V3 mandibular</span>
+    <h2>12 · Buccal Nerve Block</h2>
+  </div>
+  <div class="fact-grid"><div class="fact"><div class="label">Nerves</div><div class="value">Buccal (anterior trunk of V3)</div></div><div class="fact"><div class="label">Territory</div><div class="value">Vestibular gingiva lower M3 → mental foramen + cheek mucosa</div></div><div class="fact"><div class="label">Direction</div><div class="value"><span class="pill dir">post + parallel to upper occlusal + lateral</span></div></div></div>
+  <p class="quicknote">Insertion is on the UPPER arch (occlusal plane × ant. ramus, distal to upper M3), even though the territory is lower-arch buccal gingiva.</p>
+  <details class="book-pages-wrap" open>
+    <summary>📖 Show 5 book pages (PDF p 88–92)</summary>
+    <div class="book-pages">
+      <figure class="bookpage"><img loading="lazy" src="book-pages/page-088.jpg" alt="Book page 88"><figcaption>Book page 88</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-089.jpg" alt="Book page 89"><figcaption>Book page 89</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-090.jpg" alt="Book page 90"><figcaption>Book page 90</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-091.jpg" alt="Book page 91"><figcaption>Book page 91</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-092.jpg" alt="Book page 92"><figcaption>Book page 92</figcaption></figure>
+    </div>
+  </details>
+</section>
+
+<section id="pa13" class="simultaneous">
+  <div class="chapter-head">
+    <span class="block-tag" style="background:var(--purple)">PA-13 · ADVANCED V3</span>
+    <h2>13 · Simultaneous Techniques (Weisbrem, Gow-Gates, Vazirani-Akinosi)</h2>
+  </div>
+  <div class="fact-grid"><div class="fact"><div class="label">Nerves</div><div class="value">IAN + lingual + buccal in one puncture</div></div><div class="fact"><div class="label">Territory</div><div class="value">Full hemimandible</div></div><div class="fact"><div class="label">Direction</div><div class="value"><span class="pill dir">varies by technique</span></div></div><div class="fact"><div class="label">Depth</div><div class="value"><span class="pill depth">varies</span></div></div></div>
+  <p class="quicknote">High-value alternatives when Spix fails: Weisbrem (Berg) — at mandibular tuberosity. Gow-Gates — at the condyle neck. Vazirani-Akinosi — closed-mouth approach.</p>
+  <details class="book-pages-wrap" open>
+    <summary>📖 Show 7 book pages (PDF p 93–99)</summary>
+    <div class="book-pages">
+      <figure class="bookpage"><img loading="lazy" src="book-pages/page-093.jpg" alt="Book page 93"><figcaption>Book page 93</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-094.jpg" alt="Book page 94"><figcaption>Book page 94</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-095.jpg" alt="Book page 95"><figcaption>Book page 95</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-096.jpg" alt="Book page 96"><figcaption>Book page 96</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-097.jpg" alt="Book page 97"><figcaption>Book page 97</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-098.jpg" alt="Book page 98"><figcaption>Book page 98</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-099.jpg" alt="Book page 99"><figcaption>Book page 99</figcaption></figure>
+    </div>
+  </details>
+</section>
+
+<section id="pa14" class="cases">
+  <div class="chapter-head">
+    <span class="block-tag" style="background:var(--gold)">PA-14 · CASES</span>
+    <h2>14 · Clinical Case Recap</h2>
+  </div>
+  
+  <p class="quicknote">Five clinical scenarios. Practice picking the right technique + describing the landmarks aloud before the practical.</p>
+  <details class="book-pages-wrap" open>
+    <summary>📖 Show 3 book pages (PDF p 100–102)</summary>
+    <div class="book-pages">
+      <figure class="bookpage"><img loading="lazy" src="book-pages/page-100.jpg" alt="Book page 100"><figcaption>Book page 100</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-101.jpg" alt="Book page 101"><figcaption>Book page 101</figcaption></figure>
+<figure class="bookpage"><img loading="lazy" src="book-pages/page-102.jpg" alt="Book page 102"><figcaption>Book page 102</figcaption></figure>
+    </div>
+  </details>
+</section>
+
+
+<footer style="text-align:center;color:#888;font-size:.85em;margin-top:24px;">
+  Color-coded summary cards built from the LP slide decks · book illustrations rendered from <code>~/Downloads/Lab/ANESTHESIA AND SEDATION IN DENTAL MEDICINE.pdf</code>
+</footer>
+
+<div class="lightbox" id="lb" onclick="this.classList.remove('show')"><img id="lbimg" src="" alt=""></div>
+<script>
+document.querySelectorAll('.bookpage img').forEach(img=>{
+  img.addEventListener('click', e=>{
+    const lb=document.getElementById('lb'); const lbi=document.getElementById('lbimg');
+    lbi.src=img.src; lb.classList.add('show');
+  });
+});
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') document.getElementById('lb').classList.remove('show'); });
+</script>
+
+</body></html>
