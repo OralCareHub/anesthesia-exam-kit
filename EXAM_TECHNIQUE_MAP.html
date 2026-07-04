@@ -1,0 +1,688 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Technique Map — Which Block Anesthetizes Each Tooth</title>
+<meta name="description" content="Anatomical schema showing all 32 teeth and which technique anesthetizes each — Plexus, PSA, Infraorbital, GP, NP, Spix, Mental, Lingual, Buccal.">
+<style>
+*{box-sizing:border-box;-webkit-font-smoothing:antialiased}
+html,body{margin:0;padding:0}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Inter','Segoe UI',sans-serif;
+  background:radial-gradient(ellipse at top,#f0f9ff 0%,#e0f2fe 40%,#bae6fd 100%);
+  min-height:100vh;
+  color:#0f172a;
+  padding:24px 12px 60px;
+}
+.back-link{
+  display:block;
+  max-width:1100px;
+  margin:0 auto 12px;
+  color:#0c4a6e;
+  text-decoration:none;
+  font-size:.86em;
+  opacity:.75;
+}
+.back-link:hover{opacity:1}
+header.hero{max-width:1100px;margin:0 auto 22px;text-align:center}
+header.hero h1{margin:0 0 6px;font-size:2em;letter-spacing:-.6px;color:#0c4a6e}
+header.hero .sub{margin:0;color:#475569;font-size:1em}
+header.hero .critical{
+  display:inline-block;
+  background:#fef3c7;
+  color:#92400e;
+  padding:6px 14px;
+  border-radius:999px;
+  font-size:.82em;
+  font-weight:700;
+  margin-top:10px;
+  letter-spacing:.4px;
+}
+
+.legend-card{
+  max-width:1100px;
+  margin:0 auto 18px;
+  background:#fff;
+  border-radius:16px;
+  padding:18px 22px 20px;
+  box-shadow:0 3px 12px rgba(15,23,42,.06);
+}
+.legend-title{
+  font-size:.72em;
+  text-transform:uppercase;
+  letter-spacing:1.4px;
+  color:#64748b;
+  font-weight:700;
+  margin-bottom:12px;
+  text-align:center;
+}
+.legend-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:8px 18px;
+}
+.legend-item{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:6px 0;
+  font-size:.9em;
+}
+.legend-swatch{
+  width:38px;
+  height:22px;
+  border-radius:5px;
+  flex-shrink:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  font-family:'SF Mono','JetBrains Mono',Menlo,monospace;
+  font-size:.68em;
+  font-weight:800;
+  letter-spacing:.4px;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.2), 0 1px 2px rgba(15,23,42,.15);
+}
+.legend-item .abbrev{
+  font-family:'SF Mono','JetBrains Mono',Menlo,monospace;
+  color:#0c4a6e;
+  font-weight:800;
+  min-width:60px;
+}
+.legend-item .full{color:#475569}
+
+.diagram-card{
+  max-width:1100px;
+  margin:0 auto 22px;
+  background:#fff;
+  border-radius:20px;
+  padding:20px;
+  box-shadow:0 20px 60px rgba(15,23,42,.10),0 2px 6px rgba(15,23,42,.05);
+}
+#anatomy-svg{
+  display:block;
+  width:100%;
+  height:auto;
+  max-width:100%;
+}
+
+.notes-grid{
+  max-width:1100px;
+  margin:0 auto 22px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:14px;
+}
+.note{
+  background:#fff;
+  border-radius:14px;
+  padding:16px 18px;
+  box-shadow:0 3px 12px rgba(15,23,42,.06);
+  border-left:5px solid var(--note-color,#94a3b8);
+  font-size:.9em;
+  line-height:1.5;
+  color:#334155;
+}
+.note h3{
+  margin:0 0 6px;
+  font-size:1em;
+  color:var(--note-color,#0c4a6e);
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.note h3::before{
+  content:'';
+  display:inline-block;
+  width:12px;height:12px;
+  background:var(--note-color,#94a3b8);
+  border-radius:3px;
+  flex-shrink:0;
+}
+.note b{color:#0f172a}
+
+.traps-card{
+  max-width:1100px;
+  margin:0 auto 22px;
+  background:linear-gradient(135deg,#fff7ed 0%,#ffedd5 100%);
+  border:2px solid #fdba74;
+  border-radius:16px;
+  padding:22px;
+}
+.traps-card h2{
+  margin:0 0 14px;
+  color:#c2410c;
+  font-size:1.1em;
+  letter-spacing:.4px;
+}
+.trap-list{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+.trap-list li{
+  background:#fff;
+  border-radius:9px;
+  padding:10px 14px;
+  color:#78350f;
+  font-size:.9em;
+  line-height:1.5;
+  border-left:4px solid #ea580c;
+}
+.trap-list li b{color:#c2410c;font-family:'SF Mono',Menlo,monospace}
+
+@media(max-width:640px){
+  header.hero h1{font-size:1.4em}
+  .diagram-card{padding:12px;border-radius:14px}
+}
+@media print{
+  body{background:#fff;padding:0}
+  .back-link{display:none}
+  .diagram-card{box-shadow:none;border:1px solid #cbd5e1}
+}
+</style>
+</head>
+<body>
+
+<a href="index.html" class="back-link">← All study tools</a>
+
+<header class="hero">
+  <h1>🗺️ Technique Map — Which Block for Which Tooth</h1>
+  <p class="sub">All 32 teeth · every technique · what to say in Step 3.</p>
+  <span class="critical">🎯 Read tooth → color → technique name. Done.</span>
+</header>
+
+<!-- FULL LEGEND: abbrev + full name of technique -->
+<div class="legend-card">
+  <div class="legend-title">All 9 techniques with their color</div>
+  <div class="legend-grid">
+    <div class="legend-item"><span class="legend-swatch" style="background:#10b981">PLX</span><span class="abbrev">PLX</span><span class="full">Plexus / Supraperiosteal (any single tooth)</span></div>
+    <div class="legend-item"><span class="legend-swatch" style="background:#dc2626">PSA</span><span class="abbrev">PSA</span><span class="full">PSA / Tuberosity Block — upper molars</span></div>
+    <div class="legend-item"><span class="legend-swatch" style="background:#f97316">IO</span><span class="abbrev">IO</span><span class="full">Infraorbital Block — upper I / C / P</span></div>
+    <div class="legend-item"><span class="legend-swatch" style="background:#0d9488">GP</span><span class="abbrev">GP</span><span class="full">Greater Palatine — posterior 2/3 palate</span></div>
+    <div class="legend-item"><span class="legend-swatch" style="background:#9333ea">NP</span><span class="abbrev">NP</span><span class="full">Nasopalatine (Scarpa) — anterior 1/3 palate</span></div>
+    <div class="legend-item"><span class="legend-swatch" style="background:#1e40af">SPX</span><span class="abbrev">SPX</span><span class="full">Spix / IAN Block — all lower teeth</span></div>
+    <div class="legend-item"><span class="legend-swatch" style="background:#38bdf8">MEN</span><span class="abbrev">MEN</span><span class="full">Mental + Incisive — lower I / C / P (alt.)</span></div>
+    <div class="legend-item"><span class="legend-swatch" style="background:#059669">LN</span><span class="abbrev">LN</span><span class="full">Lingual — lower lingual gingiva + tongue</span></div>
+    <div class="legend-item"><span class="legend-swatch" style="background:#6366f1">LBN</span><span class="abbrev">LBN</span><span class="full">Long Buccal — lower molar buccal gingiva</span></div>
+  </div>
+</div>
+
+<div class="diagram-card">
+  <svg id="anatomy-svg" viewBox="0 0 900 720" xmlns="http://www.w3.org/2000/svg"></svg>
+</div>
+
+<div class="notes-grid">
+  <div class="note" style="--note-color:#dc2626">
+    <h3>How to read the map</h3>
+    <b>Color inside the tooth</b> = technique for the pulp. <b>Bands above/below</b> = techniques for the soft tissue (palate, buccal gingiva, lingual). <b>Alternative bands</b> = a second technique that also works.
+  </div>
+  <div class="note" style="--note-color:#0d9488">
+    <h3>The two splits</h3>
+    <b>Upper palate splits at the canine</b> — front = NP, back = GP. <b>Lower buccal splits at the mental foramen</b> — front = MEN, back = LBN.
+  </div>
+  <div class="note" style="--note-color:#1e40af">
+    <h3>Spix covers everything below</h3>
+    Spix (IAN) anesthetizes <b>all 16 lower teeth</b>. Mental + Incisive is a lighter alternative for lower I / C / P only — doesn't reach molars.
+  </div>
+  <div class="note" style="--note-color:#f59e0b">
+    <h3>Yellow MB dot = the trap</h3>
+    Upper M1 (1.6 / 2.6) — the mesio-buccal root escapes PSA. Always add a <b>plexus supplement</b> at the MB root.
+  </div>
+</div>
+
+<div class="traps-card">
+  <h2>⚠️ Exam Step 3 — what to say for each region</h2>
+  <ol class="trap-list">
+    <li><b>Upper molar (except MB M1):</b> "PSA / tuberosity block, plus greater palatine for the palate side."</li>
+    <li><b>Upper M1 (1.6 / 2.6):</b> "PSA block + <u>plexus supplement over the MB root</u> + greater palatine."</li>
+    <li><b>Upper premolar / canine / incisor:</b> "Infraorbital block (covers ASA + MSA) + nasopalatine or greater palatine for the palate side."</li>
+    <li><b>Any single upper tooth (quick):</b> "Plexus / supraperiosteal — bevel to bone, few mm depth, ⅓–½ cartridge."</li>
+    <li><b>Lower molar:</b> "Spix block (T1 for IAN → withdraw 1 cm → T2 for lingual) + long buccal for the vestibular gingiva."</li>
+    <li><b>Lower premolar / canine / incisor:</b> "Spix block if I need pulp + tongue; Mental+Incisive block if only the tooth + lip is needed."</li>
+    <li><b>Palate-only work (posterior):</b> "Greater palatine — 1 cm medial to upper M3, up+back+out, 0.2–0.3 mL, don't enter the duct."</li>
+    <li><b>Palate-only work (anterior):</b> "Nasopalatine — lateral to the incisive papilla, from the opposite side, 5–6 mm into the duct."</li>
+  </ol>
+</div>
+
+<script>
+(function(){
+  const svg = document.getElementById('anatomy-svg');
+  const NS = 'http://www.w3.org/2000/svg';
+
+  // Technique palette (unique color per technique)
+  const T = {
+    PLX: {color:'#10b981', stroke:'#065f46', dark:'#064e3b'},
+    PSA: {color:'#dc2626', stroke:'#991b1b', dark:'#7f1d1d'},
+    IO:  {color:'#f97316', stroke:'#c2410c', dark:'#7c2d12'},
+    GP:  {color:'#0d9488', stroke:'#134e4a', dark:'#134e4a'},
+    NP:  {color:'#9333ea', stroke:'#6b21a8', dark:'#581c87'},
+    SPX: {color:'#1e40af', stroke:'#1e3a8a', dark:'#1e3a8a'},
+    MEN: {color:'#38bdf8', stroke:'#0369a1', dark:'#075985'},
+    LN:  {color:'#059669', stroke:'#065f46', dark:'#064e3b'},
+    LBN: {color:'#6366f1', stroke:'#3730a3', dark:'#312e81'}
+  };
+  const LABELS = {
+    PSA:'PSA', IO:'Infraorbital', GP:'Greater Palatine', NP:'Nasopalatine',
+    SPX:'Spix (IAN)', MEN:'Mental + Incisive', LN:'Lingual', LBN:'Long Buccal', PLX:'Plexus'
+  };
+
+  const TW      = {incisor:34, canine:38, premolar:42, molar:52};
+  const CROWN_H = {incisor:44, canine:48, premolar:40, molar:38};
+  const ROOT_H  = {incisor:56, canine:66, premolar:50, molar:48};
+  const MAX_CROWN = 48;
+  const MAX_ROOT  = 66;
+  const TG = 3;
+  const MID_GAP = 30;
+  const START_X = 46;
+
+  // Upper: pulp technique = PSA for molars, IO for I/C/P (covers ASA + MSA)
+  const UPPER = [
+    {fdi:'1.8', type:'molar',    pulp:'PSA'},
+    {fdi:'1.7', type:'molar',    pulp:'PSA'},
+    {fdi:'1.6', type:'molar',    pulp:'PSA', mbTrap:true},
+    {fdi:'1.5', type:'premolar', pulp:'IO'},
+    {fdi:'1.4', type:'premolar', pulp:'IO'},
+    {fdi:'1.3', type:'canine',   pulp:'IO'},
+    {fdi:'1.2', type:'incisor',  pulp:'IO'},
+    {fdi:'1.1', type:'incisor',  pulp:'IO'},
+    {fdi:'2.1', type:'incisor',  pulp:'IO'},
+    {fdi:'2.2', type:'incisor',  pulp:'IO'},
+    {fdi:'2.3', type:'canine',   pulp:'IO'},
+    {fdi:'2.4', type:'premolar', pulp:'IO'},
+    {fdi:'2.5', type:'premolar', pulp:'IO'},
+    {fdi:'2.6', type:'molar',    pulp:'PSA', mbTrap:true},
+    {fdi:'2.7', type:'molar',    pulp:'PSA'},
+    {fdi:'2.8', type:'molar',    pulp:'PSA'}
+  ];
+
+  // Lower: pulp technique = SPX (all lower teeth)
+  const LOWER = [
+    {fdi:'4.8', type:'molar',    pulp:'SPX'},
+    {fdi:'4.7', type:'molar',    pulp:'SPX'},
+    {fdi:'4.6', type:'molar',    pulp:'SPX'},
+    {fdi:'4.5', type:'premolar', pulp:'SPX'},
+    {fdi:'4.4', type:'premolar', pulp:'SPX'},
+    {fdi:'4.3', type:'canine',   pulp:'SPX'},
+    {fdi:'4.2', type:'incisor',  pulp:'SPX'},
+    {fdi:'4.1', type:'incisor',  pulp:'SPX'},
+    {fdi:'3.1', type:'incisor',  pulp:'SPX'},
+    {fdi:'3.2', type:'incisor',  pulp:'SPX'},
+    {fdi:'3.3', type:'canine',   pulp:'SPX'},
+    {fdi:'3.4', type:'premolar', pulp:'SPX'},
+    {fdi:'3.5', type:'premolar', pulp:'SPX'},
+    {fdi:'3.6', type:'molar',    pulp:'SPX'},
+    {fdi:'3.7', type:'molar',    pulp:'SPX'},
+    {fdi:'3.8', type:'molar',    pulp:'SPX'}
+  ];
+
+  function el(tag, attrs = {}, children = []){
+    const e = document.createElementNS(NS, tag);
+    for (const k in attrs){
+      if (attrs[k] !== undefined && attrs[k] !== null) e.setAttribute(k, attrs[k]);
+    }
+    children.forEach(c => c && e.appendChild(c));
+    return e;
+  }
+  function text(str, x, y, attrs = {}){
+    const t = el('text', {x, y, ...attrs});
+    t.textContent = str;
+    return t;
+  }
+
+  function positions(arr){
+    let x = START_X;
+    return arr.map((t, i) => {
+      if (i === 8) x += MID_GAP;
+      const w = TW[t.type];
+      const pos = {x, y:0, w, ...t};
+      x += w + TG;
+      return pos;
+    });
+  }
+  const UP = positions(UPPER);
+  const LO = positions(LOWER);
+  const midX = 900 / 2;
+
+  // ==================== ANATOMICAL TOOTH DRAWING ====================
+  function drawTooth(t, cejY, isUpper){
+    const {x, w, type, fdi, mbTrap} = t;
+    const nerve = T[t.pulp];
+    const g = el('g', {class:'tooth', 'data-fdi':fdi});
+
+    const crownH = CROWN_H[type];
+    const rootH  = ROOT_H[type];
+    const dirRoot  = isUpper ? -1 : +1;
+    const dirCrown = -dirRoot;
+    const dir = dirCrown;
+    const apexY = cejY + dirRoot * rootH;
+    const tipY  = cejY + dirCrown * crownH;
+
+    // ROOT
+    const rootFill = '#faf8f2';
+    const rootStroke = '#a8a29e';
+    const rootStrokeW = 1.2;
+
+    if (type === 'molar'){
+      const notchW = w * 0.18;
+      const rootHalfW = (w - notchW) / 2;
+      const bulbInset = 3;
+      const apexInset = w * 0.05;
+      const apexPointOffset = dir * 4;
+      g.appendChild(el('path', {
+        d: `M ${x + bulbInset},${cejY}
+            L ${x + rootHalfW - bulbInset*0.4},${cejY}
+            Q ${x + rootHalfW - 2},${cejY - dir*8} ${x + rootHalfW * 0.75 - apexInset},${apexY + apexPointOffset}
+            Q ${x + rootHalfW * 0.4},${apexY} ${x + apexInset + 2},${apexY + apexPointOffset}
+            Q ${x + bulbInset*0.4},${cejY - dir*8} ${x + bulbInset},${cejY} Z`,
+        fill: rootFill, stroke: rootStroke, 'stroke-width': rootStrokeW,
+        'stroke-linejoin': 'round'
+      }));
+      const R = x + w;
+      g.appendChild(el('path', {
+        d: `M ${R - bulbInset},${cejY}
+            L ${R - rootHalfW + bulbInset*0.4},${cejY}
+            Q ${R - rootHalfW + 2},${cejY - dir*8} ${R - rootHalfW * 0.75 + apexInset},${apexY + apexPointOffset}
+            Q ${R - rootHalfW * 0.4},${apexY} ${R - apexInset - 2},${apexY + apexPointOffset}
+            Q ${R - bulbInset*0.4},${cejY - dir*8} ${R - bulbInset},${cejY} Z`,
+        fill: rootFill, stroke: rootStroke, 'stroke-width': rootStrokeW,
+        'stroke-linejoin': 'round'
+      }));
+    } else {
+      const baseInset = w * 0.1;
+      const apexHalfW = w * 0.12;
+      const cx = x + w/2;
+      const apexPoint = apexY + dir * 4;
+      g.appendChild(el('path', {
+        d: `M ${x + baseInset},${cejY}
+            L ${x + w - baseInset},${cejY}
+            Q ${x + w - baseInset*0.6},${cejY - dir*12} ${cx + apexHalfW},${apexPoint}
+            Q ${cx},${apexY - dir*3} ${cx - apexHalfW},${apexPoint}
+            Q ${x + baseInset*0.6},${cejY - dir*12} ${x + baseInset},${cejY} Z`,
+        fill: rootFill, stroke: rootStroke, 'stroke-width': rootStrokeW,
+        'stroke-linejoin': 'round'
+      }));
+    }
+
+    // CROWN
+    const crownStrokeW = 1.8;
+    const r = 5;
+    const cejFlare = 3;
+    let crownPath;
+
+    if (type === 'incisor'){
+      const cejX_L = x - cejFlare*0.4;
+      const cejX_R = x + w + cejFlare*0.4;
+      const bodyX_L = x - cejFlare;
+      const bodyX_R = x + w + cejFlare;
+      const bodyY   = cejY + dir * 6;
+      crownPath = `
+        M ${cejX_L},${cejY}
+        Q ${bodyX_L + 1},${bodyY} ${bodyX_L},${cejY + dir * (crownH - r)}
+        Q ${bodyX_L},${tipY} ${bodyX_L + r},${tipY}
+        L ${bodyX_R - r},${tipY}
+        Q ${bodyX_R},${tipY} ${bodyX_R},${cejY + dir * (crownH - r)}
+        Q ${bodyX_R - 1},${bodyY} ${cejX_R},${cejY}
+        Z`;
+    } else if (type === 'canine'){
+      const shoulderY = cejY + dir * crownH * 0.55;
+      const cejX_L = x - cejFlare*0.4;
+      const cejX_R = x + w + cejFlare*0.4;
+      const bodyX_L = x - cejFlare*0.6;
+      const bodyX_R = x + w + cejFlare*0.6;
+      const cx = x + w/2;
+      crownPath = `
+        M ${cejX_L},${cejY}
+        Q ${bodyX_L + 1},${cejY + dir*5} ${bodyX_L},${shoulderY}
+        L ${cx - 3},${tipY - dir*2}
+        Q ${cx},${tipY + dir*3} ${cx + 3},${tipY - dir*2}
+        L ${bodyX_R},${shoulderY}
+        Q ${bodyX_R - 1},${cejY + dir*5} ${cejX_R},${cejY}
+        Z`;
+    } else if (type === 'premolar'){
+      const cejX_L = x - cejFlare*0.4;
+      const cejX_R = x + w + cejFlare*0.4;
+      const bodyX_L = x - cejFlare;
+      const bodyX_R = x + w + cejFlare;
+      const shoulderY = cejY + dir * crownH * 0.65;
+      const cx = x + w/2;
+      const cuspHalf = w * 0.32;
+      crownPath = `
+        M ${cejX_L},${cejY}
+        Q ${bodyX_L + 1},${cejY + dir*5} ${bodyX_L},${shoulderY}
+        Q ${bodyX_L + 2},${tipY} ${cx - cuspHalf},${tipY - dir*2}
+        Q ${cx},${tipY + dir*3} ${cx + cuspHalf},${tipY - dir*2}
+        Q ${bodyX_R - 2},${tipY} ${bodyX_R},${shoulderY}
+        Q ${bodyX_R - 1},${cejY + dir*5} ${cejX_R},${cejY}
+        Z`;
+    } else if (type === 'molar'){
+      const cejX_L = x - cejFlare*0.4;
+      const cejX_R = x + w + cejFlare*0.4;
+      const bodyX_L = x - cejFlare;
+      const bodyX_R = x + w + cejFlare;
+      const shoulderY = cejY + dir * crownH * 0.55;
+      const c1 = x + w * 0.28;
+      const c2 = x + w * 0.72;
+      const mid = x + w/2;
+      const grooveY = tipY - dir * 5;
+      crownPath = `
+        M ${cejX_L},${cejY}
+        Q ${bodyX_L + 1},${cejY + dir*5} ${bodyX_L},${shoulderY}
+        Q ${bodyX_L + 3},${tipY} ${c1 - w*0.10},${tipY - dir*1}
+        Q ${c1},${tipY + dir*3} ${c1 + w*0.10},${tipY - dir*1}
+        Q ${mid - 2},${grooveY} ${mid},${grooveY}
+        Q ${mid + 2},${grooveY} ${c2 - w*0.10},${tipY - dir*1}
+        Q ${c2},${tipY + dir*3} ${c2 + w*0.10},${tipY - dir*1}
+        Q ${bodyX_R - 3},${tipY} ${bodyX_R},${shoulderY}
+        Q ${bodyX_R - 1},${cejY + dir*5} ${cejX_R},${cejY}
+        Z`;
+    }
+
+    g.appendChild(el('path', {
+      d: crownPath,
+      fill: nerve.color,
+      stroke: nerve.stroke,
+      'stroke-width': crownStrokeW,
+      'stroke-linejoin': 'round',
+      'stroke-linecap': 'round'
+    }));
+
+    // CEJ hairline
+    g.appendChild(el('line', {
+      x1: x + 2, y1: cejY, x2: x + w - 2, y2: cejY,
+      stroke: '#fff', 'stroke-width': 1.4, 'stroke-opacity': .5
+    }));
+
+    // MB TRAP marker
+    if (mbTrap){
+      const isRight = fdi.startsWith('1');
+      const mbX = isRight ? x + w*0.28 : x + w*0.72;
+      const mbY = cejY + dir * crownH * 0.5;
+      g.appendChild(el('circle', {cx:mbX, cy:mbY, r:7, fill:'#fde047', stroke:'#a16207', 'stroke-width':1.8}));
+      g.appendChild(text('MB', mbX, mbY+2.6, {'text-anchor':'middle', 'font-size':6.8, 'font-family':'SF Mono, Menlo, monospace', 'font-weight':800, fill:'#713f12'}));
+    }
+
+    // FDI label
+    const labelY = cejY + dir * 12;
+    g.appendChild(text(fdi, x + w/2, labelY + 3, {
+      'text-anchor':'middle', 'font-size':8.5, 'font-family':'SF Mono, Menlo, monospace',
+      'font-weight':800, fill:'#fff', opacity:.95
+    }));
+
+    return g;
+  }
+
+  function drawBand(tech, x1, x2, y, h, opts={}){
+    const info = T[tech];
+    const g = el('g');
+    g.appendChild(el('rect', {
+      x:x1, y, width:x2 - x1, height:h, rx:7, ry:7,
+      fill:info.color, 'fill-opacity':opts.alt ? 0.55 : 0.92,
+      stroke:info.stroke, 'stroke-width':1.6,
+      'stroke-dasharray':opts.alt ? '5 3' : ''
+    }));
+    const label = opts.label || LABELS[tech] || tech;
+    const cx = (x1 + x2)/2;
+    const cy = y + h/2;
+    g.appendChild(text(label, cx, cy + 5, {
+      'text-anchor':'middle', 'font-size':14, 'font-weight':800, fill:'#fff',
+      'font-family':'-apple-system, Inter, sans-serif', 'letter-spacing':.5
+    }));
+    return g;
+  }
+
+  function groupByTech(arr, key){
+    const groups = [];
+    let cur = null;
+    arr.forEach(t => {
+      const n = t[key];
+      if (!cur || cur.tech !== n) {
+        cur = {tech:n, teeth:[t]};
+        groups.push(cur);
+      } else {
+        cur.teeth.push(t);
+      }
+    });
+    return groups;
+  }
+  function spanX(teethGroup){
+    const first = teethGroup[0];
+    const last = teethGroup[teethGroup.length-1];
+    return {x1:first.x, x2:last.x + last.w};
+  }
+
+  // ==================== LAYOUT ====================
+  const Y = {};
+  const BAND_H = 32;
+  const ALT_BAND_H = 22;
+  const SECTION_LABEL_GAP = 24;
+  const SIDE_LABEL_GAP = 14;
+  const ROOT_GAP = 8;
+
+  Y.jawTitle1 = 26;
+  Y.palateLabel = Y.jawTitle1 + SECTION_LABEL_GAP;
+  Y.palate = Y.palateLabel + SIDE_LABEL_GAP - 4;
+  Y.upperRootTop = Y.palate + BAND_H + ROOT_GAP;
+  Y.upperTeethCEJ = Y.upperRootTop + MAX_ROOT;
+  Y.upperCrownBottom = Y.upperTeethCEJ + MAX_CROWN;
+  Y.upperBuccalLabel = Y.upperCrownBottom + 16;
+  Y.upperBuccal = Y.upperBuccalLabel + SIDE_LABEL_GAP - 4;
+  Y.midline = Y.upperBuccal + BAND_H + 18;
+  Y.jawTitle2 = Y.midline + 32;
+  Y.lowerBuccalLabel = Y.jawTitle2 + SECTION_LABEL_GAP - 8;
+  Y.lowerBuccal = Y.lowerBuccalLabel + SIDE_LABEL_GAP - 4;
+  Y.spxLabel = Y.lowerBuccal + BAND_H + 12;
+  Y.spxBand = Y.spxLabel + SIDE_LABEL_GAP - 4;
+  Y.menAltBand = Y.spxBand + BAND_H + 4; // alternative band underneath
+  Y.lowerCrownTop = Y.menAltBand + ALT_BAND_H + ROOT_GAP;
+  Y.lowerTeethCEJ = Y.lowerCrownTop + MAX_CROWN;
+  Y.lowerRootBottom = Y.lowerTeethCEJ + MAX_ROOT;
+  Y.lingualLabel = Y.lowerRootBottom + 16;
+  Y.lingual = Y.lingualLabel + SIDE_LABEL_GAP - 4;
+  const finalH = Y.lingual + BAND_H + 24;
+
+  // ==================== MAXILLA TITLE ====================
+  svg.appendChild(text('MAXILLA — upper jaw', midX, Y.jawTitle1, {
+    'text-anchor':'middle', 'font-size':13, 'font-weight':800, fill:'#0c4a6e',
+    'letter-spacing':1.5, 'font-family':'-apple-system, sans-serif'
+  }));
+  svg.appendChild(text("PATIENT'S RIGHT", 22, Y.jawTitle1, {
+    'font-size':8.5, 'font-weight':700, fill:'#94a3b8', 'letter-spacing':.8
+  }));
+  svg.appendChild(text("PATIENT'S LEFT", 878, Y.jawTitle1, {
+    'text-anchor':'end', 'font-size':8.5, 'font-weight':700, fill:'#94a3b8', 'letter-spacing':.8
+  }));
+
+  // ==================== PALATE BAND (NP front / GP back) ====================
+  svg.appendChild(text('PALATE  (roof of mouth) — palatal soft tissue', midX, Y.palateLabel, {
+    'text-anchor':'middle', 'font-size':10, 'font-weight':700, fill:'#475569', 'letter-spacing':1
+  }));
+  const gpR = UP.filter(t => ['1.4','1.5','1.6','1.7','1.8'].includes(t.fdi));
+  const npAll = UP.filter(t => ['1.1','1.2','1.3','2.1','2.2','2.3'].includes(t.fdi));
+  const gpL = UP.filter(t => ['2.4','2.5','2.6','2.7','2.8'].includes(t.fdi));
+  const gR = spanX(gpR); svg.appendChild(drawBand('GP', gR.x1, gR.x2, Y.palate, BAND_H));
+  const nA = spanX(npAll); svg.appendChild(drawBand('NP', nA.x1, nA.x2, Y.palate, BAND_H));
+  const gL = spanX(gpL); svg.appendChild(drawBand('GP', gL.x1, gL.x2, Y.palate, BAND_H));
+
+  // ==================== UPPER TEETH ====================
+  UP.forEach(t => svg.appendChild(drawTooth(t, Y.upperTeethCEJ, true)));
+
+  // ==================== UPPER BUCCAL BAND (pulp technique) ====================
+  svg.appendChild(text('BUCCAL  (cheek side) — pulp technique', midX, Y.upperBuccalLabel, {
+    'text-anchor':'middle', 'font-size':10, 'font-weight':700, fill:'#475569', 'letter-spacing':1
+  }));
+  const upperPulpGroups = groupByTech(UP, 'pulp');
+  upperPulpGroups.forEach(grp => {
+    const {x1, x2} = spanX(grp.teeth);
+    svg.appendChild(drawBand(grp.tech, x1, x2, Y.upperBuccal, BAND_H));
+  });
+
+  // ==================== MIDLINE ====================
+  svg.appendChild(el('rect', {
+    x:0, y:Y.midline, width:900, height:20, fill:'#f8fafc', rx:2
+  }));
+  svg.appendChild(el('line', {
+    x1:22, y1:Y.midline + 10, x2:878, y2:Y.midline + 10,
+    stroke:'#94a3b8', 'stroke-width':1.4, 'stroke-dasharray':'4 3'
+  }));
+  svg.appendChild(text('◤  MOUTH OPENING  ◥', midX, Y.midline + 14, {
+    'text-anchor':'middle', 'font-size':9, 'font-weight':800, fill:'#64748b',
+    'letter-spacing':1.8
+  }));
+
+  // ==================== MANDIBLE TITLE ====================
+  svg.appendChild(text('MANDIBLE — lower jaw', midX, Y.jawTitle2, {
+    'text-anchor':'middle', 'font-size':13, 'font-weight':800, fill:'#0c4a6e',
+    'letter-spacing':1.5, 'font-family':'-apple-system, sans-serif'
+  }));
+
+  // ==================== LOWER BUCCAL BAND (MEN front / LBN back) ====================
+  svg.appendChild(text('BUCCAL  (cheek side) — gingiva + lip', midX, Y.lowerBuccalLabel, {
+    'text-anchor':'middle', 'font-size':10, 'font-weight':700, fill:'#475569', 'letter-spacing':1
+  }));
+  const lbnR = LO.filter(t => ['4.6','4.7','4.8'].includes(t.fdi));
+  const menR = LO.filter(t => ['4.1','4.2','4.3','4.4','4.5'].includes(t.fdi));
+  const menL = LO.filter(t => ['3.1','3.2','3.3','3.4','3.5'].includes(t.fdi));
+  const lbnL = LO.filter(t => ['3.6','3.7','3.8'].includes(t.fdi));
+  const lR = spanX(lbnR); svg.appendChild(drawBand('LBN', lR.x1, lR.x2, Y.lowerBuccal, BAND_H));
+  const mR = spanX(menR); svg.appendChild(drawBand('MEN', mR.x1, mR.x2, Y.lowerBuccal, BAND_H, {label:'Mental'}));
+  const mL = spanX(menL); svg.appendChild(drawBand('MEN', mL.x1, mL.x2, Y.lowerBuccal, BAND_H, {label:'Mental'}));
+  const lL = spanX(lbnL); svg.appendChild(drawBand('LBN', lL.x1, lL.x2, Y.lowerBuccal, BAND_H));
+
+  // ==================== SPIX BAND (pulp, all 16 lower teeth) ====================
+  svg.appendChild(text('PULP + BONE — Spix covers ALL lower teeth', midX, Y.spxLabel, {
+    'text-anchor':'middle', 'font-size':9.5, 'font-weight':700, fill:'#475569', 'letter-spacing':1
+  }));
+  const lnAllSpan = spanX(LO);
+  svg.appendChild(drawBand('SPX', lnAllSpan.x1, lnAllSpan.x2, Y.spxBand, BAND_H));
+
+  // ==================== MENTAL+INCISIVE ALT BAND (I/C/P only) ====================
+  const menAltR = LO.filter(t => ['4.1','4.2','4.3','4.4','4.5'].includes(t.fdi));
+  const menAltL = LO.filter(t => ['3.1','3.2','3.3','3.4','3.5'].includes(t.fdi));
+  const menAltSpan = {x1: menAltR[0].x, x2: menAltL[menAltL.length-1].x + menAltL[menAltL.length-1].w};
+  svg.appendChild(drawBand('MEN', menAltSpan.x1, menAltSpan.x2, Y.menAltBand, ALT_BAND_H, {alt:true, label:'alt: Mental + Incisive (I/C/P only)'}));
+
+  // ==================== LOWER TEETH ====================
+  LO.forEach(t => svg.appendChild(drawTooth(t, Y.lowerTeethCEJ, false)));
+
+  // ==================== LINGUAL BAND ====================
+  svg.appendChild(text('LINGUAL  (tongue side) — all 16 lower teeth', midX, Y.lingualLabel, {
+    'text-anchor':'middle', 'font-size':10, 'font-weight':700, fill:'#475569', 'letter-spacing':1
+  }));
+  const lnAll = spanX(LO);
+  svg.appendChild(drawBand('LN', lnAll.x1, lnAll.x2, Y.lingual, BAND_H));
+
+  // ==================== MIDLINE separators ====================
+  const midToothLine = midX;
+  svg.appendChild(el('line', {
+    x1:midToothLine, y1:Y.palate - 8, x2:midToothLine, y2:Y.upperBuccal + BAND_H + 6,
+    stroke:'#e2e8f0', 'stroke-width':1.4, 'stroke-dasharray':'3 3'
+  }));
+  svg.appendChild(el('line', {
+    x1:midToothLine, y1:Y.lowerBuccal - 8, x2:midToothLine, y2:Y.lingual + BAND_H + 4,
+    stroke:'#e2e8f0', 'stroke-width':1.4, 'stroke-dasharray':'3 3'
+  }));
+
+  svg.setAttribute('viewBox', `0 0 900 ${finalH}`);
+})();
+</script>
+
+</body>
+</html>
