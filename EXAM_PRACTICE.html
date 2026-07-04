@@ -1,0 +1,1032 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LP Practice — Random Tooth Simulator</title>
+<style>
+*{box-sizing:border-box;-webkit-font-smoothing:antialiased}
+html,body{margin:0;padding:0}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Inter','Segoe UI',sans-serif;
+  background:radial-gradient(ellipse at top,#f0f9ff 0%,#e0f2fe 40%,#bae6fd 100%);
+  min-height:100vh;
+  color:#0f172a;
+  padding:20px 12px 60px;
+}
+.back-link{
+  display:block;
+  max-width:920px;
+  margin:0 auto 10px;
+  color:#0c4a6e;
+  text-decoration:none;
+  font-size:.86em;
+  opacity:.75;
+}
+.back-link:hover{opacity:1}
+
+header.hero{max-width:920px;margin:0 auto 20px;text-align:center}
+header.hero h1{margin:0 0 6px;font-size:1.8em;letter-spacing:-.6px;color:#0c4a6e}
+header.hero .sub{margin:0;color:#475569;font-size:.94em}
+
+/* ===== FILTERS ===== */
+.filters{
+  max-width:920px;
+  margin:0 auto 14px;
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+.filter-btn{
+  background:#fff;
+  border:2px solid #e2e8f0;
+  color:#334155;
+  padding:8px 16px;
+  border-radius:999px;
+  cursor:pointer;
+  font-size:.84em;
+  font-weight:600;
+  transition:all .15s ease;
+  font-family:inherit;
+}
+.filter-btn:hover{border-color:#0284c7;color:#0284c7}
+.filter-btn.active{
+  background:#0c4a6e;
+  color:#fff;
+  border-color:#0c4a6e;
+  box-shadow:0 4px 12px rgba(12,74,110,.25);
+}
+.filter-btn.trap{background:#fff7ed;border-color:#fdba74;color:#c2410c}
+.filter-btn.trap.active{background:#ea580c;border-color:#ea580c;color:#fff}
+
+/* ===== DRAW CARD ===== */
+.draw-card{
+  max-width:920px;
+  margin:0 auto 18px;
+  background:linear-gradient(135deg,#0c4a6e 0%,#1e40af 65%,#5b21b6 100%);
+  border-radius:20px;
+  padding:26px 24px;
+  text-align:center;
+  color:#fff;
+  box-shadow:0 20px 60px rgba(15,23,42,.15),0 4px 12px rgba(15,23,42,.08);
+}
+.draw-tooth-slot{
+  display:inline-block;
+  min-width:180px;
+  min-height:120px;
+  background:rgba(255,255,255,.14);
+  border:2px dashed rgba(255,255,255,.3);
+  border-radius:16px;
+  padding:16px 20px;
+  margin-bottom:18px;
+}
+.draw-tooth-slot.filled{
+  background:rgba(255,255,255,.94);
+  border-style:solid;
+  border-color:rgba(255,255,255,.6);
+  animation:pop .32s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes pop{from{transform:scale(.7);opacity:0}to{transform:scale(1);opacity:1}}
+@keyframes spin{
+  0%{transform:rotate(0deg) scale(.9);opacity:.5}
+  50%{transform:rotate(180deg) scale(1);opacity:1}
+  100%{transform:rotate(360deg) scale(.9);opacity:.5}
+}
+.draw-tooth-slot .placeholder{
+  opacity:.65;
+  font-size:.86em;
+  padding-top:36px;
+}
+.draw-tooth-slot .placeholder.rolling{animation:spin .9s ease-in-out infinite}
+.draw-fdi{
+  font-family:'SF Mono','JetBrains Mono',Menlo,monospace;
+  font-size:2.6em;
+  font-weight:800;
+  color:#0c4a6e;
+  letter-spacing:.4px;
+  line-height:1.1;
+}
+.draw-name{
+  color:#334155;
+  font-weight:600;
+  font-size:.92em;
+  margin-top:4px;
+}
+.draw-side{
+  color:#64748b;
+  font-size:.78em;
+  margin-top:2px;
+}
+.draw-btn{
+  background:#fff;
+  color:#0c4a6e;
+  border:0;
+  padding:12px 26px;
+  border-radius:999px;
+  font-size:1em;
+  font-weight:700;
+  cursor:pointer;
+  box-shadow:0 6px 16px rgba(0,0,0,.15);
+  transition:transform .15s ease,box-shadow .15s ease;
+  font-family:inherit;
+}
+.draw-btn:hover{transform:translateY(-2px);box-shadow:0 10px 20px rgba(0,0,0,.2)}
+.draw-btn:active{transform:translateY(0)}
+
+/* ===== STEPS ===== */
+.step-card{
+  max-width:920px;
+  margin:0 auto 14px;
+  background:#fff;
+  border-radius:16px;
+  padding:20px 22px;
+  box-shadow:0 3px 12px rgba(15,23,42,.06);
+  transition:opacity .2s ease;
+}
+.step-card.locked{opacity:.5}
+.step-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  margin-bottom:12px;
+}
+.step-tag{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  color:#0c4a6e;
+  font-weight:800;
+  font-size:.86em;
+  letter-spacing:.6px;
+  text-transform:uppercase;
+}
+.step-tag .step-num{
+  background:#0c4a6e;
+  color:#fff;
+  width:26px;height:26px;
+  border-radius:8px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-family:'SF Mono',Menlo,monospace;
+  font-size:.9em;
+}
+.step-title{
+  color:#0f172a;
+  font-weight:700;
+  font-size:1em;
+  margin-left:4px;
+}
+.reveal-btn{
+  background:#0c4a6e;
+  color:#fff;
+  border:0;
+  padding:8px 16px;
+  border-radius:8px;
+  font-size:.82em;
+  font-weight:700;
+  cursor:pointer;
+  font-family:inherit;
+  transition:background .15s ease;
+}
+.reveal-btn:hover{background:#082f49}
+.reveal-btn:disabled{background:#94a3b8;cursor:not-allowed}
+.reveal-btn.done{background:#10b981}
+.reveal-btn.done::before{content:'✓ '}
+
+.step-body{
+  display:none;
+  animation:slideDown .3s ease;
+}
+.step-body.shown{display:block}
+@keyframes slideDown{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+
+/* Nerve list (Step 1) */
+.nerve-list{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.nerve-row{
+  display:grid;
+  grid-template-columns:1.1fr 1fr;
+  gap:14px;
+  padding:11px 14px;
+  background:#f8fafc;
+  border-radius:9px;
+  font-size:.92em;
+  align-items:center;
+}
+.nerve-row .loc{color:#334155;font-weight:500}
+.nerve-row .nerve-name{
+  text-align:right;
+  font-weight:800;
+  color:#0c4a6e;
+  font-family:'SF Mono',Menlo,monospace;
+  font-size:.9em;
+}
+
+/* Options list (Step 2) */
+.options-list{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.option{
+  padding:12px 16px;
+  background:#eff6ff;
+  border-radius:9px;
+  border-left:4px solid #1e40af;
+  font-size:.9em;
+  color:#0f172a;
+  line-height:1.5;
+}
+.option b{color:#1e3a8a}
+
+/* Chosen technique protocol (Step 3) */
+.protocol{
+  background:linear-gradient(135deg,#ecfdf5 0%,#d1fae5 100%);
+  border-left:4px solid #10b981;
+  padding:14px 18px;
+  border-radius:10px;
+  color:#065f46;
+  font-size:.94em;
+  line-height:1.5;
+  font-weight:600;
+}
+.protocol b{color:#064e3b}
+.protocol .rationale{
+  display:block;
+  color:#047857;
+  font-size:.88em;
+  font-weight:500;
+  margin-top:4px;
+  font-style:italic;
+}
+
+/* Step 4 — technique execution */
+.tech-execution{display:grid;gap:14px}
+.tech-block{
+  border:2px solid #e2e8f0;
+  border-radius:12px;
+  padding:16px 18px;
+  background:#fff;
+}
+.tech-block-title{
+  font-weight:800;
+  color:#0c4a6e;
+  font-size:1em;
+  margin-bottom:12px;
+  padding-bottom:8px;
+  border-bottom:2px solid #e0f2fe;
+}
+.sub-list{margin:0;padding:0;list-style:none;display:grid;gap:6px}
+.sub-item{
+  display:grid;
+  grid-template-columns:26px 1fr;
+  gap:10px;
+  font-size:.88em;
+  padding:6px 8px;
+  border-radius:6px;
+}
+.sub-item:hover{background:#f8fafc}
+.sub-letter{
+  background:#e0f2fe;
+  color:#0c4a6e;
+  width:22px;height:22px;
+  border-radius:5px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-family:'SF Mono',Menlo,monospace;
+  font-weight:700;
+  font-size:.78em;
+}
+.sub-label{color:#64748b;font-weight:600;font-size:.86em;text-transform:uppercase;letter-spacing:.4px}
+.sub-val{color:#0f172a;line-height:1.45;margin-top:1px}
+.sub-val b{color:#0c4a6e}
+
+.warn{
+  background:#fef2f2;
+  color:#991b1b;
+  border-left:4px solid #dc2626;
+  padding:10px 14px;
+  border-radius:8px;
+  font-size:.86em;
+  line-height:1.5;
+  margin-top:10px;
+}
+.warn.trap{background:#fff7ed;color:#78350f;border-left-color:#ea580c}
+.warn b{color:#dc2626}
+.warn.trap b{color:#c2410c}
+
+/* Trap banner shown on trap teeth */
+.trap-banner{
+  max-width:920px;
+  margin:0 auto 14px;
+  background:linear-gradient(135deg,#fff7ed 0%,#ffedd5 100%);
+  border:2px solid #fdba74;
+  border-radius:12px;
+  padding:14px 18px;
+  color:#78350f;
+  font-size:.9em;
+  line-height:1.5;
+}
+.trap-banner .trap-title{
+  display:block;
+  color:#c2410c;
+  font-weight:800;
+  margin-bottom:4px;
+  font-size:.94em;
+}
+
+/* Score / actions bar */
+.score-bar{
+  max-width:920px;
+  margin:14px auto 0;
+  background:#fff;
+  border-radius:12px;
+  padding:14px 18px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:12px;
+  box-shadow:0 3px 12px rgba(15,23,42,.06);
+}
+.score-actions{display:flex;gap:8px}
+.score-btn{
+  padding:8px 14px;
+  border-radius:8px;
+  border:0;
+  font-weight:700;
+  cursor:pointer;
+  font-size:.86em;
+  font-family:inherit;
+  transition:transform .12s ease;
+}
+.score-btn:hover{transform:translateY(-1px)}
+.score-btn.correct{background:#10b981;color:#fff}
+.score-btn.review{background:#f59e0b;color:#fff}
+.score-btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.score-stats{
+  font-size:.86em;
+  color:#334155;
+  display:flex;
+  gap:16px;
+  flex-wrap:wrap;
+}
+.score-stats b{color:#0c4a6e;font-family:'SF Mono',Menlo,monospace}
+
+.empty-state{
+  max-width:920px;
+  margin:0 auto;
+  text-align:center;
+  color:#64748b;
+  padding:30px 20px;
+  font-size:.94em;
+}
+
+@media(max-width:640px){
+  header.hero h1{font-size:1.5em}
+  .draw-card{padding:20px 16px}
+  .draw-fdi{font-size:2.2em}
+  .step-card{padding:16px 14px}
+  .nerve-row{grid-template-columns:1fr;gap:6px}
+  .nerve-row .nerve-name{text-align:left}
+}
+</style>
+</head>
+<body>
+
+<a href="index.html" class="back-link">← Back to study kit</a>
+
+<header class="hero">
+  <h1>🎯 LP Practice — Draw a Tooth</h1>
+  <p class="sub">UMFT 4-step LP format. Click "Reveal" only after you've said the answer out loud.</p>
+</header>
+
+<!-- FILTERS -->
+<div class="filters">
+  <button class="filter-btn active" data-filter="all">All 32</button>
+  <button class="filter-btn" data-filter="q1">Q1</button>
+  <button class="filter-btn" data-filter="q2">Q2</button>
+  <button class="filter-btn" data-filter="q3">Q3</button>
+  <button class="filter-btn" data-filter="q4">Q4</button>
+  <button class="filter-btn" data-filter="maxilla">Maxilla</button>
+  <button class="filter-btn" data-filter="mandible">Mandible</button>
+  <button class="filter-btn trap" data-filter="trap">⚠️ Traps only</button>
+</div>
+
+<!-- DRAW CARD -->
+<div class="draw-card">
+  <div class="draw-tooth-slot" id="drawSlot">
+    <div class="placeholder">Click below to draw a random tooth</div>
+  </div>
+  <div>
+    <button class="draw-btn" id="drawBtn">🎲 Draw a tooth</button>
+  </div>
+</div>
+
+<!-- Answer container -->
+<div id="answers"></div>
+
+<script>
+// ============================================================
+// TECHNIQUE LIBRARY — includes all 10 LP sub-points (a-j)
+// Generic sub-points (a, b, c, d, e) are patient position, operator position,
+// non-dominant hand, asepsis, topical. Filled per technique.
+// ============================================================
+const T = {
+  PLEXAL: {
+    name: 'Plexal (supraperiosteal) infiltration',
+    a: 'Head straight, mouth half-open',
+    b: '9–10 o\'clock (right side); 11 o\'clock (left)',
+    c: 'Non-dominant hand retracts the lip/cheek',
+    d: 'Disinfect mucosa (alcohol or CHX)',
+    e: 'Topical anesthesia optional',
+    f: 'Soft: mucobuccal fold above the tooth apex',
+    g: 'Vestibular fornix / buccal sulcus above tooth apex',
+    h: 'Bevel toward bone; advance few mm (submucosal + supraperiosteal)',
+    i: 'Puncture → aspirate → slow deposit ~30 s',
+    j: 'Contraindicated in acute infection or dense mandibular bone (fails)',
+    site: 'Vestibular fornix above tooth apex',
+    depth: 'Few mm',
+    volume: '⅓–½ cartridge (~0.6 mL)'
+  },
+  PLEXAL_MB: {
+    name: 'Plexal supplement at MB root of M1',
+    a: 'Head straight, mouth half-open',
+    b: '9–10 o\'clock (right side); 11 o\'clock (left)',
+    c: 'Non-dominant hand retracts the cheek',
+    d: 'Disinfect mucosa',
+    e: 'Topical optional',
+    f: 'Soft: vestibular fornix directly above MB root apex of upper M1',
+    g: 'Vestibular sulcus above the MB root of upper M1',
+    h: 'Submucosal + supraperiosteal, few mm, bevel to bone',
+    i: 'Puncture → aspirate → slow deposit',
+    j: '—',
+    site: 'Vestibular fornix above MB root of upper M1',
+    depth: 'Few mm',
+    volume: '0.6 mL'
+  },
+  TRANSFRENULAR: {
+    name: 'Trans-frenular plexal (upper centrals midline)',
+    a: 'Head straight, mouth half-open',
+    b: '9–11 o\'clock',
+    c: 'Retracts upper lip',
+    d: 'Disinfect mucosa',
+    e: 'Topical optional',
+    f: 'Soft: upper labial frenulum',
+    g: 'Base of upper labial frenulum',
+    h: 'Submucosal, few mm',
+    i: 'Puncture → aspirate → slow deposit',
+    j: '—',
+    site: 'Upper labial frenulum',
+    depth: 'Submucosal',
+    volume: '0.3 mL'
+  },
+  PALATAL_INFIL: {
+    name: 'Local palatal infiltration',
+    a: 'Head extended, mouth wide open',
+    b: '9–11 o\'clock',
+    c: 'Retracts lip/tongue if needed',
+    d: 'Disinfect palate mucosa',
+    e: 'Topical optional',
+    f: 'Soft: palatal mucosa 3–5 mm medial to gingival groove of target tooth',
+    g: 'Palatal fibromucosa, 3–5 mm medial to gingival groove',
+    h: 'Submucosal, stay away from midline artery',
+    i: 'Puncture → slow deposit → stop at blanching',
+    j: 'Greater palatine artery puncture — stay medial. Do not exceed 0.2 mL.',
+    site: 'Palatal mucosa 3–5 mm medial to gingival groove',
+    depth: 'Submucosal',
+    volume: '0.2 mL'
+  },
+  PSA: {
+    name: 'PSA — Tuberosity block',
+    a: 'Head straight or slightly extended, mouth half-open',
+    b: '9–10 o\'clock (right side); 11 o\'clock (left)',
+    c: 'Non-dominant hand retracts cheek widely',
+    d: 'Disinfect superior fornix mucosa',
+    e: 'Topical optional',
+    f: 'Bone: zygomatic process of maxilla. Dental: MB root of upper M2. Soft: superior fornix behind zyg process',
+    g: 'Superior fornix, behind zygomatic process, near MB root of upper M2',
+    h: 'Up 45° + inward + backward, 10–15 mm to bone contact',
+    i: 'Puncture with bevel to bone → advance to contact → MANDATORY aspiration → slow deposit while keeping bone contact',
+    j: 'Pterygoid venous plexus → tuberosity hematoma. Prevent with thin needle, bone contact, slow injection, mandatory aspiration. If positive aspiration → gauze + thenar compression in superior fornix',
+    site: 'Superior fornix, behind zyg process, at MB root of upper M2',
+    depth: '10–15 mm',
+    volume: '~1 mL'
+  },
+  IO: {
+    name: 'Infraorbital block (intraoral)',
+    a: 'Head straight, mouth half-open',
+    b: '9–10 o\'clock',
+    c: 'Non-dominant finger palpates and remains on IO foramen',
+    d: 'Disinfect mucosa',
+    e: 'Topical optional',
+    f: 'Bone: infraorbital ridge (palpate IO foramen). Dental: upper P1 long axis. Soft: vestibular ~0.5 cm from buccal surface of P1',
+    g: 'Vestibular ~0.5 cm from buccal surface of upper P1, parallel to long axis',
+    h: 'Advance 1.5–2.5 cm toward the foramen palpated by the finger',
+    i: 'Palpate IO foramen → puncture parallel to P1 → advance → small test bolus (0.2 mL) to painlessly reach foramen → aspirate → slow inject',
+    j: 'DO NOT enter the canal. Vascular puncture possible. Diplopia if solution reaches orbit',
+    site: 'Vestibular at upper P1, 0.5 cm from buccal surface',
+    depth: '1.5–2.5 cm to foramen',
+    volume: '1.5–2 mL'
+  },
+  GPN: {
+    name: 'Greater Palatine (GPN) block',
+    a: 'Head extended, mouth wide open',
+    b: '9–11 o\'clock',
+    c: 'Non-dominant hand retracts cheek/tongue',
+    d: 'Disinfect palate',
+    e: 'Topical optional (helpful — palate very sensitive)',
+    f: 'Bone: 0.5 cm anterior to posterior edge of hard palate, 1 cm anterior to pterygoid hamulus. Dental: 1 cm medial to upper M3. Soft: mucoperiosteum paler / funnel-shaped over foramen',
+    g: 'Palatine mucoperiosteum, 1 cm medial to upper M3 alveolar ridge, past upper M2',
+    h: 'Up + backward + outward (syringe from opposite commissure). Submucosal only — do NOT enter canal',
+    i: 'Puncture → advance submucosal → slow deposit → stop at blanching',
+    j: 'Over-injection → ischemic palatal necrosis. Bleeding possible. <1% positive aspiration',
+    site: 'Palate, 1 cm medial to upper M3',
+    depth: 'Submucosal (NO canal)',
+    volume: '0.2–0.3 mL ONLY'
+  },
+  NPN: {
+    name: 'Nasopalatine (NPN / Scarpa) block',
+    a: 'Head extended, mouth wide open',
+    b: '9–11 o\'clock',
+    c: 'Non-dominant hand retracts upper lip',
+    d: 'Disinfect palate',
+    e: 'Topical highly recommended (palate very sensitive at papilla)',
+    f: 'Bone: median palatine line, 1 cm behind anterior alveolar ridge (incisive foramen). Dental: midline between upper central incisors. Soft: covered by retroincisal papilla — puncture lateral to it',
+    g: 'Palatal mucosa LATERAL to incisive papilla — NEVER through it',
+    h: 'Enter from OPPOSITE side of target tooth (V/Y duct). Up + backward + outward. 5–6 mm into duct',
+    i: 'Puncture lateral to papilla → advance 5–6 mm into duct → slow deposit',
+    j: 'Painful if papilla stung. Bleeding risk. V/Y duct crosses over',
+    site: 'Lateral to incisive papilla, from opposite side',
+    depth: '5–6 mm into duct',
+    volume: '0.2–0.3 mL'
+  },
+  SPIX: {
+    name: 'IAN Block — Spix\'s spine (direct technique)',
+    a: 'Head straight, mouth wide open',
+    b: '9 o\'clock for right side; 8 o\'clock for left side (some prefer 10–11)',
+    c: 'Non-dominant thumb palpates coronoid notch; index retracts cheek',
+    d: 'Disinfect mucosa',
+    e: 'Topical optional',
+    f: 'Bone: center of medial ramus, ½ way between anterior-posterior margins & sigmoid notch-lower edge (posterior to lingula/Spix\'s spine). Soft (intraoral): lateral to pterygomandibular fold, medial to temporal crest, 1 cm above the occlusal plane. Soft (extraoral): halfway between tragus and anterior masseter insertion',
+    g: 'Lateral to pterygomandibular fold, 1 cm above occlusal plane. Syringe body over OPPOSITE-side premolars',
+    h: 'Posterior + lateral + horizontal. 2–2.5 cm to bone contact',
+    i: 'Puncture → advance to bone contact → T1 aspirate → slow deposit for IAN → withdraw 1 cm → T2 aspirate → slow deposit for Lingual n.',
+    j: 'FACIAL PALSY if needle passes posterior to ramus → parotid → CN VII anesthesia. Cause = failure to find bone contact. ALWAYS confirm bone contact before depositing. Failure rate 15–20%. Also: vascular hematoma, neuritis',
+    site: 'Lateral to pterygomandibular fold, 1 cm above occlusal plane',
+    depth: '2–2.5 cm → withdraw 1 cm for T2',
+    volume: '1–1.7 mL total'
+  },
+  MENTAL: {
+    name: 'Mental + incisive block (intraoral)',
+    a: 'Head straight, mouth half-open',
+    b: '9–10 o\'clock',
+    c: 'Non-dominant hand retracts lower lip; palpates mental foramen',
+    d: 'Disinfect mucosa',
+    e: 'Topical optional',
+    f: 'Bone: anterior external mandibular ramus, above external oblique line; ½ way basilar-alveolar ridge; on vertical line supraorbital-infraorbital-mental. Dental: between roots of lower P1-P2 (~50%). Soft: vestibular through buccal commissure',
+    g: 'Mobile mucosa, mucobuccal fold past mesial root of lower M1',
+    h: 'Down + forward + inward. Locate foramen — needle becomes "fixed" once in canal',
+    i: 'Puncture → advance → locate foramen (0.2 mL test → resistance = in canal) → aspirate → slow deposit',
+    j: 'Aspirate before deposit. Rare vascular puncture',
+    site: 'Mucobuccal fold past mesial root of lower M1',
+    depth: 'Into foramen',
+    volume: '0.2 + 0.2 mL'
+  },
+  LONG_BUCCAL: {
+    name: 'Long Buccal block',
+    a: 'Head straight, mouth wide open',
+    b: '9–10 o\'clock',
+    c: 'Non-dominant hand retracts cheek widely',
+    d: 'Disinfect mucosa',
+    e: 'Topical optional',
+    f: 'Bone: anterior margin of mandibular ramus, base of coronoid process. Dental: distal & vestibular to upper M3; maxillary occlusal plane. Soft: 1 cm posterior + inferior to Stensen duct papilla',
+    g: 'Intersection of maxillary occlusal plane × anterior border of ramus (syringe from opposite commissure)',
+    h: 'Posterior + parallel to upper occlusal + laterally (outward). 2–4 mm depth',
+    i: 'Puncture → advance 2–4 mm → aspirate → deposit',
+    j: 'Rare. Vestibular infiltration distal to lower M3 = simpler alternative',
+    site: 'Anterior ramus × maxillary occlusal plane',
+    depth: '2–4 mm',
+    volume: '0.3–0.5 mL'
+  },
+  LINGUAL_M3: {
+    name: 'Lingual block at M3 (paralingual, isolated)',
+    a: 'Head straight, mouth wide open',
+    b: '9–10 o\'clock',
+    c: 'Non-dominant hand retracts tongue',
+    d: 'Disinfect mucosa',
+    e: 'Topical optional',
+    f: 'Dental: lower M3. Soft: paralingual fold, ½ way between gingiva and base of tongue, anterior + medial to mandibular angle',
+    g: 'Paralingual fold next to lower M3',
+    h: 'Down + outward + posterior. 0.5 cm depth',
+    i: 'Puncture → advance 0.5 cm → aspirate → deposit',
+    j: 'LN superficial distal to M3 — surgical danger zone',
+    site: 'Paralingual fold next to lower M3',
+    depth: '0.5 cm',
+    volume: '~0.5 mL'
+  }
+};
+
+// ============================================================
+// TOOTH DATA — Q1 + Q4 defined, mirrored to Q2 + Q3
+// ============================================================
+const TEETH = {
+  '1.1': { name:'Central Incisor', side:'Upper Right', quadrant:1, arch:'maxilla',
+    step1:[
+      {loc:'Pulp + labial bone + labial gingiva', nerve:'ASAN'},
+      {loc:'Palatal gingiva + bone', nerve:'NPN'},
+      {loc:'Midline crossover', nerve:'contralateral ASAN'}
+    ],
+    step2:['Plexal (ASAN) supraperiosteal above apex', 'NPN block from opposite side', 'Trans-frenular plexal for midline'],
+    step3:{protocol:'Plexal + NPN + trans-frenular (if incomplete)', rationale:'Central incisor crosses midline — need trans-frenular for contralateral ASAN'},
+    step4:['PLEXAL','NPN','TRANSFRENULAR'],
+    injections:'2–3', isTrap:true,
+    trapNote:'Contralateral ASAN fibers cross the midline. Plexal alone may leave residual labial sensation — add trans-frenular.'
+  },
+  '1.2': { name:'Lateral Incisor', side:'Upper Right', quadrant:1, arch:'maxilla',
+    step1:[
+      {loc:'Pulp + labial bone + gingiva', nerve:'ASAN'},
+      {loc:'Palatal gingiva + bone', nerve:'NPN'}
+    ],
+    step2:['Plexal (ASAN)', 'NPN block'],
+    step3:{protocol:'Plexal at apex + NPN block', rationale:'Straightforward anterior'},
+    step4:['PLEXAL','NPN'],
+    injections:'2'
+  },
+  '1.3': { name:'Canine', side:'Upper Right', quadrant:1, arch:'maxilla',
+    step1:[
+      {loc:'Pulp + buccal', nerve:'ASAN'},
+      {loc:'Palatal gingiva + bone', nerve:'NPN ± GPN (anastomosis)'}
+    ],
+    step2:['Plexal (ASAN)', 'NPN block', 'Palatal infiltration if NPN incomplete'],
+    step3:{protocol:'Plexal + NPN + optional palatal infiltration', rationale:'Canine sits on NPN ↔ GPN anastomosis — may need palatal top-up'},
+    step4:['PLEXAL','NPN','PALATAL_INFIL'],
+    injections:'2 (+1)', isTrap:true,
+    trapNote:'NPN territory ends and GPN begins around the canine. If NPN alone insufficient, add palatal infiltration.'
+  },
+  '1.4': { name:'First Premolar', side:'Upper Right', quadrant:1, arch:'maxilla',
+    step1:[
+      {loc:'Pulp + buccal', nerve:'MSAN (if present) / ASA-PSA overlap'},
+      {loc:'Palatal gingiva + bone', nerve:'GPN ± NPN (anastomosis)'}
+    ],
+    step2:['Plexal (MSA/ASA)', 'IO block (covers ASA + MSA)', 'GPN block'],
+    step3:{protocol:'Plexal or IO + GPN block', rationale:'Middle zone — IO is elegant single-shot'},
+    step4:['PLEXAL','GPN'],
+    injections:'2'
+  },
+  '1.5': { name:'Second Premolar', side:'Upper Right', quadrant:1, arch:'maxilla',
+    step1:[
+      {loc:'Pulp + buccal', nerve:'MSAN (if present) / PSAN overlap'},
+      {loc:'Palatal gingiva + bone', nerve:'GPN'}
+    ],
+    step2:['Plexal (MSA)', 'IO block', 'GPN block'],
+    step3:{protocol:'Plexal or IO + GPN block', rationale:'Landmark tooth for IO: foramen sits 2–2.5 cm above P2 apex'},
+    step4:['PLEXAL','GPN'],
+    injections:'2'
+  },
+  '1.6': { name:'First Molar', side:'Upper Right', quadrant:1, arch:'maxilla',
+    step1:[
+      {loc:'Pulp DB + palatal roots', nerve:'PSAN'},
+      {loc:'Pulp MB root', nerve:'MSAN (often absent → plexal twigs)'},
+      {loc:'Buccal gingiva', nerve:'PSAN'},
+      {loc:'Palatal gingiva + bone', nerve:'GPN'}
+    ],
+    step2:['PSA tuberosity block (main)', 'Plexal supplement at MB root (mandatory)', 'GPN block'],
+    step3:{protocol:'PSA tuberosity + plexal MB root + GPN', rationale:'⚠️ PSA MISSES the MB root — plexal supplement is non-negotiable'},
+    step4:['PSA','PLEXAL_MB','GPN'],
+    injections:'3', isTrap:true,
+    trapNote:'⚠️ TRAP: PSA block bypasses the MB root. When MSAN absent (~50%), only plexal twigs reach it. Always add plexal supplement at the MB root.'
+  },
+  '1.7': { name:'Second Molar', side:'Upper Right', quadrant:1, arch:'maxilla',
+    step1:[
+      {loc:'Pulp + buccal', nerve:'PSAN'},
+      {loc:'Palatal gingiva + bone', nerve:'GPN'}
+    ],
+    step2:['PSA tuberosity block', 'GPN block'],
+    step3:{protocol:'PSA tuberosity + GPN', rationale:'M2 MB root is the PSA landmark tooth'},
+    step4:['PSA','GPN'],
+    injections:'2'
+  },
+  '1.8': { name:'Third Molar', side:'Upper Right', quadrant:1, arch:'maxilla',
+    step1:[
+      {loc:'Pulp + buccal', nerve:'PSAN'},
+      {loc:'Palatal gingiva + bone', nerve:'GPN'}
+    ],
+    step2:['PSA tuberosity block', 'GPN block'],
+    step3:{protocol:'PSA tuberosity + GPN', rationale:'GP foramen sits 1 cm medial to M3 — almost directly above target'},
+    step4:['PSA','GPN'],
+    injections:'2'
+  },
+  '4.1': { name:'Central Incisor', side:'Lower Right', quadrant:4, arch:'mandible',
+    step1:[
+      {loc:'Pulp + labial bone', nerve:'IAN → incisive branch'},
+      {loc:'Labial gingiva', nerve:'IAN → mental branch'},
+      {loc:'Lingual gingiva + bone', nerve:'LN'},
+      {loc:'Midline crossover', nerve:'contralateral incisive'}
+    ],
+    step2:['Spix (IAN + LN via T1/T2)', 'Contralateral plexal labial (midline)'],
+    step3:{protocol:'Spix + contralateral labial plexal (if midline incomplete)', rationale:'Cross-midline fibers → supplement at opposite central'},
+    step4:['SPIX','PLEXAL'],
+    injections:'1 + supplement', isTrap:true,
+    trapNote:'Contralateral incisive fibers cross the midline. Spix on the same side alone often leaves residual sensation.'
+  },
+  '4.2': { name:'Lateral Incisor', side:'Lower Right', quadrant:4, arch:'mandible',
+    step1:[
+      {loc:'Pulp + labial bone', nerve:'IAN → incisive branch'},
+      {loc:'Labial gingiva', nerve:'IAN → mental branch'},
+      {loc:'Lingual gingiva', nerve:'LN'}
+    ],
+    step2:['Spix', 'Contralateral plexal if midline residual'],
+    step3:{protocol:'Spix (IAN + LN)', rationale:'Same territory as central; less crossover'},
+    step4:['SPIX'],
+    injections:'1 (±1)'
+  },
+  '4.3': { name:'Canine', side:'Lower Right', quadrant:4, arch:'mandible',
+    step1:[
+      {loc:'Pulp + buccal', nerve:'IAN (incisive + mental branches)'},
+      {loc:'Lingual gingiva', nerve:'LN'}
+    ],
+    step2:['Spix (covers all)', 'Mental + incisive block (alternative)'],
+    step3:{protocol:'Spix (IAN + LN)', rationale:'Single Spix covers pulp + buccal (via mental) + lingual (via T2)'},
+    step4:['SPIX'],
+    injections:'1'
+  },
+  '4.4': { name:'First Premolar', side:'Lower Right', quadrant:4, arch:'mandible',
+    step1:[
+      {loc:'Pulp', nerve:'IAN'},
+      {loc:'Buccal gingiva (via mental)', nerve:'IAN → mental'},
+      {loc:'Lingual gingiva', nerve:'LN'}
+    ],
+    step2:['Spix', 'Mental + incisive block (alternative)'],
+    step3:{protocol:'Spix', rationale:'P1 sits directly at mental foramen level'},
+    step4:['SPIX'],
+    injections:'1'
+  },
+  '4.5': { name:'Second Premolar', side:'Lower Right', quadrant:4, arch:'mandible',
+    step1:[
+      {loc:'Pulp', nerve:'IAN'},
+      {loc:'Buccal gingiva', nerve:'IAN → mental'},
+      {loc:'Lingual gingiva', nerve:'LN'}
+    ],
+    step2:['Spix', 'Mental + incisive block'],
+    step3:{protocol:'Spix', rationale:'P2 = landmark for Dan Theodorescu lingual technique'},
+    step4:['SPIX'],
+    injections:'1'
+  },
+  '4.6': { name:'First Molar', side:'Lower Right', quadrant:4, arch:'mandible',
+    step1:[
+      {loc:'Pulp + lingual aspect of buccal bone', nerve:'IAN'},
+      {loc:'Buccal gingiva + cheek', nerve:'LBN'},
+      {loc:'Lingual gingiva', nerve:'LN'}
+    ],
+    step2:['Spix (IAN + LN)', 'Long Buccal block'],
+    step3:{protocol:'Spix + Long Buccal', rationale:'⚠️ Mental ends at foramen — LBN takes over for molar buccal'},
+    step4:['SPIX','LONG_BUCCAL'],
+    injections:'2', isTrap:true,
+    trapNote:'⚠️ Mental branch stops at mental foramen. Molar buccal gingiva = LBN territory. Spix alone will NOT cover the buccal flap.'
+  },
+  '4.7': { name:'Second Molar', side:'Lower Right', quadrant:4, arch:'mandible',
+    step1:[
+      {loc:'Pulp + lingual aspect', nerve:'IAN'},
+      {loc:'Buccal gingiva + cheek', nerve:'LBN'},
+      {loc:'Lingual gingiva', nerve:'LN'}
+    ],
+    step2:['Spix', 'Long Buccal block'],
+    step3:{protocol:'Spix + Long Buccal', rationale:'Same as M1: molar buccal needs LBN'},
+    step4:['SPIX','LONG_BUCCAL'],
+    injections:'2', isTrap:true,
+    trapNote:'Molar buccal gingiva = long buccal territory. Spix + Long Buccal mandatory.'
+  },
+  '4.8': { name:'Third Molar', side:'Lower Right', quadrant:4, arch:'mandible',
+    step1:[
+      {loc:'Pulp + lingual aspect', nerve:'IAN'},
+      {loc:'Buccal gingiva + cheek', nerve:'LBN'},
+      {loc:'Lingual gingiva + floor', nerve:'LN'}
+    ],
+    step2:['Spix', 'Long Buccal block', 'Isolated LN block at M3 (paralingual) as supplement'],
+    step3:{protocol:'Spix + Long Buccal + LN M3 supplement', rationale:'LN becomes SUPERFICIAL distal to M3 — surgical danger zone'},
+    step4:['SPIX','LONG_BUCCAL','LINGUAL_M3'],
+    injections:'2 (±1)', isTrap:true,
+    trapNote:'⚠️ Lingual nerve is superficial distal to lower M3 — surgical danger zone. Paralingual supplement highly recommended.'
+  }
+};
+
+// Mirror Q1 → Q2 and Q4 → Q3
+function mirror(from, toPrefix, sideStr, q){
+  const t = TEETH[from];
+  const toKey = toPrefix + '.' + from.split('.')[1];
+  TEETH[toKey] = {...t, side:sideStr, quadrant:q};
+}
+['1.1','1.2','1.3','1.4','1.5','1.6','1.7','1.8'].forEach(k => mirror(k, '2', 'Upper Left', 2));
+['4.1','4.2','4.3','4.4','4.5','4.6','4.7','4.8'].forEach(k => mirror(k, '3', 'Lower Left', 3));
+
+// ============================================================
+// STATE
+// ============================================================
+let currentTooth = null;
+let currentFilter = 'all';
+let stats = JSON.parse(localStorage.getItem('lp-practice-stats') || '{"drawn":0,"correct":0,"review":0}');
+let currentScored = false;
+
+function saveStats(){
+  localStorage.setItem('lp-practice-stats', JSON.stringify(stats));
+}
+
+// ============================================================
+// FILTERS
+// ============================================================
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentFilter = btn.dataset.filter;
+  });
+});
+
+function filteredTeeth(){
+  const all = Object.keys(TEETH);
+  switch(currentFilter){
+    case 'q1': return all.filter(k => k.startsWith('1'));
+    case 'q2': return all.filter(k => k.startsWith('2'));
+    case 'q3': return all.filter(k => k.startsWith('3'));
+    case 'q4': return all.filter(k => k.startsWith('4'));
+    case 'maxilla': return all.filter(k => TEETH[k].arch === 'maxilla');
+    case 'mandible': return all.filter(k => TEETH[k].arch === 'mandible');
+    case 'trap': return all.filter(k => TEETH[k].isTrap);
+    default: return all;
+  }
+}
+
+// ============================================================
+// DRAW A TOOTH
+// ============================================================
+const drawSlot = document.getElementById('drawSlot');
+const drawBtn = document.getElementById('drawBtn');
+const answers = document.getElementById('answers');
+
+drawBtn.addEventListener('click', () => {
+  const pool = filteredTeeth();
+  if (pool.length === 0) return;
+
+  // Spin animation
+  drawSlot.innerHTML = '<div class="placeholder rolling">🎲</div>';
+  drawSlot.classList.remove('filled');
+
+  let spinCount = 0;
+  const spinInterval = setInterval(() => {
+    const rand = pool[Math.floor(Math.random() * pool.length)];
+    drawSlot.innerHTML = `<div class="draw-fdi" style="opacity:.4">${rand}</div>`;
+    spinCount++;
+    if (spinCount > 8){
+      clearInterval(spinInterval);
+      // Final pick
+      const chosen = pool[Math.floor(Math.random() * pool.length)];
+      currentTooth = chosen;
+      showTooth(chosen);
+    }
+  }, 90);
+});
+
+function showTooth(fdi){
+  const t = TEETH[fdi];
+  drawSlot.classList.add('filled');
+  drawSlot.innerHTML = `
+    <div class="draw-fdi">${fdi}</div>
+    <div class="draw-name">${t.side} ${t.name}</div>
+    <div class="draw-side">Quadrant ${t.quadrant} · ${t.arch === 'maxilla' ? 'Maxilla' : 'Mandible'} · ${t.injections} injection${t.injections === '1' ? '' : 's'}</div>
+  `;
+  stats.drawn++;
+  saveStats();
+  currentScored = false;
+  buildAnswers(t);
+}
+
+// ============================================================
+// BUILD ANSWER CARDS
+// ============================================================
+function buildAnswers(t){
+  answers.innerHTML = '';
+
+  // Trap banner (if applicable)
+  if (t.isTrap){
+    const trapDiv = document.createElement('div');
+    trapDiv.className = 'trap-banner';
+    trapDiv.innerHTML = `<span class="trap-title">⚠️ TRAP TOOTH</span>${t.trapNote}`;
+    answers.appendChild(trapDiv);
+  }
+
+  // STEP 1 — Nerves
+  answers.appendChild(createStepCard(1, 'Nerves to anesthetize',
+    `<ul class="nerve-list">${t.step1.map(n =>
+      `<li class="nerve-row"><span class="loc">${n.loc}</span><span class="nerve-name">${n.nerve}</span></li>`
+    ).join('')}</ul>`
+  ));
+
+  // STEP 2 — Options
+  answers.appendChild(createStepCard(2, 'Anesthetic options for each nerve',
+    `<ul class="options-list">${t.step2.map(o =>
+      `<li class="option">${o}</li>`
+    ).join('')}</ul>`
+  ));
+
+  // STEP 3 — Chosen protocol
+  answers.appendChild(createStepCard(3, 'Choice of technique + rationale',
+    `<div class="protocol"><b>Protocol:</b> ${t.step3.protocol}<span class="rationale">Why: ${t.step3.rationale}</span></div>`
+  ));
+
+  // STEP 4 — Full execution (all 10 sub-points per technique)
+  const techsHTML = t.step4.map(tk => {
+    const tech = T[tk];
+    if (!tech) return '';
+    return `
+      <div class="tech-block">
+        <div class="tech-block-title">${tech.name}</div>
+        <ul class="sub-list">
+          <li class="sub-item"><span class="sub-letter">a</span><div><span class="sub-label">Patient position</span><div class="sub-val">${tech.a}</div></div></li>
+          <li class="sub-item"><span class="sub-letter">b</span><div><span class="sub-label">Operator position</span><div class="sub-val">${tech.b}</div></div></li>
+          <li class="sub-item"><span class="sub-letter">c</span><div><span class="sub-label">Non-dominant hand</span><div class="sub-val">${tech.c}</div></div></li>
+          <li class="sub-item"><span class="sub-letter">d</span><div><span class="sub-label">Asepsis</span><div class="sub-val">${tech.d}</div></div></li>
+          <li class="sub-item"><span class="sub-letter">e</span><div><span class="sub-label">Topical</span><div class="sub-val">${tech.e}</div></div></li>
+          <li class="sub-item"><span class="sub-letter">f</span><div><span class="sub-label">Anatomical landmarks</span><div class="sub-val">${tech.f}</div></div></li>
+          <li class="sub-item"><span class="sub-letter">g</span><div><span class="sub-label">Injection site</span><div class="sub-val"><b>${tech.g}</b></div></div></li>
+          <li class="sub-item"><span class="sub-letter">h</span><div><span class="sub-label">Direction + depth</span><div class="sub-val"><b>${tech.h}</b></div></div></li>
+          <li class="sub-item"><span class="sub-letter">i</span><div><span class="sub-label">Step-by-step maneuver</span><div class="sub-val">${tech.i}</div></div></li>
+          <li class="sub-item"><span class="sub-letter">j</span><div><span class="sub-label">Accidents + complications</span><div class="sub-val">${tech.j}</div></div></li>
+        </ul>
+        <div class="warn"><b>Volume:</b> ${tech.volume}</div>
+      </div>`;
+  }).join('');
+
+  answers.appendChild(createStepCard(4, 'Technique simulation (a–j) for each block in the protocol',
+    `<div class="tech-execution">${techsHTML}</div>`
+  ));
+
+  // Score bar
+  const scoreBar = document.createElement('div');
+  scoreBar.className = 'score-bar';
+  scoreBar.innerHTML = `
+    <div class="score-stats">
+      <span>Drawn: <b>${stats.drawn}</b></span>
+      <span>Correct: <b>${stats.correct}</b></span>
+      <span>Review: <b>${stats.review}</b></span>
+    </div>
+    <div class="score-actions">
+      <button class="score-btn correct" id="correctBtn">I got it right ✓</button>
+      <button class="score-btn review" id="reviewBtn">Need review ⚠️</button>
+    </div>
+  `;
+  answers.appendChild(scoreBar);
+
+  document.getElementById('correctBtn').addEventListener('click', () => {
+    if (currentScored) return;
+    stats.correct++;
+    saveStats();
+    currentScored = true;
+    document.getElementById('correctBtn').disabled = true;
+    document.getElementById('reviewBtn').disabled = true;
+    document.getElementById('correctBtn').textContent = '✓ Scored — draw next';
+  });
+  document.getElementById('reviewBtn').addEventListener('click', () => {
+    if (currentScored) return;
+    stats.review++;
+    saveStats();
+    currentScored = true;
+    document.getElementById('correctBtn').disabled = true;
+    document.getElementById('reviewBtn').disabled = true;
+    document.getElementById('reviewBtn').textContent = '⚠️ Marked — draw next';
+  });
+}
+
+function createStepCard(n, title, bodyHTML){
+  const card = document.createElement('div');
+  card.className = 'step-card';
+  const stepTitles = {
+    1: 'STEP 1',
+    2: 'STEP 2',
+    3: 'STEP 3',
+    4: 'STEP 4'
+  };
+  card.innerHTML = `
+    <div class="step-head">
+      <div class="step-tag">
+        <span class="step-num">${n}</span>
+        <span>${stepTitles[n]}</span>
+        <span class="step-title">— ${title}</span>
+      </div>
+      <button class="reveal-btn" data-step="${n}">Reveal</button>
+    </div>
+    <div class="step-body">${bodyHTML}</div>
+  `;
+  const btn = card.querySelector('.reveal-btn');
+  const body = card.querySelector('.step-body');
+  btn.addEventListener('click', () => {
+    body.classList.add('shown');
+    btn.classList.add('done');
+    btn.textContent = 'Revealed';
+    btn.disabled = true;
+  });
+  return card;
+}
+</script>
+
+</body>
+</html>
