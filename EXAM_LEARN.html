@@ -277,6 +277,36 @@ header.hero .sub{margin:0;color:#475569;font-size:.98em}
 .territory-list ul{margin:0;padding-left:20px}
 .territory-list li{margin-bottom:4px}
 
+/* ===== DOSAGE ===== */
+.dosage-card{
+  background:color-mix(in srgb,var(--tech-color) 8%,#fff);
+  border:1.5px solid color-mix(in srgb,var(--tech-color) 30%,transparent);
+  border-radius:12px;
+  padding:14px 16px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:10px 20px;
+}
+.dosage-item{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+}
+.dosage-key{
+  font-size:.68em;
+  text-transform:uppercase;
+  letter-spacing:1.2px;
+  font-weight:800;
+  color:var(--tech-color);
+  opacity:.85;
+}
+.dosage-val{
+  font-size:.9em;
+  color:#0f172a;
+  line-height:1.45;
+}
+.dosage-val b{color:var(--tech-color)}
+
 /* ===== LANDMARKS ===== */
 .landmark-grid{
   display:grid;
@@ -491,6 +521,13 @@ const TECHNIQUES = [
   zone:'Any single tooth',
   color:'#10b981', // green — plexal
   nerves:['Local nerve terminations (dental plexus)'],
+  dosage:{
+    anesthetic:'2% lidocaine + 1:100,000 epinephrine (or 4% articaine + 1:100k)',
+    volume:'⅓ – ½ cartridge (0.6–0.9 mL)',
+    rate:'slow, over ~30 seconds',
+    onset:'2–4 min (pulp) · 1 min (soft tissue)',
+    duration:'~60 min pulp · ~3 h soft tissue'
+  },
   teeth:[], // any single tooth — no map
   teethNote:'Works on any single maxillary or frontal-mandibular tooth. Not effective in thick posterior mandibular bone.',
   territory:[
@@ -532,6 +569,13 @@ const TECHNIQUES = [
   zone:'Maxillary V2 — buccal',
   color:'#ea580c', // orange — V2 buccal
   nerves:['Posterior Superior Alveolar (PSA)'],
+  dosage:{
+    anesthetic:'2% lidocaine + 1:100,000 epinephrine',
+    volume:'1.5–1.8 mL (~1 cartridge)',
+    rate:'slow, over 60 s · bone contact + aspirate first',
+    onset:'3–5 min',
+    duration:'60–90 min pulp'
+  },
   teeth:['1.6','1.7','1.8','2.6','2.7','2.8'],
   teethPartial:['1.6','2.6'], // MB root of M1 not fully covered
   teethNote:'⚠️ MB root of M1 (1.6/2.6) is NOT fully covered — supplement with plexus or infraorbital MSA.',
@@ -575,6 +619,13 @@ const TECHNIQUES = [
   zone:'Maxillary V2 — buccal',
   color:'#ea580c', // orange — V2 buccal
   nerves:['Infraorbital (IO)','Anterior Superior Alveolar (ASA)','Middle Superior Alveolar (MSA) — when present'],
+  dosage:{
+    anesthetic:'2% lidocaine + 1:100,000 epinephrine',
+    volume:'1.5–2 mL (~1 cartridge) · draw <b>full</b>, deposit small test bolus first',
+    rate:'slow, over 60 s · aspirate before main deposit',
+    onset:'3–5 min (upper lip numbness = success sign)',
+    duration:'~60 min pulp · 2–3 h soft tissue'
+  },
   teeth:['1.1','1.2','1.3','1.4','1.5','2.1','2.2','2.3','2.4','2.5'],
   teethNote:'Covers all upper incisors, canines and premolars on the injected side.',
   territory:[
@@ -616,6 +667,13 @@ const TECHNIQUES = [
   zone:'Maxillary V2 — palate',
   color:'#d97706', // amber — V2 palate
   nerves:['Greater Palatine (GP)'],
+  dosage:{
+    anesthetic:'2% lidocaine + 1:100,000 epinephrine',
+    volume:'<b>0.2–0.3 mL only</b> (palatal mucosa is tight — over-injection causes necrosis)',
+    rate:'very slow, 20–30 s · watch for blanching',
+    onset:'2–3 min',
+    duration:'45–60 min soft tissue'
+  },
   teeth:[], // palate, not teeth
   teethNote:'Blocks palatal soft tissue — not tooth pulp. Pair with PSA or infiltration for full anesthesia.',
   territory:[
@@ -657,6 +715,13 @@ const TECHNIQUES = [
   zone:'Maxillary V2 — palate',
   color:'#d97706', // amber — V2 palate
   nerves:['Nasopalatine (NP) — Scarpa\'s nerve'],
+  dosage:{
+    anesthetic:'2% lidocaine + 1:100,000 epinephrine',
+    volume:'<b>0.2–0.3 mL only</b> — enter duct 5–6 mm from opposite side',
+    rate:'very slow · painful shot — topical first, warn patient',
+    onset:'2–3 min',
+    duration:'45–60 min soft tissue'
+  },
   teeth:[],
   teethNote:'Blocks palatal soft tissue behind upper incisors. Pair with plexus infiltration for tooth extractions.',
   territory:[
@@ -698,6 +763,13 @@ const TECHNIQUES = [
   zone:'Mandibular V3 — deep',
   color:'#1e40af', // blue — V3 deep
   nerves:['Inferior Alveolar (IAN)','Mental (terminal branch)','Incisive (terminal branch)','Lingual'],
+  dosage:{
+    anesthetic:'2% lidocaine + 1:100,000 epinephrine (or 4% articaine + 1:100k)',
+    volume:'<b>T1 IAN 1.5 mL + T2 lingual 0.3–0.5 mL</b> = ~1.8 mL total (1 cartridge)',
+    rate:'slow, 60 s per phase · aspirate before both T1 and T2',
+    onset:'lip numbness 2–3 min · <b>pulp 5–10 min</b> (be patient!) · tongue immediate',
+    duration:'60–90 min pulp · 3–5 h soft tissue'
+  },
   teeth:['4.1','4.2','4.3','4.4','4.5','4.6','4.7','4.8','3.1','3.2','3.3','3.4','3.5','3.6','3.7','3.8'],
   teethNote:'One hemi-arch at a time. Both sides = double Spix (avoid: patient can\'t swallow, high risk of self-injury).',
   territory:[
@@ -742,6 +814,13 @@ const TECHNIQUES = [
   zone:'Mandibular V3 — superficial',
   color:'#4338ca', // indigo — V3 superficial
   nerves:['Mental (terminal of IAN)','Incisive (terminal of IAN)'],
+  dosage:{
+    anesthetic:'2% lidocaine + 1:100,000 epinephrine',
+    volume:'0.6–1 mL · then <b>massage over foramen 30 s</b> to push solution into canal',
+    rate:'slow, 30–45 s',
+    onset:'3–5 min lip · 5–10 min tooth pulp (via incisive branch)',
+    duration:'60 min pulp · 2–3 h soft tissue'
+  },
   teeth:['4.1','4.2','4.3','4.4','4.5','3.1','3.2','3.3','3.4','3.5'],
   teethNote:'Lower incisors, canines, premolars on one side (up to mental foramen). Does NOT cover molars.',
   territory:[
@@ -784,6 +863,13 @@ const TECHNIQUES = [
   zone:'Mandibular V3 — superficial',
   color:'#4338ca', // indigo — V3 superficial
   nerves:['Lingual n. (branch of V3 posterior division)'],
+  dosage:{
+    anesthetic:'2% lidocaine + 1:100,000 epinephrine',
+    volume:'0.5–1 mL · shallow depth (0.5 cm)',
+    rate:'slow · advance very carefully — nerve is superficial distal to M3',
+    onset:'2–3 min',
+    duration:'30–60 min soft tissue'
+  },
   teeth:[],
   teethNote:'Blocks lingual soft tissue — not tooth pulp. Use for lingual gingiva work, tongue biopsy, floor of mouth surgery.',
   territory:[
@@ -825,6 +911,13 @@ const TECHNIQUES = [
   zone:'Mandibular V3 — superficial',
   color:'#4338ca', // indigo — V3 superficial
   nerves:['Long Buccal n. (branch of anterior division of V3)'],
+  dosage:{
+    anesthetic:'2% lidocaine + 1:100,000 epinephrine',
+    volume:'0.3–0.5 mL · shallow · often combined with Spix for extractions',
+    rate:'slow, 20–30 s',
+    onset:'2 min',
+    duration:'30–60 min soft tissue'
+  },
   teeth:[],
   teethNote:'Blocks vestibular gingiva of lower molars (M3, M2, M1, P1) + cheek mucosa. Add to Spix for lower molar extractions.',
   territory:[
@@ -948,6 +1041,17 @@ function renderTech(){
           <div class="sub-label">🧠 Nerves anesthetized</div>
           <div class="nerve-row">${nerveHTML}</div>
         </div>
+
+        ${t.dosage ? `<div class="subsection">
+          <div class="sub-label">💉 Dosage & timing</div>
+          <div class="dosage-card">
+            <div class="dosage-item"><span class="dosage-key">Anesthetic</span><span class="dosage-val">${t.dosage.anesthetic}</span></div>
+            <div class="dosage-item"><span class="dosage-key">Volume</span><span class="dosage-val">${t.dosage.volume}</span></div>
+            <div class="dosage-item"><span class="dosage-key">Deposit rate</span><span class="dosage-val">${t.dosage.rate}</span></div>
+            <div class="dosage-item"><span class="dosage-key">Onset</span><span class="dosage-val">${t.dosage.onset}</span></div>
+            <div class="dosage-item"><span class="dosage-key">Duration</span><span class="dosage-val">${t.dosage.duration}</span></div>
+          </div>
+        </div>` : ''}
 
         <div class="subsection">
           <div class="sub-label">🦷 Territory</div>
