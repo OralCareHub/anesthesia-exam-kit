@@ -1,0 +1,1049 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Learn Mode — All 9 Techniques Step by Step</title>
+<meta name="description" content="Guided learn-mode walkthrough of every UMFT LP anesthesia technique — plexus → PSA → infraorbital → palatal → nasopalatine → Spix → mental → lingual → buccal.">
+<style>
+*{box-sizing:border-box;-webkit-font-smoothing:antialiased}
+html,body{margin:0;padding:0}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Inter','Segoe UI',sans-serif;
+  background:radial-gradient(ellipse at top,#f0f9ff 0%,#e0f2fe 40%,#bae6fd 100%);
+  min-height:100vh;
+  color:#0f172a;
+  padding:22px 14px 60px;
+  line-height:1.55;
+}
+
+/* ===== TOP BAR ===== */
+.back-link{
+  display:block;
+  max-width:1040px;
+  margin:0 auto 12px;
+  color:#0c4a6e;
+  text-decoration:none;
+  font-size:.85em;
+  opacity:.75;
+}
+.back-link:hover{opacity:1}
+
+header.hero{
+  max-width:1040px;
+  margin:0 auto 18px;
+  text-align:center;
+}
+header.hero h1{
+  margin:0 0 6px;
+  font-size:2em;
+  letter-spacing:-.6px;
+  color:#0c4a6e;
+  line-height:1.2;
+}
+header.hero .sub{margin:0;color:#475569;font-size:.98em}
+
+/* ===== PROGRESS BAR ===== */
+.progress-wrap{
+  max-width:1040px;
+  margin:0 auto 22px;
+  background:#fff;
+  border-radius:14px;
+  padding:14px 18px;
+  box-shadow:0 3px 12px rgba(15,23,42,.06);
+}
+.progress-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-bottom:8px;
+}
+.progress-label{
+  font-size:.78em;
+  text-transform:uppercase;
+  letter-spacing:1.2px;
+  color:#64748b;
+  font-weight:700;
+}
+.progress-count{
+  font-size:.9em;
+  color:#0c4a6e;
+  font-weight:700;
+}
+.progress-count b{color:#059669}
+.progress-bar{
+  height:8px;
+  background:#e2e8f0;
+  border-radius:99px;
+  overflow:hidden;
+  position:relative;
+}
+.progress-fill{
+  height:100%;
+  background:linear-gradient(90deg,#10b981,#059669);
+  border-radius:99px;
+  transition:width .4s ease;
+  width:0%;
+}
+.progress-reset{
+  background:none;
+  border:none;
+  color:#64748b;
+  font-size:.75em;
+  cursor:pointer;
+  padding:2px 8px;
+  border-radius:6px;
+}
+.progress-reset:hover{color:#dc2626;background:#fef2f2}
+
+/* ===== TABLE OF CONTENTS ===== */
+.toc{
+  max-width:1040px;
+  margin:0 auto 24px;
+  background:#fff;
+  border-radius:14px;
+  padding:16px 18px;
+  box-shadow:0 3px 12px rgba(15,23,42,.06);
+}
+.toc h3{
+  margin:0 0 12px;
+  font-size:.75em;
+  text-transform:uppercase;
+  letter-spacing:1.2px;
+  color:#64748b;
+  font-weight:700;
+}
+.toc-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
+  gap:8px;
+}
+.toc-item{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:8px 12px;
+  border-radius:8px;
+  text-decoration:none;
+  color:#0f172a;
+  font-size:.88em;
+  background:#f8fafc;
+  transition:background .15s ease;
+  border-left:4px solid var(--tech-color,#94a3b8);
+}
+.toc-item:hover{background:#e0f2fe}
+.toc-item.done{
+  background:#f0fdf4;
+  color:#065f46;
+  border-left-color:#10b981 !important;
+}
+.toc-item.done::after{
+  content:'✓';
+  margin-left:auto;
+  color:#059669;
+  font-weight:700;
+}
+.toc-num{
+  font-family:'SF Mono',Menlo,monospace;
+  font-size:.8em;
+  color:#94a3b8;
+  font-weight:700;
+  min-width:14px;
+}
+
+/* ===== TECHNIQUE SECTION ===== */
+.tech{
+  max-width:1040px;
+  margin:0 auto 26px;
+  background:#fff;
+  border-radius:18px;
+  padding:0;
+  box-shadow:0 6px 20px rgba(15,23,42,.08);
+  overflow:hidden;
+  scroll-margin-top:16px;
+  border-top:6px solid var(--tech-color,#94a3b8);
+}
+
+.tech-head{
+  padding:22px 28px 14px;
+  background:linear-gradient(180deg,color-mix(in srgb,var(--tech-color) 8%,#fff),#fff);
+}
+.tech-num-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:6px;
+  flex-wrap:wrap;
+}
+.tech-num{
+  font-family:'SF Mono',Menlo,monospace;
+  font-size:.75em;
+  color:var(--tech-color,#64748b);
+  font-weight:700;
+  letter-spacing:1.4px;
+  text-transform:uppercase;
+}
+.tech-zone-chip{
+  font-size:.7em;
+  letter-spacing:1.2px;
+  text-transform:uppercase;
+  font-weight:700;
+  padding:4px 10px;
+  border-radius:99px;
+  background:color-mix(in srgb,var(--tech-color) 15%,#fff);
+  color:var(--tech-color,#0f172a);
+}
+.tech h2{
+  margin:0 0 4px;
+  font-size:1.5em;
+  color:#0f172a;
+  letter-spacing:-.3px;
+  line-height:1.25;
+}
+.tech-tagline{
+  margin:0;
+  color:#64748b;
+  font-size:.94em;
+  font-style:italic;
+}
+
+.tech-body{padding:18px 28px 22px}
+
+/* ===== SUBSECTIONS ===== */
+.subsection{margin-bottom:20px}
+.subsection:last-child{margin-bottom:0}
+.sub-label{
+  font-size:.72em;
+  text-transform:uppercase;
+  letter-spacing:1.6px;
+  color:var(--tech-color,#64748b);
+  font-weight:800;
+  margin-bottom:8px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.sub-label::after{
+  content:'';
+  flex:1;
+  height:1px;
+  background:color-mix(in srgb,var(--tech-color) 30%,#e2e8f0);
+}
+
+/* ===== NERVE BADGES ===== */
+.nerve-row{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+.nerve-badge{
+  padding:6px 12px;
+  border-radius:99px;
+  background:color-mix(in srgb,var(--tech-color) 15%,#fff);
+  color:var(--tech-color);
+  font-weight:700;
+  font-size:.88em;
+  border:1px solid color-mix(in srgb,var(--tech-color) 35%,transparent);
+}
+
+/* ===== TERRITORY (teeth + text) ===== */
+.territory-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+  align-items:start;
+}
+@media(max-width:640px){.territory-grid{grid-template-columns:1fr}}
+.teeth-map{
+  background:#f8fafc;
+  border-radius:12px;
+  padding:16px 12px 12px;
+  text-align:center;
+}
+.teeth-map svg{max-width:100%;height:auto;display:block;margin:0 auto}
+.teeth-map .caption{
+  font-size:.72em;
+  color:#94a3b8;
+  margin-top:6px;
+  text-align:center;
+  letter-spacing:.6px;
+  text-transform:uppercase;
+  font-weight:700;
+}
+.territory-list{color:#334155;font-size:.94em}
+.territory-list ul{margin:0;padding-left:20px}
+.territory-list li{margin-bottom:4px}
+
+/* ===== LANDMARKS ===== */
+.landmark-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:12px;
+}
+.landmark-card{
+  background:#f8fafc;
+  border-radius:10px;
+  padding:12px 14px;
+  border-left:3px solid var(--tech-color,#94a3b8);
+}
+.landmark-card .lm-label{
+  font-size:.7em;
+  text-transform:uppercase;
+  letter-spacing:1.2px;
+  color:#64748b;
+  font-weight:700;
+  margin-bottom:6px;
+}
+.landmark-card .lm-content{
+  font-size:.9em;
+  color:#0f172a;
+  line-height:1.5;
+}
+
+/* ===== PROTOCOL (a-j steps) ===== */
+.protocol-list{
+  list-style:none;
+  padding:0;
+  margin:0;
+  counter-reset:step;
+}
+.protocol-list li{
+  display:grid;
+  grid-template-columns:26px 1fr;
+  gap:12px;
+  padding:10px 12px;
+  margin-bottom:6px;
+  background:#f8fafc;
+  border-radius:8px;
+  align-items:start;
+}
+.step-letter{
+  font-family:'SF Mono',Menlo,monospace;
+  font-weight:800;
+  color:var(--tech-color);
+  font-size:1.05em;
+  padding-top:1px;
+}
+.step-body{
+  font-size:.93em;
+  color:#0f172a;
+  line-height:1.5;
+}
+.step-body b{color:var(--tech-color)}
+.step-key{
+  font-size:.7em;
+  text-transform:uppercase;
+  letter-spacing:1.2px;
+  color:#64748b;
+  font-weight:700;
+  margin-right:4px;
+}
+
+/* ===== ACCIDENTS / TRAP ===== */
+.trap-box{
+  background:#fef3c7;
+  border-radius:10px;
+  padding:14px 16px;
+  border-left:4px solid #f59e0b;
+}
+.trap-box .lm-label{color:#92400e}
+.trap-box .lm-content{color:#78350f;font-size:.9em}
+.trap-box ul{margin:4px 0 0;padding-left:20px}
+.trap-box li{margin-bottom:3px}
+
+/* ===== REMEMBER LINE ===== */
+.remember{
+  background:linear-gradient(135deg,color-mix(in srgb,var(--tech-color) 10%,#fff),color-mix(in srgb,var(--tech-color) 3%,#fff));
+  border-radius:12px;
+  padding:14px 18px;
+  border:2px solid color-mix(in srgb,var(--tech-color) 40%,transparent);
+  font-weight:700;
+  color:var(--tech-color);
+  font-size:.96em;
+  text-align:center;
+}
+.remember .lm-label{
+  margin-bottom:4px;
+  color:var(--tech-color);
+  opacity:.75;
+}
+
+/* ===== ACTION BUTTONS ===== */
+.tech-actions{
+  display:flex;
+  gap:10px;
+  padding:16px 28px 22px;
+  background:#f8fafc;
+  border-top:1px solid #e2e8f0;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.btn-know{
+  padding:10px 18px;
+  border-radius:10px;
+  border:2px solid #10b981;
+  background:#fff;
+  color:#059669;
+  font-weight:700;
+  font-size:.9em;
+  cursor:pointer;
+  transition:all .15s ease;
+}
+.btn-know:hover{background:#f0fdf4}
+.btn-know.done{
+  background:#10b981;
+  color:#fff;
+}
+.btn-know.done::before{content:'✓ '}
+
+.nav-btns{margin-left:auto;display:flex;gap:8px}
+.btn-nav{
+  padding:9px 14px;
+  border-radius:8px;
+  background:#fff;
+  border:1px solid #cbd5e1;
+  color:#334155;
+  text-decoration:none;
+  font-size:.85em;
+  font-weight:600;
+  transition:all .15s ease;
+}
+.btn-nav:hover{background:#f0f9ff;border-color:#0284c7;color:#0284c7}
+.btn-nav.disabled{opacity:.4;pointer-events:none}
+
+/* ===== SVG TEETH ===== */
+.tooth-fill{fill:#fff;stroke:#0f172a;stroke-width:1.4}
+.tooth-fill.hit{fill:#86efac;stroke:#059669}
+.tooth-fill.partial{fill:#86efac;fill-opacity:.4;stroke:#059669;stroke-dasharray:2 1.4}
+.tooth-num{font-family:'SF Mono',Menlo,monospace;font-size:8px;fill:#475569;font-weight:600}
+
+/* ===== FOOTER ===== */
+footer{
+  max-width:1040px;
+  margin:24px auto 0;
+  text-align:center;
+  color:#64748b;
+  font-size:.85em;
+  line-height:1.6;
+}
+footer a{color:#0284c7;text-decoration:none}
+footer a:hover{text-decoration:underline}
+
+@media(max-width:640px){
+  header.hero h1{font-size:1.5em}
+  .tech-head{padding:18px 20px 12px}
+  .tech-body{padding:14px 20px 18px}
+  .tech-actions{padding:14px 20px 18px}
+  .tech h2{font-size:1.25em}
+}
+@media print{
+  body{background:#fff;padding:0}
+  .back-link,.progress-wrap,.toc,.tech-actions{display:none}
+  .tech{box-shadow:none;border:1px solid #cbd5e1;page-break-inside:avoid;margin-bottom:12px}
+}
+</style>
+</head>
+<body>
+
+<a class="back-link" href="index.html">← All study tools</a>
+
+<header class="hero">
+  <h1>🎓 Learn Mode — Every Technique</h1>
+  <p class="sub">All 9 exam techniques in learning order. Read one, hit "I know this", move to the next.</p>
+</header>
+
+<div class="progress-wrap">
+  <div class="progress-row">
+    <span class="progress-label">Your progress</span>
+    <span class="progress-count"><b id="learnedCount">0</b> / 9 techniques learned</span>
+    <button class="progress-reset" onclick="resetProgress()">Reset</button>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+</div>
+
+<div class="toc">
+  <h3>📚 Jump to any technique</h3>
+  <div class="toc-grid" id="tocGrid"></div>
+</div>
+
+<div id="techContainer"></div>
+
+<footer>
+  <div>📖 Sources: LP 3–6 lab decks (Popescu/UMFT) + STUDY_SUMMARY_LAB compiled notes</div>
+  <div>Once you've marked all 9 → jump to <a href="EXAM_PRACTICE.html">Practice mode</a> to test yourself</div>
+</footer>
+
+<script>
+// ============================================
+// TECHNIQUE DATA — full teaching content
+// ============================================
+const TECHNIQUES = [
+
+// ============ 1. PLEXUS ============
+{
+  id:'plexus',
+  num:1,
+  name:'Plexal / Supraperiosteal Infiltration',
+  tagline:'The simplest block — 1 or 2 teeth, mostly maxillary + frontal mandible.',
+  zone:'Any single tooth',
+  color:'#10b981', // green — plexal
+  nerves:['Local nerve terminations (dental plexus)'],
+  teeth:[], // any single tooth — no map
+  teethNote:'Works on any single maxillary or frontal-mandibular tooth. Not effective in thick posterior mandibular bone.',
+  territory:[
+    'The tooth you inject over + its periodontium',
+    'Adjacent buccal/labial gingiva',
+    '1 tooth mesial and 1 tooth distal may be partially affected'
+  ],
+  landmarks:{
+    'Bone':'Alveolar bone over the tooth apex.',
+    'Dental':'The tooth you want to anesthetize.',
+    'Soft tissue':'Mucobuccal fold (the fold between lip/cheek and gum) directly over the tooth.'
+  },
+  protocol:{
+    a:'<b>Patient</b>: seated, head straight, mouth half-open.',
+    b:'<b>Operator</b>: 9–10 o\'clock (right-handed).',
+    c:'<b>Non-dominant hand</b>: retract lip/cheek to expose mucobuccal fold.',
+    d:'<b>Asepsis</b>: alcohol or CHX swab over injection site.',
+    e:'<b>Topical</b>: apply gel 1 min if patient is anxious.',
+    f:'<b>Landmarks</b>: identify the tooth apex; find the mucobuccal fold directly above it.',
+    g:'<b>Injection site</b>: mucobuccal fold height, over the tooth apex — <b>bevel toward bone</b>.',
+    h:'<b>Direction + depth</b>: needle parallel to the long axis of the tooth. Depth <b>only a few mm</b> — do NOT push toward periosteum.',
+    i:'<b>Maneuver</b>: use <b>short needle</b>. Aspirate (should be negative). Slow deposit of <b>⅓ – ½ cartridge</b> over 30 seconds. Withdraw slowly. Wait <b>2–4 min</b> for onset.',
+    j:'<b>Accidents</b>: mucosal tear (bevel wrong), periosteum puncture (pain), failure over thick posterior mandibular bone. Rare hematoma.'
+  },
+  traps:[
+    'Contraindicated over <b>multiple adjacent teeth</b> → use a trunk block instead.',
+    'Contraindicated in <b>acute inflammation/infection</b> — LA won\'t work at low pH and you\'ll spread infection.',
+    'Fails on posterior mandibular teeth (bone too thick).'
+  ],
+  remember:'PLEXAL = "near the apex, few millimeters, few drops."'
+},
+
+// ============ 2. PSA / TUBEROSITY ============
+{
+  id:'psa',
+  num:2,
+  name:'PSA Block — Tuberosity Technique',
+  tagline:'Blocks maxillary molars M1–M3 (except MB root of M1).',
+  zone:'Maxillary V2 — buccal',
+  color:'#ea580c', // orange — V2 buccal
+  nerves:['Posterior Superior Alveolar (PSA)'],
+  teeth:['1.6','1.7','1.8','2.6','2.7','2.8'],
+  teethPartial:['1.6','2.6'], // MB root of M1 not fully covered
+  teethNote:'⚠️ MB root of M1 (1.6/2.6) is NOT fully covered — supplement with plexus or infraorbital MSA.',
+  territory:[
+    'Pulp of upper M3, M2, M1 (except MB root of M1)',
+    'Periodontium, ligaments, alveolar bone',
+    '<b>Buccal gingiva</b> of the molars',
+    'Lateral & posterior wall of the maxillary sinus'
+  ],
+  landmarks:{
+    'Bone':'Zygomatic process of the maxilla (jugale).',
+    'Dental':'Mesio-buccal root of the upper second molar (M2).',
+    'Soft tissue':'Mobile mucosa, superior fornix (mucobuccal fold behind the zygomatic process).'
+  },
+  protocol:{
+    a:'<b>Patient</b>: head straight or slightly extended, mouth <b>half-open</b>.',
+    b:'<b>Operator</b>: 9–10 o\'clock.',
+    c:'<b>Non-dominant hand</b>: retract cheek to expose superior fornix; thumb behind zygomatic process.',
+    d:'<b>Asepsis</b>: disinfect mucosa (alcohol/CHX).',
+    e:'<b>Topical</b>: apply gel to the fornix (optional).',
+    f:'<b>Landmarks</b>: locate zygomatic process → then MB root of M2 → puncture point is behind the process in the fornix.',
+    g:'<b>Injection site</b>: superior fornix mucosa, <b>behind the zygomatic process</b>, near MB root of M2.',
+    h:'<b>Direction + depth</b>: <b>upward 45° + inward + backward</b>. Depth <b>10–15 mm</b>. Keep <b>bone contact</b> — do NOT sting the periosteum.',
+    i:'<b>Maneuver</b>: bevel toward bone. <b>Aspirate mandatory</b> (pterygoid venous plexus risk). Slow deposit.',
+    j:'<b>Accidents</b>: pain, needle breakage, <b>tuberosity hematoma</b> (pterygoid venous plexus puncture).'
+  },
+  traps:[
+    '<b>Tuberosity hematoma</b> — the exam classic. Cause: pterygoid venous plexus puncture. Prevention: thin needle, bone contact, slow injection, <b>always aspirate</b>.',
+    'If positive aspiration → gauze in superior fornix + thenar compression.',
+    'MB root of M1 is missed — always supplement.'
+  ],
+  remember:'PSA = "up 45, in, back, 10-15 mm, aspirate!" — hematoma trap.'
+},
+
+// ============ 3. INFRAORBITAL ============
+{
+  id:'infraorbital',
+  num:3,
+  name:'Infraorbital Nerve Block (ASA + MSA)',
+  tagline:'Blocks maxillary incisors, canine, premolars + upper lip + eyelid + side of nose.',
+  zone:'Maxillary V2 — buccal',
+  color:'#ea580c', // orange — V2 buccal
+  nerves:['Infraorbital (IO)','Anterior Superior Alveolar (ASA)','Middle Superior Alveolar (MSA) — when present'],
+  teeth:['1.1','1.2','1.3','1.4','1.5','2.1','2.2','2.3','2.4','2.5'],
+  teethNote:'Covers all upper incisors, canines and premolars on the injected side.',
+  territory:[
+    'Pulp of maxillary <b>incisors, canines, premolars</b> + their periodontium & vestibular bone/gingiva',
+    'Lower eyelid, side of the nose, upper lip',
+    'Anterior part of maxillary sinus'
+  ],
+  landmarks:{
+    'Bone':'Infraorbital ridge — palpate the infraorbital foramen (~1 cm below the ridge, on mid-pupillary line when patient looks straight ahead).',
+    'Dental':'First premolar (P1) — insertion point sits above it.',
+    'Soft tissue':'Mucobuccal fold above P1; extraoral: mid-pupillary line intersecting the infraorbital ridge.'
+  },
+  protocol:{
+    a:'<b>Patient</b>: supine or seated, looking straight ahead.',
+    b:'<b>Operator</b>: 9–10 o\'clock.',
+    c:'<b>Non-dominant hand</b>: index finger stays on the <b>infraorbital foramen</b> for the entire procedure (target guidance).',
+    d:'<b>Asepsis</b>: alcohol/CHX swab.',
+    e:'<b>Topical</b>: gel applied to injection site.',
+    f:'<b>Landmarks</b>: palpate infraorbital ridge → drop finger to foramen → keep finger there.',
+    g:'<b>Injection site</b>: vestibular mucosa <b>~0.5 cm from the buccal surface of P1</b>, in line with the finger on the foramen.',
+    h:'<b>Direction + depth</b>: needle <b>parallel to the long axis of P1</b>, advancing upward toward the foramen. Depth <b>1.5–2.5 cm</b>.',
+    i:'<b>Maneuver</b>: draw <b>1.5–2 mL</b> anesthetic. Small test bolus to painlessly palpate foramen. <b>Aspirate</b> → if negative, slow inject remaining volume.',
+    j:'<b>Accidents</b>: hematoma (facial artery/vein), diplopia (into orbit — never push past finger), transient blindness (rare, arterial).'
+  },
+  traps:[
+    'The finger on the foramen is your <b>safety stop</b> — don\'t push needle past your finger.',
+    'Going too deep or too high → orbital entry → diplopia.',
+    'If patient reports vision change → withdraw immediately.'
+  ],
+  remember:'INFRAORBITAL = "finger on foramen, parallel to P1, 1.5-2.5 cm, deposit at foramen."'
+},
+
+// ============ 4. GREATER PALATINE ============
+{
+  id:'palatine',
+  num:4,
+  name:'Greater Palatine Block',
+  tagline:'Blocks posterior 2/3 of the hard palate.',
+  zone:'Maxillary V2 — palate',
+  color:'#d97706', // amber — V2 palate
+  nerves:['Greater Palatine (GP)'],
+  teeth:[], // palate, not teeth
+  teethNote:'Blocks palatal soft tissue — not tooth pulp. Pair with PSA or infiltration for full anesthesia.',
+  territory:[
+    '<b>Posterior 2/3 of the hard palate</b> and its overlying soft tissue',
+    'Palatal gingiva from upper M3 back to the canine region (approximate)',
+    'Does NOT cover: teeth pulps, anterior 1/3 palate'
+  ],
+  landmarks:{
+    'Bone':'Posterior palatine foramen — 0.5 cm anterior to posterior edge of hard palate; 1 cm anterior to pterygoid hamulus.',
+    'Dental':'1 cm medial to the upper <b>third molar</b> (adult) — or to the temporary M2 (children).',
+    'Soft tissue':'1 cm from the gingival margin of upper M3 — mucoperiosteum looks <b>paler and funnel-shaped</b> over the foramen.'
+  },
+  protocol:{
+    a:'<b>Patient</b>: head <b>extended</b>, mouth <b>wide open</b>.',
+    b:'<b>Operator</b>: 10–12 o\'clock (approach from opposite side).',
+    c:'<b>Non-dominant hand</b>: retract cheek + tongue if needed to expose palate.',
+    d:'<b>Asepsis</b>: alcohol/CHX over injection site.',
+    e:'<b>Topical</b>: gel with 1 min contact (palate is very sensitive).',
+    f:'<b>Landmarks</b>: locate the paler funnel-shaped mucoperiosteum ~1 cm medial to upper M3.',
+    g:'<b>Injection site</b>: palatine mucoperiosteum, <b>1 cm from the alveolar ridge, past the upper M2</b>.',
+    h:'<b>Direction + depth</b>: <b>upward + backward + outward</b>. Syringe coming from the <b>opposite commissure</b>. <b>Do NOT enter the duct</b> — stop at foramen contact.',
+    i:'<b>Maneuver</b>: deposit only <b>0.2–0.3 mL</b> slowly. Watch for tissue blanching.',
+    j:'<b>Accidents</b>: bleeding (palatal artery), soft palate paralysis / nausea if too far posterior, mucosal necrosis (over-injection or vasoconstrictor).'
+  },
+  traps:[
+    'Do NOT enter the duct — stopping at the foramen is enough.',
+    'Positive aspiration <1% — but always aspirate anyway.',
+    'Only <b>0.2–0.3 mL</b> — palatal mucosa is tight; more causes necrosis.'
+  ],
+  remember:'GP = "1 cm medial to M3, up+back+out, 0.2-0.3 mL, don\'t enter duct."'
+},
+
+// ============ 5. NASOPALATINE ============
+{
+  id:'nasopalatine',
+  num:5,
+  name:'Nasopalatine (Scarpa) Block',
+  tagline:'Blocks anterior 1/3 of the hard palate — approach from opposite side.',
+  zone:'Maxillary V2 — palate',
+  color:'#d97706', // amber — V2 palate
+  nerves:['Nasopalatine (NP) — Scarpa\'s nerve'],
+  teeth:[],
+  teethNote:'Blocks palatal soft tissue behind upper incisors. Pair with plexus infiltration for tooth extractions.',
+  territory:[
+    '<b>Anterior 1/3 of the hard palate</b> (soft + hard tissue)',
+    'Both sides if you enter the V/Y-shaped incisive duct',
+    'Palatal gingiva behind upper central & lateral incisors'
+  ],
+  landmarks:{
+    'Bone':'Incisive foramen — on the median palatine line, ~1 cm behind the anterior alveolar ridge.',
+    'Dental':'Median line between the two upper central incisors.',
+    'Soft tissue':'Retroincisal papilla — covers the foramen. Puncture <b>lateral</b> to it, never through it.'
+  },
+  protocol:{
+    a:'<b>Patient</b>: head extended, mouth wide open.',
+    b:'<b>Operator</b>: 10–12 o\'clock.',
+    c:'<b>Non-dominant hand</b>: retract upper lip.',
+    d:'<b>Asepsis</b>: alcohol/CHX.',
+    e:'<b>Topical</b>: gel 1 min — this shot is <b>very painful</b> without.',
+    f:'<b>Landmarks</b>: identify incisive papilla behind upper centrals.',
+    g:'<b>Injection site</b>: palatal mucosa <b>lateral to the incisive papilla</b> — approach from the side <b>opposite</b> to the one you want to block (V/Y crossover).',
+    h:'<b>Direction + depth</b>: <b>upward + backward + outward</b> toward the target side. Advance into the duct <b>5–6 mm</b>.',
+    i:'<b>Maneuver</b>: deposit only <b>0.2–0.3 mL</b> slowly. Watch for blanching.',
+    j:'<b>Accidents</b>: severe pain (papilla puncture), bleeding, mucosal necrosis (over-volume).'
+  },
+  traps:[
+    '<b>Never sting the papilla itself</b> — very vascular, very painful.',
+    'Enter from the side <b>opposite</b> to what you want to block (V/Y duct anatomy).',
+    'Depth is 5–6 mm into the duct — deeper risks nasal cavity.'
+  ],
+  remember:'NP = "lateral to papilla, opposite side, 5-6 mm into duct, 0.2-0.3 mL."'
+},
+
+// ============ 6. SPIX (IAN) ============
+{
+  id:'spix',
+  num:6,
+  name:'Spix Block — IAN + Lingual',
+  tagline:'THE big one. Anesthetizes an entire mandibular hemi-arch + tongue.',
+  zone:'Mandibular V3 — deep',
+  color:'#1e40af', // blue — V3 deep
+  nerves:['Inferior Alveolar (IAN)','Mental (terminal branch)','Incisive (terminal branch)','Lingual'],
+  teeth:['4.1','4.2','4.3','4.4','4.5','4.6','4.7','4.8','3.1','3.2','3.3','3.4','3.5','3.6','3.7','3.8'],
+  teethNote:'One hemi-arch at a time. Both sides = double Spix (avoid: patient can\'t swallow, high risk of self-injury).',
+  territory:[
+    'All teeth on one mandibular hemi-arch + periodontium + bone',
+    '<b>Half of the lower lip</b> (mental n. — the classic sign of success)',
+    'Buccal mucoperiosteum from mental foramen to midline (mental n.)',
+    'Lingual gingiva + periosteum to midline (lingual n.)',
+    'Anterior 2/3 of the tongue + floor of mouth (lingual n.)'
+  ],
+  landmarks:{
+    'Bone':'Mandibular foramen — center of medial ramus, ½ way between anterior/posterior margins and between sigmoid notch/lower edge. <b>Posterior to the lingula (Spix\'s spine).</b>',
+    'Dental':'Occlusal plane of the mandibular molars.',
+    'Soft tissue':'Lateral to pterygomandibular fold, medial to temporal crest, <b>1 cm above the occlusal plane</b>.'
+  },
+  protocol:{
+    a:'<b>Patient</b>: seated, head straight, mouth <b>wide open</b>.',
+    b:'<b>Operator</b>: 8 o\'clock (same side) or 10 o\'clock (opposite side).',
+    c:'<b>Non-dominant hand</b>: thumb in mouth on internal oblique / temporal crest; index outside on posterior ramus. This <b>frames the target</b>.',
+    d:'<b>Asepsis</b>: alcohol/CHX at injection site.',
+    e:'<b>Topical</b>: gel 1 min on the pterygomandibular fold.',
+    f:'<b>Landmarks</b>: pterygomandibular raphe medially, temporal crest laterally, coronoid notch, occlusal plane of lower molars.',
+    g:'<b>Injection site</b>: <b>lateral to pterygomandibular fold, medial to temporal crest, 1 cm above the occlusal plane</b>.',
+    h:'<b>Direction + depth</b>: syringe body <b>lying across the opposite premolars</b>. Advance <b>posterior + lateral + horizontal</b>. Depth <b>2–2.5 cm</b> to bone contact.',
+    i:'<b>Maneuver (direct)</b>: (1) puncture; (2) advance to bone contact 2–2.5 cm; (3) aspirate; (4) slow deposit for IAN (<b>T1</b>); (5) withdraw <b>1 cm</b>; (6) aspirate again; (7) slow deposit for lingual (<b>T2</b>).',
+    j:'<b>Accidents</b>: needle breakage, hematoma, neuritis. <b>Facial palsy (parotid)</b> — needle went posterior to ramus into parotid, anesthetized CN VII. Cause: no bone contact found.'
+  },
+  traps:[
+    '<b>Failure rate 15–20%</b> — the exam knows this.',
+    'If no bone contact by 2.5 cm → withdraw, redirect. <b>Never inject without bone contact</b> or you risk parotid + facial nerve.',
+    '<b>Facial palsy = eyelid droop + can\'t close eye</b>. Patch eye, reassure — resolves in 2–3 h.',
+    'Bevel toward bone to prevent periosteal tear.'
+  ],
+  remember:'SPIX = "1 cm above occlusal, syringe across opposite premolars, 2-2.5 cm to bone, T1 IAN → back off 1 cm → T2 lingual."'
+},
+
+// ============ 7. MENTAL / INCISIVE ============
+{
+  id:'mental',
+  num:7,
+  name:'Mental + Incisive Block',
+  tagline:'When you need premolars + anterior teeth but want to avoid a full Spix.',
+  zone:'Mandibular V3 — superficial',
+  color:'#4338ca', // indigo — V3 superficial
+  nerves:['Mental (terminal of IAN)','Incisive (terminal of IAN)'],
+  teeth:['4.1','4.2','4.3','4.4','4.5','3.1','3.2','3.3','3.4','3.5'],
+  teethNote:'Lower incisors, canines, premolars on one side (up to mental foramen). Does NOT cover molars.',
+  territory:[
+    'Half of the lower lip, skin/soft tissue of chin (mental n.)',
+    'Vestibular gingival mucosa from mental foramen to midline (mental n.)',
+    'Teeth from mental foramen to midline — premolar → canine → incisors (incisive n.)',
+    'Periodontium + bone in that segment'
+  ],
+  landmarks:{
+    'Bone':'Mental foramen — anterior external side of horizontal mandibular ramus, half-distance between basilar edge and alveolar ridge, on the supraorbital-infraorbital-mental vertical line.',
+    'Dental':'Between the roots of the two lower premolars (~50%); or distal/mesial to P2 (~25% each).',
+    'Soft tissue':'On the vertical line through the pupil/oral commissure — 0.5 cm medial to mid-pupillary line.'
+  },
+  protocol:{
+    a:'<b>Patient</b>: seated, head straight, mouth partly open.',
+    b:'<b>Operator</b>: 9–10 o\'clock.',
+    c:'<b>Non-dominant hand</b>: retract lower lip/cheek; palpate mental foramen extraorally as a guide.',
+    d:'<b>Asepsis</b>: alcohol/CHX.',
+    e:'<b>Topical</b>: gel to fold.',
+    f:'<b>Landmarks (intraoral)</b>: mucobuccal fold past the mesial root of lower <b>M1</b>. <b>Extraoral</b>: 1.5–2 cm behind oral commissure on a horizontal line through it.',
+    g:'<b>Injection site (intraoral)</b>: mobile mucosa of mucobuccal fold, <b>past mesial root of lower M1</b>.',
+    h:'<b>Direction + depth (intraoral)</b>: <b>downward + forward + inward</b>. Depth to foramen level. <b>Extraoral: downward + inward + forward</b>.',
+    i:'<b>Maneuver</b>: aspirate. Slow deposit. Massage over foramen post-injection to help solution enter canal → incisive branch anesthesia.',
+    j:'<b>Accidents</b>: hematoma (mental artery), transient paresthesia if intra-neural, incomplete anesthesia if solution not in canal.'
+  },
+  traps:[
+    'To get <b>incisive nerve</b> anesthesia (i.e. teeth), solution must enter the mental foramen → <b>massage after injection</b>.',
+    'Does NOT anesthetize lingual gingiva — supplement if you\'re working lingually.',
+    'Doesn\'t cover molars — use Spix if you need M1 or beyond.'
+  ],
+  remember:'MENTAL = "past mesial root of M1, down+forward+inward, massage into foramen for incisive."'
+},
+
+// ============ 8. LINGUAL (isolated) ============
+{
+  id:'lingual',
+  num:8,
+  name:'Lingual Nerve — Isolated Block',
+  tagline:'For lingual-only work (usually anesthetized as byproduct of Spix).',
+  zone:'Mandibular V3 — superficial',
+  color:'#4338ca', // indigo — V3 superficial
+  nerves:['Lingual n. (branch of V3 posterior division)'],
+  teeth:[],
+  teethNote:'Blocks lingual soft tissue — not tooth pulp. Use for lingual gingiva work, tongue biopsy, floor of mouth surgery.',
+  territory:[
+    'Anterior 2/3 of the tongue',
+    'Floor of the mouth',
+    'Lingual gingiva from midline back to M3'
+  ],
+  landmarks:{
+    'Bone (Method A — M3)':'Angle of the mandible; lingual surface of ramus near lower M3.',
+    'Dental (Method A)':'Lower <b>M3</b> — insertion next to it, paralingual fold.',
+    'Soft tissue (Method B — Dan Theodorescu)':'Paralingual fold in the angle between oral floor and lingual mandible, next to canine or P2.'
+  },
+  protocol:{
+    a:'<b>Patient</b>: seated, mouth wide open, tongue retracted.',
+    b:'<b>Operator</b>: 8–9 o\'clock (same side).',
+    c:'<b>Non-dominant hand</b>: mirror or gauze to retract tongue medially.',
+    d:'<b>Asepsis</b>: CHX rinse + swab.',
+    e:'<b>Topical</b>: gel to insertion site.',
+    f:'<b>Landmarks (Method A)</b>: lower M3, paralingual fold, mandibular angle. <b>(Method B)</b>: paralingual fold at canine/P2 level.',
+    g:'<b>Injection site (A)</b>: paralingual fold next to lower M3, ½ distance between gingiva and tongue base, anterior + medial to mandibular angle. <b>(B)</b>: floor–mandible angle next to canine/P2.',
+    h:'<b>Direction + depth (A)</b>: <b>downward + outward + posterior</b>. Depth <b>0.5 cm</b>. <b>(B)</b>: shallow angle. Depth <b>0.5 cm</b>.',
+    i:'<b>Maneuver</b>: aspirate. Slow deposit of small volume (0.5–1 mL).',
+    j:'<b>Accidents</b>: hematoma, direct nerve trauma → paresthesia (risk: nerve is superficial distal to M3).'
+  },
+  traps:[
+    'Lingual n. is very superficial <b>distal to M3</b> — inject shallow (0.5 cm).',
+    'Nerve trauma → weeks/months of tongue paresthesia. Very slow, careful advance.',
+    'Method B (Theodorescu) is safer for isolated blocks — nerve is deeper there.'
+  ],
+  remember:'LINGUAL = "paralingual fold, 0.5 cm shallow, don\'t over-advance near M3."'
+},
+
+// ============ 9. BUCCAL ============
+{
+  id:'buccal',
+  num:9,
+  name:'Long Buccal Nerve Block',
+  tagline:'Covers buccal gingiva of lower molars + cheek — completes Spix for extractions.',
+  zone:'Mandibular V3 — superficial',
+  color:'#4338ca', // indigo — V3 superficial
+  nerves:['Long Buccal n. (branch of anterior division of V3)'],
+  teeth:[],
+  teethNote:'Blocks vestibular gingiva of lower molars (M3, M2, M1, P1) + cheek mucosa. Add to Spix for lower molar extractions.',
+  territory:[
+    'Vestibular gingiva from lower M3 → mental foramen (M3, M2, M1, P1)',
+    'Cheek mucosa in that region',
+    'Does NOT cover: tooth pulps, lingual tissue'
+  ],
+  landmarks:{
+    'Bone (Classical)':'Anterior margin of mandibular ramus, at the level of the maxillary occlusal plane.',
+    'Dental (Classical)':'Distal & vestibular to <b>upper M3</b>.',
+    'Soft tissue (Classical)':'1 cm posterior + inferior to the Stensen duct papilla.'
+  },
+  protocol:{
+    a:'<b>Patient</b>: seated, mouth open.',
+    b:'<b>Operator</b>: 9–10 o\'clock.',
+    c:'<b>Non-dominant hand</b>: retract cheek to expose posterior vestibule.',
+    d:'<b>Asepsis</b>: alcohol/CHX.',
+    e:'<b>Topical</b>: gel.',
+    f:'<b>Landmarks (Classical)</b>: maxillary occlusal plane × anterior border of ramus; distal to upper M3. <b>(Vestibular infiltration)</b>: distal & vestibular to lower M3.',
+    g:'<b>Injection site (Classical)</b>: intersection of maxillary occlusal plane with anterior mandibular ramus. <b>(Alternate)</b>: vestibular mucosa distal to lower M3.',
+    h:'<b>Direction + depth (Classical)</b>: <b>posterior + parallel to upper occlusal plane + lateral (outward)</b>. Shallow depth. <b>(Alternate)</b>: posterior + horizontal + parallel to lower occlusal plane.',
+    i:'<b>Maneuver</b>: aspirate. Deposit small volume (0.3–0.5 mL).',
+    j:'<b>Accidents</b>: hematoma, needle breakage if patient closes mouth.'
+  },
+  traps:[
+    'Insertion is at the <b>upper occlusal plane × anterior ramus</b> — NOT on the lower arch (classical technique).',
+    'Missing the buccal → gingiva stays sensitive during molar extraction → pain during elevator work.',
+    'Vestibular infiltration alternative is easier but less predictable.'
+  ],
+  remember:'BUCCAL = "upper occlusal × anterior ramus, distal to upper M3, shallow — completes Spix for extractions."'
+}
+
+];
+
+// ============================================
+// RENDERING
+// ============================================
+
+// Full 32-tooth SVG map — used for territory display
+function toothSVG(hitList=[], partialList=[]){
+  const teethTop = ['1.8','1.7','1.6','1.5','1.4','1.3','1.2','1.1','2.1','2.2','2.3','2.4','2.5','2.6','2.7','2.8'];
+  const teethBot = ['4.8','4.7','4.6','4.5','4.4','4.3','4.2','4.1','3.1','3.2','3.3','3.4','3.5','3.6','3.7','3.8'];
+  let svg = '<svg viewBox="0 0 340 130" width="340" xmlns="http://www.w3.org/2000/svg">';
+  const startX = 8;
+  const gap = 20;
+  const toothW = 16;
+  const upperY = 20;
+  const lowerY = 78;
+  const toothH = 24;
+
+  const drawTooth = (fdi, x, y) => {
+    let cls = 'tooth-fill';
+    if(partialList.includes(fdi)) cls += ' partial';
+    else if(hitList.includes(fdi)) cls += ' hit';
+    return `
+      <rect class="${cls}" x="${x}" y="${y}" width="${toothW}" height="${toothH}" rx="3" ry="3"/>
+      <text class="tooth-num" x="${x + toothW/2}" y="${y + toothH + 10}" text-anchor="middle">${fdi}</text>`;
+  };
+
+  teethTop.forEach((fdi, i) => {
+    const x = startX + i * gap;
+    svg += drawTooth(fdi, x, upperY);
+  });
+  teethBot.forEach((fdi, i) => {
+    const x = startX + i * gap;
+    svg += drawTooth(fdi, x, lowerY);
+  });
+
+  // midline
+  svg += `<line x1="170" y1="10" x2="170" y2="120" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="2 2"/>`;
+
+  svg += '</svg>';
+  return svg;
+}
+
+function renderTOC(){
+  const grid = document.getElementById('tocGrid');
+  const done = getDone();
+  grid.innerHTML = TECHNIQUES.map(t =>
+    `<a class="toc-item ${done[t.id]?'done':''}" href="#${t.id}" style="--tech-color:${t.color}">
+      <span class="toc-num">${t.num}.</span>
+      <span>${t.name.replace(/ — .*/,'').replace(/ Block$/,'')}</span>
+    </a>`
+  ).join('');
+}
+
+function renderTech(){
+  const container = document.getElementById('techContainer');
+  const done = getDone();
+  container.innerHTML = TECHNIQUES.map((t, i) => {
+    const teethHTML = t.teeth && t.teeth.length
+      ? toothSVG(t.teeth, t.teethPartial || [])
+      : toothSVG([], []);
+    const prevId = TECHNIQUES[i-1]?.id;
+    const nextId = TECHNIQUES[i+1]?.id;
+    const nerveHTML = t.nerves.map(n => `<span class="nerve-badge">${n}</span>`).join('');
+    const territoryHTML = t.territory.map(x => `<li>${x}</li>`).join('');
+    const landmarksHTML = Object.entries(t.landmarks).map(([k,v]) =>
+      `<div class="landmark-card">
+        <div class="lm-label">${k}</div>
+        <div class="lm-content">${v}</div>
+      </div>`).join('');
+    const protocolHTML = Object.entries(t.protocol).map(([k,v]) =>
+      `<li><div class="step-letter">${k})</div><div class="step-body">${v}</div></li>`).join('');
+    const trapsHTML = t.traps.map(x => `<li>${x}</li>`).join('');
+
+    return `
+    <section class="tech" id="${t.id}" style="--tech-color:${t.color}">
+      <div class="tech-head">
+        <div class="tech-num-row">
+          <span class="tech-num">Technique ${t.num} of 9</span>
+          <span class="tech-zone-chip">${t.zone}</span>
+        </div>
+        <h2>${t.name}</h2>
+        <p class="tech-tagline">${t.tagline}</p>
+      </div>
+
+      <div class="tech-body">
+
+        <div class="subsection">
+          <div class="sub-label">🧠 Nerves anesthetized</div>
+          <div class="nerve-row">${nerveHTML}</div>
+        </div>
+
+        <div class="subsection">
+          <div class="sub-label">🦷 Territory</div>
+          <div class="territory-grid">
+            <div class="teeth-map">
+              ${teethHTML}
+              <div class="caption">${t.teethNote}</div>
+            </div>
+            <div class="territory-list">
+              <ul>${territoryHTML}</ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="subsection">
+          <div class="sub-label">📍 Landmarks</div>
+          <div class="landmark-grid">${landmarksHTML}</div>
+        </div>
+
+        <div class="subsection">
+          <div class="sub-label">🔬 Protocol (exam a–j format)</div>
+          <ol class="protocol-list">${protocolHTML}</ol>
+        </div>
+
+        <div class="subsection">
+          <div class="trap-box">
+            <div class="lm-label">⚠️ Traps & accidents</div>
+            <div class="lm-content">
+              <ul>${trapsHTML}</ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="subsection">
+          <div class="remember">
+            <div class="lm-label">💡 Remember this line</div>
+            ${t.remember}
+          </div>
+        </div>
+      </div>
+
+      <div class="tech-actions">
+        <button class="btn-know ${done[t.id]?'done':''}" data-tech="${t.id}" onclick="toggleKnow('${t.id}')">${done[t.id]?'I know this':'Mark as learned'}</button>
+        <div class="nav-btns">
+          <a class="btn-nav ${prevId?'':'disabled'}" href="${prevId?'#'+prevId:'#'}">← Previous</a>
+          <a class="btn-nav ${nextId?'':'disabled'}" href="${nextId?'#'+nextId:'#'}">Next →</a>
+        </div>
+      </div>
+    </section>`;
+  }).join('');
+}
+
+// ============================================
+// LEARNED TRACKING
+// ============================================
+function getDone(){
+  try{return JSON.parse(localStorage.getItem('anesLearnDone')||'{}')}catch(e){return {}}
+}
+function saveDone(d){localStorage.setItem('anesLearnDone', JSON.stringify(d))}
+
+function toggleKnow(id){
+  const d = getDone();
+  d[id] = !d[id];
+  saveDone(d);
+  updateProgress();
+  renderTOC();
+  // Update the button in place
+  const btn = document.querySelector(`.btn-know[data-tech="${id}"]`);
+  if(btn){
+    btn.classList.toggle('done', !!d[id]);
+    btn.textContent = d[id] ? 'I know this' : 'Mark as learned';
+  }
+}
+
+function updateProgress(){
+  const d = getDone();
+  const learned = TECHNIQUES.filter(t => d[t.id]).length;
+  document.getElementById('learnedCount').textContent = learned;
+  document.getElementById('progressFill').style.width = (learned/9*100) + '%';
+}
+
+function resetProgress(){
+  if(!confirm('Reset all "learned" marks?')) return;
+  localStorage.removeItem('anesLearnDone');
+  renderTOC();
+  renderTech();
+  updateProgress();
+}
+
+// ============================================
+// INIT
+// ============================================
+renderTOC();
+renderTech();
+updateProgress();
+</script>
+
+</body>
+</html>
